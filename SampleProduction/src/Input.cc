@@ -17,7 +17,7 @@ namespace in {
       genNEvents_ = genTree_->GetEntries();
 
       if(!recoTree_ || !genTree_) 
-        throw std::runtime_error("Input::Initialize : RECO or GEN tree is nullptr");
+        throw std::runtime_error("Input::Input : RECO or GEN tree is nullptr");
   }
 
   TFile* Input::GetInFile(){ return inFile_; }
