@@ -1,10 +1,19 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
+#include <string>
+#include <map>
+#include <iostream>
+
+#include "TFile.h"
+#include "TDirectory.h"
+#include "TTree.h"
+#include "TBranch.h"
+
 namespace out {
   class Output {
     public : 
-      explicit Output(const std::string& outFilePath);
+      explicit Output(const std::string& outDirPath, const std::string& outFileName);
       ~Output() {}
 
       TFile* GetOutFile();
@@ -19,7 +28,21 @@ namespace out {
       void InitialiseEvent();
       void LoadNewEvent();
 
-      void Set
+      void SetTauEReco(int tauIdx, double tauE);
+      void SetTauPxReco(int tauIdx, double tauPx);
+      void SetTauPyReco(int tauIdx, double tauPy);
+      void SetTauPzReco(int tauIdx, double tauPz);
+      void SetTaudXYReco(int tauIdx, double taudXY);
+      void SetTaudZReco(int tauIdx, double taudZ);
+      void SetTauDeepTauIDvsJetReco(int tauIdx, const std::string& deepTauIDwp);
+      void SetTauDeepTauIDvsElReco(int tauIdx, const std::string& deepTauIDwp);
+      void SetTauDeepTauIDvsMuReco(int tauIdx, const std::string& deepTauIDwp);
+      void SetTauDecayModeReco(int tauIdx, double tauDecayMode);
+      void SetTauPairHTReco(double tauPairHT);
+      void SetTauPairmT2Reco(double tauPairmT2);
+      void SetTauPairMETEReco(double tauPairMETE);
+      void SetTauPairMETPhiReco(double tauPairMETPhi);
+
 
     private :
       TFile* outFile_;
@@ -28,7 +51,7 @@ namespace out {
       TTree *recoSelTree_, *genSelTree_;
       int recoSelNEvents_, genSeleNEvents_;
 
-      bool isEventInitialised = false;
+      bool isEventInitialised_ = false;
 
       double tau1EReco_ = 0, 
              tau1PxReco_ = 0, tau1PyReco_ = 0, tau1PzReco_ = 0,
