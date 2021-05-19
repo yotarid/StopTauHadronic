@@ -108,9 +108,9 @@ namespace in {
 
   double Input::GetTaudZReco(int iTau){ return taudZRecoVector_->at(iTau); }
 
-  bool Input::IsTauDeepIDvsElReco(int iTau, const std::string& deepTauID)
+  bool Input::IsTauDeepIDvsElReco(int iTau, const std::string& deepTauIDwp)
   {
-    switch(tauIDwpMap_[deepTauID])
+    switch(tauIDwpMap_[deepTauIDwp])
     {
       case 0 : return tauVVVLooseDeepTau2017v2p1VSeRecoVector_->at(iTau) == 1; break;
       case 1 : return tauVVLooseDeepTau2017v2p1VSeRecoVector_->at(iTau) == 1; break; 
@@ -124,9 +124,9 @@ namespace in {
     }
   }
 
-  bool Input::IsTauDeepIDvsJetReco(int iTau, const std::string& deepTauID)
+  bool Input::IsTauDeepIDvsJetReco(int iTau, const std::string& deepTauIDwp)
   {
-    switch(tauIDwpMap_[deepTauID])
+    switch(tauIDwpMap_[deepTauIDwp])
     {
       case 0 : return tauVVVLooseDeepTau2017v2p1VSjetRecoVector_->at(iTau) == 1; break;
       case 1 : return tauVVLooseDeepTau2017v2p1VSjetRecoVector_->at(iTau) == 1; break; 
@@ -140,9 +140,9 @@ namespace in {
     }
   }
 
-  bool Input::IsTauDeepIDvsMuReco(int iTau, const std::string& deepTauID)
+  bool Input::IsTauDeepIDvsMuReco(int iTau, const std::string& deepTauIDwp)
   {
-    switch(tauIDwpMap_[deepTauID])
+    switch(tauIDwpMap_[deepTauIDwp])
     {
       case 2 : return tauVLooseDeepTau2017v2p1VSmuRecoVector_->at(iTau) == 1; break; 
       case 3  : return tauLooseDeepTau2017v2p1VSmuRecoVector_->at(iTau) == 1; break; 

@@ -37,9 +37,9 @@ namespace in {
       double GetTaudXYReco(int iTau);
       double GetTaudZReco(int iTau);
 
-      bool IsTauDeepIDvsElReco(int iTau, const std::string& deepTauID);
-      bool IsTauDeepIDvsJetReco(int iTau, const std::string& deepTauID);
-      bool IsTauDeepIDvsMuReco(int iTau, const std::string& deepTauID);
+      bool IsTauDeepIDvsElReco(int iTau, const std::string& deepTauIDwp);
+      bool IsTauDeepIDvsJetReco(int iTau, const std::string& deepTauIDwp);
+      bool IsTauDeepIDvsMuReco(int iTau, const std::string& deepTauIDwp);
 
       double GetMETEReco();
       double GetMETPhiReco();
