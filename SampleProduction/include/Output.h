@@ -46,6 +46,7 @@ namespace out {
 
     private :
       TFile* outFile_;
+      TDirectory* outROOTDir_;
       std::string outFilePath_;
 
       TTree *recoSelTree_, *genSelTree_;
@@ -56,17 +57,17 @@ namespace out {
       double tau1EReco_ = 0, 
              tau1PxReco_ = 0, tau1PyReco_ = 0, tau1PzReco_ = 0,
              tau1dXYReco_ = 0, tau1dZReco_ = 0,
-             tau1DeepTauIDvsJetReco_ = -1;
-             tau1DeepTauIDvsElReco_ = -1;
-             tau1DeepTauIDvsMuReco_ = -1;
+             tau1DeepTauIDvsJetReco_ = -1,
+             tau1DeepTauIDvsElReco_ = -1,
+             tau1DeepTauIDvsMuReco_ = -1,
              tau1DecayModeReco_ = 0;
 
       double tau2EReco_ = 0, 
              tau2PxReco_ = 0, tau2PyReco_ = 0, tau2PzReco_ = 0,
              tau2dXYReco_ = 0, tau2dZReco_ = 0,
-             tau2DeepTauIDvsJetReco_ = -1;
-             tau2DeepTauIDvsElReco_ = -1;
-             tau2DeepTauIDvsMuReco_ = -1;
+             tau2DeepTauIDvsJetReco_ = -1,
+             tau2DeepTauIDvsElReco_ = -1,
+             tau2DeepTauIDvsMuReco_ = -1,
              tau2DecayModeReco_ = 0;
 
       double tauPairHTReco_ = 0;

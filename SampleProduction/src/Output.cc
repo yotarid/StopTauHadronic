@@ -4,23 +4,23 @@ namespace out {
 
   Output::Output(const std::string& outDirPath, const std::string& outFileName)
   {
-    std::cout << "Creating output directory : " << outFilePath << std::endl;
-    system(Form("mkdir -p %s", outFilePath.c_str()));
-    std::cout << "Creating output file : " << Form("%s/%s", outFilePath.c_str(), outFileName.c_str()) << std::endl;
+    std::cout << "Creating output directory : " << outDirPath << std::endl;
+    system(Form("mkdir -p %s", outDirPath.c_str()));
+    std::cout << "Creating output file : " << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << std::endl;
     outFile_ = TFile::Open(Form("%s/%s", outDirPath.c_str(), outFileName.c_str()));
     outFilePath_ = outDirPath + outFileName;
     std::cout << "Creating ROOT directory inside output file : miniaodsim2custom2custom" << std::endl;
-    TDirectory *outROOTDir = outFile_->mkdir("miniaodsim2custom2custom");
-    outROOTDir->cd();
+    outROOTDir_ = outFile_->mkdir("miniaodsim2custom2custom");
+    outROOTDir_->cd();
     recoSelTree_ = new TTree("reco", "Selection of reconstructed events");
     genSelTree_ = new TTree("gen", "Selection of generated events");
-    if(!outFile_ || recoSelTree_ || genSelTree_)
-      throw std::runtime_error("Output:Output : File, RECO or GEN tree is nullptr");
+    if(!outFile_ || !recoSelTree_ || !genSelTree_ || !outROOTDir_)
+      throw std::runtime_error("Output:Output : ROOT File/Directory | RECO/GEN Tree is nullptr");
   }
 
   TFile* Output::GetOutFile(){ return outFile_; }
 
-  std::string Output::GetOutFilePath{ return outFilePath_; }
+  std::string Output::GetOutFilePath(){ return outFilePath_; }
 
   TTree* Output::GetRecoSelTree(){ return recoSelTree_; }
 
@@ -136,8 +136,8 @@ namespace out {
   {
     switch(tauIdx)
     {
-      case 1 : tau1DeepTauIDvsJetReco_ = tauIDwpMap[deepTauIDwp]; break;
-      case 2 : tau2DeepTauIDvsJetReco_ = tauIDwpMap[deepTauIDwp]; break;
+      case 1 : tau1DeepTauIDvsJetReco_ = tauIDwpMap_[deepTauIDwp]; break;
+      case 2 : tau2DeepTauIDvsJetReco_ = tauIDwpMap_[deepTauIDwp]; break;
       default : throw std::runtime_error("Output::SetTauDeepTauIDvsJetReco : undefined Tau index");
     }
   }
@@ -146,8 +146,8 @@ namespace out {
   {
     switch(tauIdx)
     {
-      case 1 : tau1DeepTauIDvsElReco_ = tauIDwpMap[deepTauIDwp]; break;
-      case 2 : tau2DeepTauIDvsElReco_ = tauIDwpMap[deepTauIDwp]; break;
+      case 1 : tau1DeepTauIDvsElReco_ = tauIDwpMap_[deepTauIDwp]; break;
+      case 2 : tau2DeepTauIDvsElReco_ = tauIDwpMap_[deepTauIDwp]; break;
       default : throw std::runtime_error("Output::SetTauDeepTauIDvsElReco : undefined Tau index");
     }
   }
@@ -156,8 +156,8 @@ namespace out {
   {
     switch(tauIdx)
     {
-      case 1 : tau1DeepTauIDvsMuReco_ = tauIDwpMap[deepTauIDwp]; break;
-      case 2 : tau2DeepTauIDvsMuReco_ = tauIDwpMap[deepTauIDwp]; break;
+      case 1 : tau1DeepTauIDvsMuReco_ = tauIDwpMap_[deepTauIDwp]; break;
+      case 2 : tau2DeepTauIDvsMuReco_ = tauIDwpMap_[deepTauIDwp]; break;
       default : throw std::runtime_error("Output::SetTauDeepTauIDvsMuReco : undefined Tau index");
     }
   }
