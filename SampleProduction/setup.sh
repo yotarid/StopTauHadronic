@@ -27,17 +27,17 @@ export SAMPLEPRODUCTION_BASE_DIR=$(pwd)
 export PATH=$SAMPLEPRODUCTION_BASE_DIR/bin:$PATH 
 export LD_LIBRARY_PATH=:$LD_LIBRARY_PATH 
 
-#########
-# Flags #
-#########
-export ROOT_FLAGS=`root-config --libs --cflags --ldflags`" -lRooFitCore"
+# #########
+# # Flags #
+# #########
+# export ROOT_FLAGS=`root-config --libs --cflags --ldflags`" -lRooFitCore"
 
 ###################
 # CMS Environment #
 ###################
 echo "Running cmsenv"
 cmsenv
-echo "Loading cmssw"
+echo "Loading CMSSW"
 module use -a /afs/desy.de/group/cms/modulefiles/
 module load cmssw
 
