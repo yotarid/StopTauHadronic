@@ -12,8 +12,8 @@ if(${ROOT_FOUND})
   set(LIBS ${LIBS} ${ROOT_LIBRARIES})
 endif()
 
-file(GLOB HEADERS *.h)
-file(GLOB SOURCES *.cc)
+file(GLOB HEADERS *.h ${PROJECT_SOURCE_DIR}/utils/pugixml/src/*.hpp)
+file(GLOB SOURCES *.cc ${PROJECT_SOURCE_DIR}/utils/pugixml/src/*.cpp)
 
 add_library(SampleProduction_src STATIC ${SOURCES} ${HEADERS})
 target_link_libraries(SampleProduction_src ${LIBS})

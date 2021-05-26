@@ -1,6 +1,8 @@
 #ifndef CONFIGURATION_H
 #define CONFIGRATION_H
 
+#include "../utils/pugixml/src/pugixml.hpp"
+#include "../utils/pugixml/src/pugiconfig.hpp"
 #include <string>
 
 struct SelCuts {
