@@ -20,9 +20,9 @@ namespace in {
         throw std::runtime_error("Input::Input : RECO or GEN tree is nullptr");
   }
 
-  TFile* Input::GetInFile(){ return inFile_; }
+  TFile* Input::GetFile(){ return inFile_; }
 
-  std::string Input::GetInFilePath(){ return inFilePath_; }
+  std::string Input::GetFilePath(){ return inFilePath_; }
 
   TTree* Input::GetRecoTree(){ return recoTree_; }
 

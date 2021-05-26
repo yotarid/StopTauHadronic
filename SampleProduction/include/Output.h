@@ -16,8 +16,8 @@ namespace out {
       explicit Output(const std::string& outDirPath, const std::string& outFileName);
       ~Output() {}
 
-      TFile* GetOutFile();
-      std::string GetOutFilePath();
+      TFile* GetFile();
+      std::string GetFilePath();
 
       TTree* GetRecoSelTree();
       int GetRecoSelTreeNEvents();

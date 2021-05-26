@@ -16,8 +16,8 @@ namespace in {
       explicit Input(const std::string& inFilePath);
       ~Input() {}
 
-      TFile* GetInFile();
-      std::string GetInFilePath();
+      TFile* GetFile();
+      std::string GetFilePath();
       
       TTree* GetRecoTree();
       int GetRecoNEvents();

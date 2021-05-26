@@ -18,9 +18,9 @@ namespace out {
       throw std::runtime_error("Output:Output : ROOT File/Directory | RECO/GEN Tree is nullptr");
   }
 
-  TFile* Output::GetOutFile(){ return outFile_; }
+  TFile* Output::GetFile(){ return outFile_; }
 
-  std::string Output::GetOutFilePath(){ return outFilePath_; }
+  std::string Output::GetFilePath(){ return outFilePath_; }
 
   TTree* Output::GetRecoSelTree(){ return recoSelTree_; }
 
