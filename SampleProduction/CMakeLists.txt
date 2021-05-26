@@ -16,10 +16,10 @@ set(BoldMagenta "${Esc}[1;35m")
 set(BoldCyan    "${Esc}[1;36m")
 set(BoldWhite   "${Esc}[1;37m")
 
-MESSAGE(STATUS " ")
+MESSAGE(STATUS "")
 MESSAGE(STATUS "${BoldBlue}============================================${Reset}")
 MESSAGE(STATUS "${BoldYellow}ANALYSIS${Reset} [stand-alone]: compilation of the analysis package")
-MESSAGE(STATUS " ")
+MESSAGE(STATUS "")
 
 cmake_minimum_required(VERSION 2.8.9)
 project(SampleProduction)
@@ -29,22 +29,31 @@ if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR} )
   MESSAGE( FATAL_ERROR "${Reset}In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there. You may need to remove CMakeCache.txt." )
 endif()
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+${PROJECT_SOURCE_DIR}/bin
+CACHE PATH
+"Single Directory for all Executables."
+)
+
 set(ROOT_FLAGS "$ENV{ROOT_FLAGS}")
 
-MESSAGE(STATUS "")
-MESSAGE(STATUS "  ${BoldYellow}COMPILATION FLAGS:${Reset}")
-MESSAGE(STATUS "  ROOT_FLAGS = ${BoldRed}${ROOT_FLAGS}${Reset}")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_CXX_FLAGS "-g -std=c++17 -gdwarf-4 -O2 -Werror -pedantic -Wall -Wextra -Wcpp")
 
-
-set(CMAKE_CXX_STANDARD 1y)
-set(CMAKE_CXX_FLAGS "-g -std=c++1y -gdwarf-4 -03 -Werror -pedantic -Wall -Wextra -Wcpp")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
+MESSAGE(STATUS "----")
+MESSAGE(STATUS "---- ${BoldCyan}### Searching for ROOT ###${Reset}")
+find_package(ROOT)
+if(ROOT_FOUND)
+  MESSAGE(STATUS "---- Using ROOT version ${ROOT_VERSION}")
+endif(ROOT_FOUND)
+MESSAGE(STATUS "----")
 
 include_directories(include)
+add_subdirectory(src)
+add_subdirectory(exec)
 
-file(GLOB SOURCES src/*.cc)
-
-MESSAGE(STATUS " ")
+MESSAGE(STATUS "")
 MESSAGE(STATUS "${BoldYellow}ANALYSIS${Reset} [stand-alone]: [${BoldCyan}${SAMPLEPRODUCTION_BASE_DIR}/CMakeLists.txt${Reset}]")
 MESSAGE(STATUS "${BoldYellow}ANALYSIS${Reset} [stand-alone]: compilation of the analysis package done.")
-MESSAGE(STATUS " ")
+MESSAGE(STATUS "")
