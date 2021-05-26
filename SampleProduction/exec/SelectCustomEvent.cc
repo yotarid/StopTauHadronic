@@ -2,8 +2,9 @@
 #include "../include/Output.h"
 #include "../include/Selector.h"
 
-int main(int argc, char* argv[])
+int main()
 {
-  in::Input input("/nfs/dust/cms/user/yotarid/SUSY/CMSSW_10_5_0/src/StopPairToTau_analysis/stopPair/sourceFiles/Tau_Run2018A-17Sep2018-v1_MINIAOD/Tau_Run2018A-17Sep2018-v1_MINIAOD_custom.txt");
+  std::string inFile = "/nfs/dust/cms/user/yotarid/SUSY/CMSSW_10_5_0/src/StopPairToTau_analysis/stopPair/sourceFiles/Tau_Run2018A-17Sep2018-v1_MINIAOD/Tau_Run2018A-17Sep2018-v1_MINIAOD_custom.txt";
+  in::Input input(inFile);
   return 0;
 }

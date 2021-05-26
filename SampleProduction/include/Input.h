@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <vector>
 
 #include <TFile.h>
 #include <TTree.h>
@@ -123,7 +124,6 @@ namespace in {
       //Tau ID working point map
       std::map<std::string, int> tauIDwpMap_ = {{"VVVLoose", 0}, {"VVLoose", 1}, {"VLoose", 2}, {"Loose", 3}, {"Medium", 4}, {"Tight", 5}, {"VTight", 6}, {"VVTight", 7}};
   };
-
 }//namespace in
 
 #endif

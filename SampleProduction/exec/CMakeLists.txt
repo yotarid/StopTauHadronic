@@ -7,6 +7,8 @@ include_directories(${PROJET_SOURCE_DIR}/include)
 include_directories(${PROJET_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+set(LIBS ${LIBS} SampleProduction_src)
+
 if(${ROOT_FOUND})
   include_directories(${ROOT_INCLUDE_DIRS})
   set(LIBS ${LIBS} ${ROOT_LIBRARIES})
