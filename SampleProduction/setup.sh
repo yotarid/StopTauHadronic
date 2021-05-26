@@ -27,11 +27,6 @@ export SAMPLEPRODUCTION_BASE_DIR=$(pwd)
 export PATH=$SAMPLEPRODUCTION_BASE_DIR/bin:$PATH 
 export LD_LIBRARY_PATH=:$LD_LIBRARY_PATH 
 
-# #########
-# # Flags #
-# #########
-# export ROOT_FLAGS=`root-config --libs --cflags --ldflags`" -lRooFitCore"
-
 ###################
 # CMS Environment #
 ###################
