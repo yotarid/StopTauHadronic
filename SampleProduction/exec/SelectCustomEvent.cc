@@ -1,6 +1,6 @@
 #include "../include/Input.h"
 #include "../include/Output.h"
-#include "../include/Selector.h"
+#include "../include/Configuration.h"
 
 int main()
 {

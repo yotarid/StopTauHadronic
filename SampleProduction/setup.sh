@@ -8,6 +8,8 @@ export BOOST_LIB=/usr/lib64
 # ROOT #
 ########
 THISROOTSH=${ROOTSYS}/bin/thisroot.sh
+echo "Sourcing thisroot.sh"
+source ${THISROOTSH}
 [ ! -f ${THISROOTSH} ] || source ${THISROOTSH}
 unset THISROOTSH
 
