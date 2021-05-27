@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RunDescription>
+  <Era date="2017">
+    <Process name="SingleTopMC">
+      <Input>
+        <Directory name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" />
+        <Directory name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" />
+        <Directory name="ST_t-channel_antitop_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" />
+        <Directory name="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" />
+      </Input>
+      <!---->
+      <Output>
+        <File name="SingleTopMC" />
+      </Output>
+      <!---->
+      <SelectionCuts>
+        <Tau pT="40" eta="2.1" dZ="" dXY="" deltaR="" dR="" />
+      </SelectionCuts>
+    </Process>
+  </Era>
+
+  <Era date="2018">
+    <Process name="SingleTopMC">
+      <Input>
+        <Directory name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" />
+        <Directory name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" />
+        <Directory name="ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18" />
+        <Directory name="ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18" />
+      </Input>
+      <!---->
+      <Output>
+        <File name="SingleTopMC" />
+      </Output>
+      <!---->
+      <SelectionCuts>
+        <Tau pT="40" eta="2.1" dZ="" dXY="" deltaR="" dR="" />
+      </SelectionCuts>
+    </Process>
+  </Era>
+</RunDescription>
