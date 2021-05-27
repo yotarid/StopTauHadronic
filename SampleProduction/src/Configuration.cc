@@ -2,8 +2,30 @@
 
 namespace conf {
 
-  Configuration::Configuration(const std::string& confFilePath) : confFilePath_(confFilePath)
-  {}
+  Configuration::Configuration(const std::string& confFilePath, const std::string& era) 
+    : confFilePath_(confFilePath), era_(era)
+  {
+    if(confFilePath.find(".xml") != std::string::npos)
+      ParseSettings(confFilePath);
+    else
+      throw std::runtime_error("ERROR : settings file is not XML");
+  }
+
+  void Configuration::ParseSettings(const std::string& confFilePath)
+  {
+    pugi::xml_document confFile;
+    pugi::xml_parse_result result = confFile.load_file(confFilePath.c_str());
+    if(!result)
+      throw std::runtime_error("ERROR : couldn't open " + confFilePath);
+
+    for(pugi::xml_node eraNode = confFile.child("RunDescription").child("Era"); eraNode; eraNode = eraNode.next_sibling())
+    {
+      if(eraNode.attribute("date").value() == era_)
+      {
+        
+      }
+    }
+  }
 
   std::string Configuration::GetFilePath(){ return confFilePath_; }
 
