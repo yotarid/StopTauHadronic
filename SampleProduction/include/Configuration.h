@@ -1,9 +1,13 @@
 #ifndef CONFIGURATION_H
-#define CONFIGRATION_H
+#define CONFIGURATION_H
 
 #include "../utils/pugixml/src/pugixml.hpp"
 #include "../utils/pugixml/src/pugiconfig.hpp"
+
+#include <iostream>
 #include <string>
+#include <vector>
+#include <map>
 
 struct SelCuts {
     float tauPt;
@@ -14,27 +18,42 @@ struct SelCuts {
     float taudR;
 };
 
+
 namespace conf {
+
+  typedef std::vector<std::string> VecStr;
+  typedef std::map< std::string, VecStr > MapStrToVecStr;
+  typedef std::map< std::string, std::string > MapStrToStr;
+  typedef std::map< std::string, SelCuts > SelCutsMap;
 
   class Configuration {
     public :
-      explicit Configuration(const std::string& confFilePath);
+      explicit Configuration(const std::string& confFilePath, const std::string& era);
       ~Configuration() {}
 
-      std::string GetFilePath();
-      std::string GetInputDirPath();
+      void ParseSettings(const std::string& confFilePath);
 
-      float GetCutTauPt();
-      float GetCutTauEta();
-      float GetTauCutdZ();
-      float GetTauCutdXY();
-      float GetTauCutdeltaR();
-      float GetTauCutTaudR();
+      std::string GetFilePath();
+      VecStr GetInputDirList(const std::string& process);
+      std::string GetOutputFilePath(const std::string& process);
+
+      VecStr GetProcessList();
+
+      float GetCutTauPt(const std::string& process);
+      float GetCutTauEta(const std::string& process);
+      float GetTauCutdZ(const std::string& process);
+      float GetTauCutdXY(const std::string& process);
+      float GetTauCutdeltaR(const std::string& process);
+      float GetTauCutTaudR(const std::string& process);
 
     private : 
       std::string confFilePath_;
-      std::string inputDirPath_;
-      SelCuts selCuts_;
+      std::string era_;
+
+      VecStr processList_;
+      MapStrToVecStr inputDirMap_;
+      MapStrToStr outFileMap_;
+      SelCutsMap selCutsMap_;
   };
 
 }//namespace configuration

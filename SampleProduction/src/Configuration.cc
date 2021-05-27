@@ -7,18 +7,22 @@ namespace conf {
 
   std::string Configuration::GetFilePath(){ return confFilePath_; }
 
-  std::string Configuration::GetInputDirPath(){ return inputDirPath_; }
+  VecStr Configuration::GetInputDirList(const std::string& process){ return inputDirMap_[process]; }
 
-  float Configuration::GetCutTauPt(){ return selCuts_.tauPt; }
+  std::string Configuration::GetOutputFilePath(const std::string& process){ return outFileMap_[process]; }
 
-  float Configuration::GetCutTauEta(){ return selCuts_.tauEta; }
+  VecStr Configuration::GetProcessList(){ return processList_; }
 
-  float Configuration::GetTauCutdZ(){ return selCuts_.taudZ; }
+  float Configuration::GetCutTauPt(const std::string& process){ return selCutsMap_[process].tauPt; }
 
-  float Configuration::GetTauCutdXY(){ return selCuts_.taudXY; }
+  float Configuration::GetCutTauEta(const std::string& process){ return selCutsMap_[process].tauEta; }
 
-  float Configuration::GetTauCutdeltaR(){ return selCuts_.taudeltaR; }
+  float Configuration::GetTauCutdZ(const std::string& process){ return selCutsMap_[process].taudZ; }
 
-  float Configuration::GetTauCutTaudR(){ return selCuts_.taudR; }
+  float Configuration::GetTauCutdXY(const std::string& process){ return selCutsMap_[process].taudXY; }
+
+  float Configuration::GetTauCutdeltaR(const std::string& process){ return selCutsMap_[process].taudeltaR; }
+
+  float Configuration::GetTauCutTaudR(const std::string& process){ return selCutsMap_[process].taudR; }
 
 }//namespace configuration
