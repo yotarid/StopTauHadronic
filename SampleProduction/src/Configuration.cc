@@ -22,9 +22,55 @@ namespace conf {
     {
       if(eraNode.attribute("date").value() == era_)
       {
+        for(pugi::xml_node processNode = eraNode.child("Process"); processNode; processNode = processNode.next_sibling())
+        {
+          ParseInputDir(processNode);
+          ParseOutputFile(processNode);
+          ParseSelectionCuts(processNode);
+        }
         
       }
     }
+  }
+
+  void Configuration::ParseInputDir(pugi::xml_node processNode)
+  {
+    //get process name
+    std::string processName = processNode.attribute("name").value();
+    //fill process directory list
+    VecStr inputDirList;
+    for(pugi::xml_node dirNode = processNode.child("Input").child("Directory"); dirNode; dirNode = dirNode.next_sibling())
+      inputDirList.push_back(dirNode.attribute("name").value());
+  }
+
+  void Configuration::ParseOutputFile(pugi::xml_node processNode)
+  {
+    //get process name
+    std::string processName = processNode.attribute("name").value();
+    //get process output file name
+    std::string outFileName = processNode.child("Output").attribute("name").value();
+  }
+
+  void Configuration::ParseSelectionCuts(pugi::xml_node processNode)
+  {
+    //get process name
+    std::string processName = processNode.attribute("name").value();
+    //get selection cuts
+    SelCuts selCuts;
+    for(pugi::xml_node cutNode = processNode.child("SelectionCuts").child("cut"); cutNode; cutNode = cutNode.next_sibling())
+    {
+      std::string object = cutNode.attribute("name").value();
+      if(object == "tau")
+      {
+        selCuts.tauPt = cutNode.attribute("pT").as_float(40);
+        selCuts.tauEta = cutNode.attribute("eta").as_float(2.1);
+        selCuts.taudZ = cutNode.attribute("dZ").as_float(24);
+        selCuts.taudXY = cutNode.attribute("dXY").as_float(2);
+        selCuts.taudeltaR = cutNode.attribute("deltaR").as_float(0.5);
+        selCuts.taudR = cutNode.attribute("dR").as_float(0.5);
+      }
+    }
+    selCutsMap_.insert(std::make_pair(processName, selCuts));
   }
 
   std::string Configuration::GetFilePath(){ return confFilePath_; }

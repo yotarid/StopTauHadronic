@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <stdexcept>
 
 struct SelCuts {
     float tauPt;
@@ -17,7 +18,6 @@ struct SelCuts {
     float taudeltaR; 
     float taudR;
 };
-
 
 namespace conf {
 
@@ -32,6 +32,9 @@ namespace conf {
       ~Configuration() {}
 
       void ParseSettings(const std::string& confFilePath);
+      void ParseInputDir(pugi::xml_node processNode);
+      void ParseOutputFile(pugi::xml_node processNode);
+      void ParseSelectionCuts(pugi::xml_node processNode);
 
       std::string GetFilePath();
       VecStr GetInputDirList(const std::string& process);
