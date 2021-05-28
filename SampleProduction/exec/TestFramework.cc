@@ -2,8 +2,15 @@
 #include "../include/Output.h"
 #include "../include/Configuration.h"
 
+INITIALIZE_EASYLOGGINGPP
+
 int main()
 {
+  el::Configurations logConfig(std::string(std::getenv("SAMPLEPRODUCTION_BASE_DIR")) + "/settings/logger.conf");
+  el::Loggers::reconfigureAllLoggers(logConfig);
+
+  LOG(INFO) << BLUE << "HELO" << RESET;
+
   std::string inFile = "root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/user/sobhatta/Tau/crab_Tau_Run2018A-17Sep2018-v1_MINIAOD/210401_095406/0000/custom_1.root";
   in::Input input(inFile);
 
@@ -14,10 +21,11 @@ int main()
   std::string process = "process0";
   std::cout << "Process : " << process << std::endl;
   std::cout << "\t input dirs :" << std::endl;
-  for(auto dir : conf.GetInputDirList(process))
+  for(auto dir : conf.GetInputFileList(process))
     std::cout << "\t\t input dir : " << dir << std::endl;
 
-  std::cout << "\t output file : " << conf.GetOutputFilePath(process) << std::endl;
+  std::cout << "\t output file : " << conf.GetOutputFileName(process) << std::endl;
+  out::Output output(conf.GetOutputFileName(process), conf.GetEra(), process);
 
   std::cout << "\t selection cuts : " << std::endl;
   std::cout << "\t\t tau pT : " << +conf.GetCutTauPt(process) << std::endl;
@@ -30,10 +38,10 @@ int main()
   process = "process1";
   std::cout << "Process : " << process << std::endl;
   std::cout << "\t input dirs :" << std::endl;
-  for(auto dir : conf.GetInputDirList(process))
+  for(auto dir : conf.GetInputFileList(process))
     std::cout << "\t\t input dir : " << dir << std::endl;
 
-  std::cout << "\t output file : " << conf.GetOutputFilePath(process) << std::endl;
+  std::cout << "\t output file : " << conf.GetOutputFileName(process) << std::endl;
 
   std::cout << "\t selection cuts : " << std::endl;
   std::cout << "\t\t tau pT : " << +conf.GetCutTauPt(process) << std::endl;
