@@ -1,9 +1,13 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
+#include "../utils/easylogging++.h"
+#include "../utils/consolecolor.h"
+
 #include <map>
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 #include "TFile.h"
 #include "TDirectory.h"
@@ -13,8 +17,8 @@
 namespace out {
   class Output {
     public : 
-      explicit Output(const std::string& outDirPath, const std::string& outFileName);
-      ~Output() {}
+      explicit Output(const std::string& outFileName, const std::string& era, const std::string& process);
+      ~Output();
 
       TFile* GetFile();
       std::string GetFilePath();
@@ -45,6 +49,8 @@ namespace out {
 
 
     private :
+      std::string era_, process_;
+
       TFile* outFile_;
       TDirectory* outROOTDir_;
       std::string outFilePath_;

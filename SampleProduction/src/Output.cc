@@ -2,20 +2,35 @@
 
 namespace out {
 
-  Output::Output(const std::string& outDirPath, const std::string& outFileName)
+  Output::Output(const std::string& outFileName, const std::string& era, const std::string& process)
+    : era_(era), process_(process)
   {
-    std::cout << "Creating output directory : " << outDirPath << std::endl;
+    std::string outDirPath = Form("%s/%s/%s", std::getenv("SAMPLEPRODUCTION_OUT_DIR"), era.c_str(), process.c_str());
+    std::cout << "Creating output directory " << outDirPath << " for process : " << process << std::endl;
     system(Form("mkdir -p %s", outDirPath.c_str()));
-    std::cout << "Creating output file : " << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << std::endl;
-    outFile_ = TFile::Open(Form("%s/%s", outDirPath.c_str(), outFileName.c_str()));
-    outFilePath_ = outDirPath + outFileName;
+    //
+    std::cout << "Creating output file : " << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << " for process : " << process << std::endl;
+    outFile_ = TFile::Open(Form("%s/%s", outDirPath.c_str(), outFileName.c_str()), "RECREATE");
+    outFilePath_ = outDirPath + "/" + outFileName;
+    if(!outFile_)
+      throw std::runtime_error("Output:Output : ROOT File is nullptr");
+    //
     std::cout << "Creating ROOT directory inside output file : miniaodsim2custom2custom" << std::endl;
     outROOTDir_ = outFile_->mkdir("miniaodsim2custom2custom");
+    if(!outROOTDir_)
+      throw std::runtime_error("Output:Output : ROOT Directory is nullptr");
     outROOTDir_->cd();
+    //
     recoSelTree_ = new TTree("reco", "Selection of reconstructed events");
     genSelTree_ = new TTree("gen", "Selection of generated events");
-    if(!outFile_ || !recoSelTree_ || !genSelTree_ || !outROOTDir_)
-      throw std::runtime_error("Output:Output : ROOT File/Directory | RECO/GEN Tree is nullptr");
+    if(!recoSelTree_ || !genSelTree_)
+      throw std::runtime_error("Output:Output : RECO/GEN Tree is nullptr");
+  }
+
+  Output::~Output()
+  {
+    std::cout << "Closing output file : " << outFilePath_ << " for process : " << process_ << std::endl;
+    outFile_->Close();
   }
 
   TFile* Output::GetFile(){ return outFile_; }
