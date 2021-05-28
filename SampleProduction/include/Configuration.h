@@ -1,14 +1,17 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
-#include "../utils/pugixml/src/pugixml.hpp"
-#include "../utils/pugixml/src/pugiconfig.hpp"
+#include "../utils/pugixml.hpp"
+#include "../utils/pugiconfig.hpp"
+#include "../utils/easylogging++.h"
+#include "../utils/consolecolor.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <map>
 #include <stdexcept>
+#include <cstdlib>
 
 struct SelCuts {
     float tauPt;
@@ -32,15 +35,15 @@ namespace conf {
       ~Configuration() {}
 
       void ParseSettings(const std::string& confFilePath);
-      void ParseInputDirList(pugi::xml_node processNode);
+      void ParseInputFileList(pugi::xml_node processNode);
       void ParseOutputFile(pugi::xml_node processNode);
       void ParseSelectionCuts(pugi::xml_node processNode);
 
-      std::string GetEra();
       std::string GetFilePath();
-      VecStr GetInputDirList(const std::string& process);
-      std::string GetOutputFilePath(const std::string& process);
+      std::string GetEra();
       VecStr GetProcessList();
+      VecStr GetInputFileList(const std::string& process);
+      std::string GetOutputFileName(const std::string& process);
 
       float GetCutTauPt(const std::string& process);
       float GetCutTauEta(const std::string& process);
@@ -54,7 +57,7 @@ namespace conf {
       std::string era_;
 
       VecStr processList_;
-      MapStrToVecStr inputDirMap_;
+      MapStrToVecStr inputFileMap_;
       MapStrToStr outFileMap_;
       SelCutsMap selCutsMap_;
   };

@@ -1,10 +1,11 @@
 #include "../include/Configuration.h"
 
 namespace conf {
-
+  
   Configuration::Configuration(const std::string& confFilePath, const std::string& era) 
     : confFilePath_(confFilePath), era_(era)
   {
+
     if(confFilePath.find(".xml") != std::string::npos)
       ParseSettings(confFilePath);
     else
@@ -24,7 +25,7 @@ namespace conf {
       {
         for(pugi::xml_node processNode = eraNode.child("Process"); processNode; processNode = processNode.next_sibling())
         {
-          ParseInputDirList(processNode);
+          ParseInputFileList(processNode);
           ParseOutputFile(processNode);
           ParseSelectionCuts(processNode);
         }
@@ -32,16 +33,16 @@ namespace conf {
     }
   }
 
-  void Configuration::ParseInputDirList(pugi::xml_node processNode)
+  void Configuration::ParseInputFileList(pugi::xml_node processNode)
   {
     //get process name
     std::string processName = processNode.attribute("name").value();
     //fill process directory list
-    VecStr inputDirList;
-    for(pugi::xml_node dirNode = processNode.child("Input").child("Directory"); dirNode; dirNode = dirNode.next_sibling())
-      inputDirList.push_back(dirNode.attribute("name").value());
+    VecStr inputFileList;
+    for(pugi::xml_node fileNode = processNode.child("Input").child("File"); fileNode; fileNode = fileNode.next_sibling())
+      inputFileList.push_back(fileNode.attribute("name").value());
     //fill input directory map
-    inputDirMap_.insert(std::make_pair(processName, inputDirList));
+    inputFileMap_.insert(std::make_pair(processName, inputFileList));
   }
 
   void Configuration::ParseOutputFile(pugi::xml_node processNode)
@@ -81,9 +82,9 @@ namespace conf {
 
   std::string Configuration::GetFilePath(){ return confFilePath_; }
 
-  VecStr Configuration::GetInputDirList(const std::string& process){ return inputDirMap_[process]; }
+  VecStr Configuration::GetInputFileList(const std::string& process){ return inputFileMap_[process]; }
 
-  std::string Configuration::GetOutputFilePath(const std::string& process){ return outFileMap_[process]; }
+  std::string Configuration::GetOutputFileName(const std::string& process){ return outFileMap_[process]; }
 
   VecStr Configuration::GetProcessList(){ return processList_; }
 
