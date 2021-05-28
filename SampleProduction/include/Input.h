@@ -15,7 +15,7 @@ namespace in {
   class Input {
     public : 
       explicit Input(const std::string& inFilePath);
-      ~Input() {}
+      ~Input();
 
       TFile* GetFile();
       std::string GetFilePath();

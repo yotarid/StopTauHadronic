@@ -6,18 +6,24 @@ namespace in {
   Input::Input(const std::string& inFilePath) : inFilePath_(inFilePath)
   {
       //Input data TFile
+      std::cout << "Opening file " << inFilePath << std::endl;
       inFile_ = TFile::Open(inFilePath.c_str(), "READ");
-      std::cout << "Opened file " << inFilePath << std::endl;
       //Input data TTree
       //RECO
       recoTree_ = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/reco"));
-      recoNEvents_ = recoTree_->GetEntries();
       //GEN
       genTree_ = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/gen"));
-      genNEvents_ = genTree_->GetEntries();
 
-      if(!recoTree_ || !genTree_) 
-        throw std::runtime_error("Input::Input : RECO or GEN tree is nullptr");
+      if(recoTree_)
+        recoNEvents_ = recoTree_->GetEntries();
+      if(genTree_) 
+        genNEvents_ = genTree_->GetEntries();
+  }
+
+  Input::~Input()
+  {
+    std::cout << "Closing file " << inFilePath_ << std::endl;
+    inFile_->Close();
   }
 
   TFile* Input::GetFile(){ return inFile_; }
