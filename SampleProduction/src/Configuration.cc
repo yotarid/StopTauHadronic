@@ -24,16 +24,15 @@ namespace conf {
       {
         for(pugi::xml_node processNode = eraNode.child("Process"); processNode; processNode = processNode.next_sibling())
         {
-          ParseInputDir(processNode);
+          ParseInputDirList(processNode);
           ParseOutputFile(processNode);
           ParseSelectionCuts(processNode);
         }
-        
       }
     }
   }
 
-  void Configuration::ParseInputDir(pugi::xml_node processNode)
+  void Configuration::ParseInputDirList(pugi::xml_node processNode)
   {
     //get process name
     std::string processName = processNode.attribute("name").value();
@@ -41,6 +40,8 @@ namespace conf {
     VecStr inputDirList;
     for(pugi::xml_node dirNode = processNode.child("Input").child("Directory"); dirNode; dirNode = dirNode.next_sibling())
       inputDirList.push_back(dirNode.attribute("name").value());
+    //fill input directory map
+    inputDirMap_.insert(std::make_pair(processName, inputDirList));
   }
 
   void Configuration::ParseOutputFile(pugi::xml_node processNode)
@@ -49,6 +50,8 @@ namespace conf {
     std::string processName = processNode.attribute("name").value();
     //get process output file name
     std::string outFileName = processNode.child("Output").attribute("name").value();
+    //fill output file map
+    outFileMap_.insert(std::make_pair(processName, outFileName));
   }
 
   void Configuration::ParseSelectionCuts(pugi::xml_node processNode)
@@ -70,8 +73,11 @@ namespace conf {
         selCuts.taudR = cutNode.attribute("dR").as_float(0.5);
       }
     }
+    //fill selection cuts map
     selCutsMap_.insert(std::make_pair(processName, selCuts));
   }
+
+  std::string Configuration::GetEra(){ return era_; }
 
   std::string Configuration::GetFilePath(){ return confFilePath_; }
 
@@ -85,12 +91,12 @@ namespace conf {
 
   float Configuration::GetCutTauEta(const std::string& process){ return selCutsMap_[process].tauEta; }
 
-  float Configuration::GetTauCutdZ(const std::string& process){ return selCutsMap_[process].taudZ; }
+  float Configuration::GetCutTaudZ(const std::string& process){ return selCutsMap_[process].taudZ; }
 
-  float Configuration::GetTauCutdXY(const std::string& process){ return selCutsMap_[process].taudXY; }
+  float Configuration::GetCutTaudXY(const std::string& process){ return selCutsMap_[process].taudXY; }
 
-  float Configuration::GetTauCutdeltaR(const std::string& process){ return selCutsMap_[process].taudeltaR; }
+  float Configuration::GetCutTaudeltaR(const std::string& process){ return selCutsMap_[process].taudeltaR; }
 
-  float Configuration::GetTauCutTaudR(const std::string& process){ return selCutsMap_[process].taudR; }
+  float Configuration::GetCutTaudR(const std::string& process){ return selCutsMap_[process].taudR; }
 
 }//namespace configuration

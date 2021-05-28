@@ -32,22 +32,22 @@ namespace conf {
       ~Configuration() {}
 
       void ParseSettings(const std::string& confFilePath);
-      void ParseInputDir(pugi::xml_node processNode);
+      void ParseInputDirList(pugi::xml_node processNode);
       void ParseOutputFile(pugi::xml_node processNode);
       void ParseSelectionCuts(pugi::xml_node processNode);
 
+      std::string GetEra();
       std::string GetFilePath();
       VecStr GetInputDirList(const std::string& process);
       std::string GetOutputFilePath(const std::string& process);
-
       VecStr GetProcessList();
 
       float GetCutTauPt(const std::string& process);
       float GetCutTauEta(const std::string& process);
-      float GetTauCutdZ(const std::string& process);
-      float GetTauCutdXY(const std::string& process);
-      float GetTauCutdeltaR(const std::string& process);
-      float GetTauCutTaudR(const std::string& process);
+      float GetCutTaudZ(const std::string& process);
+      float GetCutTaudXY(const std::string& process);
+      float GetCutTaudeltaR(const std::string& process);
+      float GetCutTaudR(const std::string& process);
 
     private : 
       std::string confFilePath_;
