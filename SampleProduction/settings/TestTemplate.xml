@@ -2,39 +2,31 @@
 
 <RunDescription>
   <Era date="2017">
-    <Process name="SingleTopMC">
+    <Process name="process0">
       <Input>
-        <Directory name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" />
-        <Directory name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" />
-        <Directory name="ST_t-channel_antitop_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" />
-        <Directory name="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" />
+        <Directory name="input0" />
+        <Directory name="input1" />
+        <Directory name="input2" />
+        <Directory name="input3" />
       </Input>
       <!---->
-      <Output>
-        <File name="SingleTopMC" />
-      </Output>
+      <Output name="output0" />
       <!---->
       <SelectionCuts>
-        <Tau pT="40" eta="2.1" dZ="" dXY="" deltaR="" dR="" />
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" />
       </SelectionCuts>
     </Process>
-  </Era>
 
-  <Era date="2018">
-    <Process name="SingleTopMC">
+    <Process name="process1">
       <Input>
-        <Directory name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" />
-        <Directory name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" />
-        <Directory name="ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18" />
-        <Directory name="ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18" />
+        <Directory name="input4" />
+        <Directory name="input5" />
       </Input>
       <!---->
-      <Output>
-        <File name="SingleTopMC" />
-      </Output>
+      <Output name="output1" />
       <!---->
       <SelectionCuts>
-        <Tau pT="40" eta="2.1" dZ="" dXY="" deltaR="" dR="" />
+        <cut name="tau" pT="25" eta="1.4" dZ="10" dXY="5" deltaR="1" dR="1" />
       </SelectionCuts>
     </Process>
   </Era>
