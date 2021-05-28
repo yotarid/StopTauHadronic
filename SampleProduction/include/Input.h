@@ -1,6 +1,9 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include "../utils/easylogging++.h"
+#include "../utils/consolecolor.h"
+
 #include <iostream>
 #include <map>
 #include <string>
