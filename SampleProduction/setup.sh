@@ -10,8 +10,6 @@ export BOOST_LIB=/usr/lib64
 THISROOTSH=${ROOTSYS}/bin/thisroot.sh
 echo "Sourcing thisroot.sh"
 source ${THISROOTSH}
-[ ! -f ${THISROOTSH} ] || source ${THISROOTSH}
-unset THISROOTSH
 
 if ! command -v root &> /dev/null; then
   echo "ERROR -- CERN ROOT is not available; please install it before using SampleProduction (see README)"
