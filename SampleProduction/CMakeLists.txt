@@ -52,6 +52,7 @@ MESSAGE(STATUS "----")
 include_directories(include)
 add_subdirectory(src)
 add_subdirectory(exec)
+add_subdirectory(utils)
 
 MESSAGE(STATUS "")
 MESSAGE(STATUS "${BoldYellow}ANALYSIS${Reset} [stand-alone]: [${BoldCyan}${SAMPLEPRODUCTION_BASE_DIR}/CMakeLists.txt${Reset}]")

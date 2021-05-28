@@ -7,7 +7,7 @@ include_directories(${PROJET_SOURCE_DIR}/include)
 include_directories(${PROJET_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(LIBS ${LIBS} SampleProduction_src)
+set(LIBS ${LIBS} SampleProduction_src SampleProduction_utils)
 
 if(${ROOT_FOUND})
   include_directories(${ROOT_INCLUDE_DIRS})
@@ -16,7 +16,7 @@ endif()
 
 file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/exec *.cc)
 
-MESSAGE("-------- ${BoldCyan}#### Building the following executables: ####${Reset}")
+MESSAGE("-------- ${BoldCyan}#### Building the following executables : ####${Reset}")
 foreach(sourcefile ${BINARIES} )
     string(REPLACE ".cc" "" name ${sourcefile})
     MESSAGE(STATUS "-------- ${name}")

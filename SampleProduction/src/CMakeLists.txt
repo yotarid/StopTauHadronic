@@ -12,18 +12,17 @@ if(${ROOT_FOUND})
   set(LIBS ${LIBS} ${ROOT_LIBRARIES})
 endif()
 
-file(GLOB HEADERS *.h ${PROJECT_SOURCE_DIR}/utils/pugixml/src/*.hpp)
-file(GLOB SOURCES *.cc ${PROJECT_SOURCE_DIR}/utils/pugixml/src/*.cpp)
+file(GLOB HEADERS *.h)
+file(GLOB SOURCES *.cc)
 
 add_library(SampleProduction_src STATIC ${SOURCES} ${HEADERS})
 target_link_libraries(SampleProduction_src ${LIBS})
 
 file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/src *.cc)
 
-MESSAGE("-------- ${BoldCyan}#### Building the following executables: ####${Reset}")
+MESSAGE("-------- ${BoldCyan}#### Compiling the following files : ####${Reset}")
 foreach( sourcefile ${BINARIES} )
-    string(REPLACE ".cc" "" name ${sourcefile})
-    MESSAGE(STATUS "-------- ${name}")
+    MESSAGE(STATUS "-------- ${sourcefile}")
 endforeach(sourcefile ${BINARIES})
 MESSAGE("-------- ${BoldCyan}#### End ####${Reset}")
 
