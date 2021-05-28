@@ -20,6 +20,7 @@ fi
 # SampleProduction #
 ####################
 export SAMPLEPRODUCTION_BASE_DIR=$(pwd)
+export SAMPLEPRODUCTION_OUT_DIR=$(pwd)/output
 
 ##########
 # System #
