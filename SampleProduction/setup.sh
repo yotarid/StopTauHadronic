@@ -7,20 +7,22 @@ export BOOST_LIB=/usr/lib64
 ########
 # ROOT #
 ########
-THISROOTSH=${ROOTSYS}/bin/thisroot.sh
-echo "Sourcing thisroot.sh"
-source ${THISROOTSH}
-
 if ! command -v root &> /dev/null; then
   echo "ERROR -- CERN ROOT is not available; please install it before using SampleProduction (see README)"
   return 1
 fi
+
+THISROOTSH=${ROOTSYS}/bin/thisroot.sh
+sleep 1
+echo "Sourcing thisroot.sh"
+source ${THISROOTSH}
 
 ####################
 # SampleProduction #
 ####################
 export SAMPLEPRODUCTION_BASE_DIR=$(pwd)
 export SAMPLEPRODUCTION_OUT_DIR=$(pwd)/output
+export SAMPLEPRODUCTION_DATA_DIR=$(pwd)/data
 
 ##########
 # System #
