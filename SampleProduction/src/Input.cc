@@ -3,32 +3,20 @@
 
 namespace in {
 
-  Input::Input(const std::string& inFilePath) : inFilePath_(inFilePath)
+  Input::Input(const std::string& dataFilePath) :  dataFile_(dataFilePath), dataFilePath_(dataFilePath)
   {
-      //Input data TFile
-      std::cout << "Opening file " << inFilePath << std::endl;
-      inFile_ = TFile::Open(inFilePath.c_str(), "READ");
-      //Input data TTree
-      //RECO
-      recoTree_ = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/reco"));
-      //GEN
-      genTree_ = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/gen"));
-
-      if(recoTree_)
-        recoNEvents_ = recoTree_->GetEntries();
-      if(genTree_) 
-        genNEvents_ = genTree_->GetEntries();
+    std::cout << "Using file " << dataFilePath << std::endl;
   }
 
-  Input::~Input()
-  {
-    std::cout << "Closing file " << inFilePath_ << std::endl;
-    inFile_->Close();
-  }
+  Input::~Input(){}
 
-  TFile* Input::GetFile(){ return inFile_; }
+  std::ifstream& Input::GetDataFile(){ return dataFile_; }
 
-  std::string Input::GetFilePath(){ return inFilePath_; }
+  std::string Input::GetDataFilePath(){ return dataFilePath_; }
+
+  TFile* Input::GetInputFile(){ return inFile_; }
+
+  std::string Input::GetInputFilePath(){ return inFilePath_; }
 
   TTree* Input::GetRecoTree(){ return recoTree_; }
 
@@ -38,8 +26,22 @@ namespace in {
 
   int Input::GetGenNEvents(){ return genNEvents_; }
 
-  void Input::InitializeEvent()
+  void Input::InitialiseInput(const std::string& inFilePath)
   {
+    //Input data TFile
+    std::cout << "Opening file " << inFilePath << std::endl;
+    inFile_ = TFile::Open(inFilePath.c_str(), "READ");
+    //Input data TTree
+    //RECO
+    recoTree_ = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/reco"));
+    //GEN
+    genTree_ = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/gen"));
+
+    if(recoTree_)
+      recoNEvents_ = recoTree_->GetEntries();
+    if(genTree_) 
+      genNEvents_ = genTree_->GetEntries();
+
     //RECO branches
     recoTree_->SetBranchAddress("tau_n_reco", &tauNReco_);
     recoTree_->SetBranchAddress("tau_E_reco", &tauERecoVector_);
@@ -88,7 +90,13 @@ namespace in {
     genTree_->SetBranchAddress("METFixEE2017_E_gen", &METEGen_);
     genTree_->SetBranchAddress("METFixEE2017_phi_gen", &METPhiGen_);
 
-    isEventInitialised_ = true;
+    isInputInitialised_ = true;
+  }
+
+  void Input::FinaliseInput(void)
+  {
+    inFile_->Close();
+    isInputInitialised_ = false;
   }
 
   void Input::LoadNewEvent(int iEvent)

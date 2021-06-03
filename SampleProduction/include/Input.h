@@ -17,11 +17,14 @@
 namespace in {
   class Input {
     public : 
-      explicit Input(const std::string& inFilePath);
+      explicit Input(const std::string& dataFilePath);
       ~Input();
 
-      TFile* GetFile();
-      std::string GetFilePath();
+      TFile* GetInputFile();
+      std::string GetInputFilePath();
+
+      std::ifstream& GetDataFile();
+      std::string GetDataFilePath();
       
       TTree* GetRecoTree();
       int GetRecoNEvents();
@@ -29,8 +32,9 @@ namespace in {
       TTree* GetGenTree();
       int GetGenNEvents();
 
-      void InitializeEvent();
+      void InitialiseInput(const std::string& inFilePath);
       void LoadNewEvent(int iEvent);
+      void FinaliseInput();
 
       /*************/
       /* RECO Taus */
@@ -69,13 +73,16 @@ namespace in {
 
 
     private :
+      std::ifstream dataFile_;
+      std::string dataFilePath_;
+
       TFile* inFile_;
       std::string inFilePath_;
 
       TTree *recoTree_, *genTree_;
       int recoNEvents_, genNEvents_;
 
-      bool isEventInitialised_ = false;
+      bool isInputInitialised_ = false;
       //Number of reconstructed taus
       int tauNReco_ = 0;
       //Tau containers
