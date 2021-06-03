@@ -5,7 +5,6 @@ namespace conf {
   Configuration::Configuration(const std::string& confFilePath, const std::string& era) 
     : confFilePath_(confFilePath), era_(era)
   {
-
     if(confFilePath.find(".xml") != std::string::npos)
       ParseSettings(confFilePath);
     else
@@ -25,7 +24,7 @@ namespace conf {
       {
         for(pugi::xml_node processNode = eraNode.child("Process"); processNode; processNode = processNode.next_sibling())
         {
-          ParseInputFileList(processNode);
+          ParseDataFileList(processNode);
           ParseOutputFile(processNode);
           ParseSelectionCuts(processNode);
         }
@@ -33,16 +32,19 @@ namespace conf {
     }
   }
 
-  void Configuration::ParseInputFileList(pugi::xml_node processNode)
+  void Configuration::ParseDataFileList(pugi::xml_node processNode)
   {
     //get process name
     std::string processName = processNode.attribute("name").value();
     //fill process directory list
-    VecStr inputFileList;
-    for(pugi::xml_node fileNode = processNode.child("Input").child("File"); fileNode; fileNode = fileNode.next_sibling())
-      inputFileList.push_back(fileNode.attribute("name").value());
+    VecStr dataFileList;
+    for(pugi::xml_node fileNode = processNode.child("Data").child("File"); fileNode; fileNode = fileNode.next_sibling())
+    {
+      std::string filePath = std::getenv("SAMPLEPRODUCTION_DATA_DIR") + std::string("/") + fileNode.attribute("directory").value() + std::string("/") + fileNode.attribute("name").value();
+      dataFileList.push_back(filePath);
+    }
     //fill input directory map
-    inputFileMap_.insert(std::make_pair(processName, inputFileList));
+    dataFileMap_.insert(std::make_pair(processName, dataFileList));
   }
 
   void Configuration::ParseOutputFile(pugi::xml_node processNode)
@@ -82,7 +84,7 @@ namespace conf {
 
   std::string Configuration::GetFilePath(){ return confFilePath_; }
 
-  VecStr Configuration::GetInputFileList(const std::string& process){ return inputFileMap_[process]; }
+  VecStr Configuration::GetDataFileList(const std::string& process){ return dataFileMap_[process]; }
 
   std::string Configuration::GetOutputFileName(const std::string& process){ return outFileMap_[process]; }
 

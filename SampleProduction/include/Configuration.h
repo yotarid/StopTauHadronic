@@ -35,14 +35,14 @@ namespace conf {
       ~Configuration() {}
 
       void ParseSettings(const std::string& confFilePath);
-      void ParseInputFileList(pugi::xml_node processNode);
+      void ParseDataFileList(pugi::xml_node processNode);
       void ParseOutputFile(pugi::xml_node processNode);
       void ParseSelectionCuts(pugi::xml_node processNode);
 
       std::string GetFilePath();
       std::string GetEra();
       VecStr GetProcessList();
-      VecStr GetInputFileList(const std::string& process);
+      VecStr GetDataFileList(const std::string& process);
       std::string GetOutputFileName(const std::string& process);
 
       float GetCutTauPt(const std::string& process);
@@ -57,7 +57,7 @@ namespace conf {
       std::string era_;
 
       VecStr processList_;
-      MapStrToVecStr inputFileMap_;
+      MapStrToVecStr dataFileMap_;
       MapStrToStr outFileMap_;
       SelCutsMap selCutsMap_;
   };
