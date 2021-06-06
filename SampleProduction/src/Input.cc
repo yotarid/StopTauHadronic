@@ -3,28 +3,29 @@
 
 namespace in {
 
-  Input::Input(const std::string& dataFilePath) :  dataFile_(dataFilePath), dataFilePath_(dataFilePath)
+  Input::Input(const std::string& process, const std::string& dataFilePath) 
+    :  process_(process), dataFile_(dataFilePath), dataFilePath_(dataFilePath)
   {
     LOG(INFO) << BOLDYELLOW << " Data file path : " << WHITE << dataFilePath << RESET;
   }
 
   Input::~Input(){}
 
-  std::ifstream& Input::GetDataFile(){ return dataFile_; }
+  std::ifstream& Input::GetDataFile(void){ return dataFile_; }
 
-  std::string Input::GetDataFilePath(){ return dataFilePath_; }
+  std::string Input::GetDataFilePath(void){ return dataFilePath_; }
 
-  TFile* Input::GetInputFile(){ return inFile_; }
+  TFile* Input::GetInputFile(void){ return inFile_; }
 
-  std::string Input::GetInputFilePath(){ return inFilePath_; }
+  std::string Input::GetInputFilePath(void){ return inFilePath_; }
 
-  TTree* Input::GetRecoTree(){ return recoTree_; }
+  TTree* Input::GetRecoTree(void){ return recoTree_; }
 
-  int Input::GetRecoNEvents(){ return recoNEvents_; }
+  int Input::GetRecoNEvents(void){ return recoNEvents_; }
 
-  TTree* Input::GetGenTree(){ return genTree_; }
+  TTree* Input::GetGenTree(void){ return genTree_; }
 
-  int Input::GetGenNEvents(){ return genNEvents_; }
+  int Input::GetGenNEvents(void){ return genNEvents_; }
 
   void Input::InitialiseInput(const std::string& inFilePath)
   {
@@ -104,8 +105,7 @@ namespace in {
 
   bool Input::LoadNewEvent(int iEvent)
   {
-    if(iEvent % 1000)
-      LOG(INFO) << BOLDBLUE << "\t\t\t Loading Event : " << +iEvent << RESET;
+    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading Event : " << +iEvent << RESET;
     return (recoTree_->GetEntry(iEvent) != -1) && (genTree_->GetEntry(iEvent) != -1);
   }
 
@@ -125,6 +125,8 @@ namespace in {
   double Input::GetRecoTaudXY(int iTau){ return recoTaudXYVector_->at(iTau); }
 
   double Input::GetRecoTaudZ(int iTau){ return recoTaudZVector_->at(iTau); }
+
+  double Input::GetRecoTauDecayMode(int iTau){ return recoTauDecayModeVector_->at(iTau); }
 
   bool Input::IsRecoTauDeepIDvsEl(int iTau, const std::string& deepTauIDwp)
   {
@@ -170,13 +172,103 @@ namespace in {
     }
   }
 
-  double Input::GetRecoMETE(){ return recoMETE_; }
-  double Input::GetRecoMETPhi(){ return recoMETPhi_; }
+  double Input::GetRecoMETE(void){ return recoMETE_; }
+  double Input::GetRecoMETPhi(void){ return recoMETPhi_; }
+
+
+  CLHEP::HepLorentzVector Input::GetRecoTau4Mom(int iTau)
+  {
+    CLHEP::HepLorentzVector recoTau4Mom;
+    recoTau4Mom.setT(fabs(GetRecoTauE(iTau)));
+    recoTau4Mom.setX(GetRecoTauPx(iTau));
+    recoTau4Mom.setY(GetRecoTauPy(iTau));
+    recoTau4Mom.setZ(GetRecoTauPz(iTau));
+    return recoTau4Mom;
+  }
+
+
+  std::vector<int> Input::GetRecoTauSelected(const conf::SelCuts& cuts)
+  {
+    std::vector<int> recoTauSelected;
+    for(int iTau = 0; iTau < recoTauN_; iTau++)
+    {
+      CLHEP::HepLorentzVector recoTau4Mom = GetRecoTau4Mom(iTau);
+
+      if(! (recoTau4Mom.perp() > cuts.tauPt)
+            && (fabs(recoTau4Mom.eta()) < cuts.tauEta)
+            && (fabs(GetRecoTaudZ(iTau)) < cuts.taudZ)
+            && (IsRecoTauDeepIDvsEl(iTau, "Tight"))
+            && (IsRecoTauDeepIDvsMu(iTau, "Tight"))
+            && (IsRecoTauDeepIDvsJet(iTau, "Tight"))
+      ) continue;
+
+      recoTauSelected.push_back(iTau);
+    }
+    return std::move(recoTauSelected);
+  }
+
+  std::pair<int, int> Input::GetRecoTauPair(const conf::SelCuts& cuts, const std::vector<int>& recoTauSelected)
+  {      
+    std::pair<int, int> tauPair(-1, -1);
+    double tauPairHT = 0;
+    for(auto iTau1 : recoTauSelected)
+    {
+      for(auto iTau2 : recoTauSelected)
+      {
+        if(iTau1 == iTau2) continue;
+        //Tau1
+        CLHEP::HepLorentzVector  tau1;
+        tau1.setT(fabs(GetRecoTauE(iTau1)));
+        tau1.setX(GetRecoTauPx(iTau1));
+        tau1.setY(GetRecoTauPy(iTau1));
+        tau1.setZ(GetRecoTauPz(iTau1));
+        //Tau2
+        CLHEP::HepLorentzVector  tau2;
+        tau2.setT(fabs(GetRecoTauE(iTau2)));
+        tau2.setX(GetRecoTauPx(iTau2));
+        tau2.setY(GetRecoTauPy(iTau2));
+        tau2.setZ(GetRecoTauPz(iTau2));
+
+        if( tau1.perp() < tau2.perp()
+            || GetRecoTauE(iTau1)*GetRecoTauE(iTau2) > 0
+            || tau1.deltaR(tau2) < cuts.taudeltaR
+          ) continue;
+        
+        double tauPairNewHT = tau1.perp() + tau2.perp();
+        if(tauPairNewHT > tauPairHT)
+        {            
+          tauPairHT = tauPairNewHT;
+          tauPair = std::make_pair(iTau1, iTau2);
+        }
+      }
+    }
+    return std::move(tauPair);
+  }
+
+  double Input::GetRecoTauPairHT(const std::pair<int, int>& tauPair)
+  {
+    CLHEP::HepLorentzVector tau1 = GetRecoTau4Mom(tauPair.first);
+    CLHEP::HepLorentzVector tau2 = GetRecoTau4Mom(tauPair.second);
+    return tau1.perp() + tau2.perp();
+  }
+
+  double Input::GetRecoTauPairmT2(const std::pair<int, int>& tauPair)
+  {
+    CLHEP::HepLorentzVector tau1 = GetRecoTau4Mom(tauPair.first);
+    CLHEP::HepLorentzVector tau2 = GetRecoTau4Mom(tauPair.second);
+
+    double tauPairmT2 = asymm_mt2_lester_bisect::get_mT2(tau1.m(), tau1.px(), tau1.py(),
+                                                      tau2.m(), tau2.px(), tau2.py(),
+                                                      GetRecoMETE()*cos(GetRecoMETPhi()), GetRecoMETE()*sin(GetRecoMETPhi()),
+                                                      0,0);
+
+    return tauPairmT2;
+  }
 
   /************/
   /* GEN Taus */
   /************/
-  int Input::GetGenTauVisN(){ return genTauVisN_; }
+  int Input::GetGenTauVisN(void){ return genTauVisN_; }
 
   double Input::GetGenTauVisE(int iTau){ return genTauVisEVector_->at(iTau); }
 
@@ -194,8 +286,8 @@ namespace in {
   
   double Input::GetGenTauPz(int iTau){ return genTauPzVector_->at(iTau); }
 
-  double Input::GetGenMETE(){ return genMETE_; }
+  double Input::GetGenMETE(void){ return genMETE_; }
 
-  double Input::GetGenMETPhi(){ return genMETPhi_; }
+  double Input::GetGenMETPhi(void){ return genMETPhi_; }
 
 }//namespace files

@@ -1,6 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include "Configuration.h"
+
 #include "../utils/easylogging++.h"
 #include "../utils/consolecolor.h"
 
@@ -9,32 +11,38 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <memory>
+#include <cmath>
 
 #include <TFile.h>
 #include <TTree.h>
 #include <TBranch.h>
 
+#include <CLHEP/Vector/LorentzVector.h>
+# include "lester_mt2_bisect_mod.h"
+
 namespace in {
+
   class Input {
     public : 
-      explicit Input(const std::string& dataFilePath);
+      explicit Input(const std::string& process, const std::string& dataFilePath);
       ~Input();
 
-      TFile* GetInputFile();
-      std::string GetInputFilePath();
+      TFile* GetInputFile(void);
+      std::string GetInputFilePath(void);
 
-      std::ifstream& GetDataFile();
-      std::string GetDataFilePath();
+      std::ifstream& GetDataFile(void);
+      std::string GetDataFilePath(void);
       
-      TTree* GetRecoTree();
-      int GetRecoNEvents();
+      TTree* GetRecoTree(void);
+      int GetRecoNEvents(void);
 
-      TTree* GetGenTree();
-      int GetGenNEvents();
+      TTree* GetGenTree(void);
+      int GetGenNEvents(void);
 
       void InitialiseInput(const std::string& inFilePath);
       bool LoadNewEvent(int iEvent);
-      void FinaliseInput();
+      void FinaliseInput(void);
 
       /*************/
       /* RECO Taus */
@@ -46,18 +54,29 @@ namespace in {
       double GetRecoTauPz(int iTau);
       double GetRecoTaudXY(int iTau);
       double GetRecoTaudZ(int iTau);
+      double GetRecoTauDecayMode(int iTau);
+
 
       bool IsRecoTauDeepIDvsEl(int iTau, const std::string& deepTauIDwp);
       bool IsRecoTauDeepIDvsJet(int iTau, const std::string& deepTauIDwp);
       bool IsRecoTauDeepIDvsMu(int iTau, const std::string& deepTauIDwp);
 
-      double GetRecoMETE();
-      double GetRecoMETPhi();
+
+      double GetRecoMETE(void);
+      double GetRecoMETPhi(void);
+
+      CLHEP::HepLorentzVector GetRecoTau4Mom(int iTau);
+
+      std::vector<int> GetRecoTauSelected(const conf::SelCuts& cuts);
+      std::pair<int, int> GetRecoTauPair(const conf::SelCuts& cuts, const std::vector<int>& recoTauSelected);
+      
+      double GetRecoTauPairmT2(const std::pair<int, int>& tauPair);
+      double GetRecoTauPairHT(const std::pair<int, int>& tauPair);
 
       /************/
       /* GEN Taus */
       /************/
-      int GetGenTauVisN();
+      int GetGenTauVisN(void);
       double GetGenTauVisE(int iTau);
       double GetGenTauVisPx(int iTau);
       double GetGenTauVisPy(int iTau);
@@ -68,11 +87,13 @@ namespace in {
       double GetGenTauPy(int iTau);
       double GetGenTauPz(int iTau);
 
-      double GetGenMETE();
-      double GetGenMETPhi();
+      double GetGenMETE(void);
+      double GetGenMETPhi(void);
 
 
     private :
+      std::string process_;
+
       std::ifstream dataFile_;
       std::string dataFilePath_;
 
