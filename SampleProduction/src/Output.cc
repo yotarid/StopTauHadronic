@@ -6,16 +6,17 @@ namespace out {
     : era_(era), process_(process)
   {
     std::string outDirPath = Form("%s/%s/%s", std::getenv("SAMPLEPRODUCTION_OUT_DIR"), era.c_str(), process.c_str());
-    std::cout << "Creating output directory " << outDirPath << " for process : " << process << std::endl;
+    LOG(INFO) << BOLDYELLOW << "Creating output directory : " << WHITE << outDirPath << RESET;
+    LOG(INFO) << BOLDGREEN << "\t Process : " << WHITE << process << RESET;
     system(Form("mkdir -p %s", outDirPath.c_str()));
     //
-    std::cout << "Creating output file : " << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << " for process : " << process << std::endl;
+    LOG(INFO) << BOLDYELLOW << "\t\t Creating output file : " << WHITE << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << RESET;
     outFile_ = TFile::Open(Form("%s/%s", outDirPath.c_str(), outFileName.c_str()), "RECREATE");
     outFilePath_ = outDirPath + "/" + outFileName;
     if(!outFile_)
       throw std::runtime_error("Output:Output : ROOT File is nullptr");
     //
-    std::cout << "Creating ROOT directory inside output file : miniaodsim2custom2custom" << std::endl;
+    LOG(INFO) << BOLDYELLOW << "\t\t Creating ROOT directory : " << WHITE << "miniaodsim2custom2custom" << RESET;
     outROOTDir_ = outFile_->mkdir("miniaodsim2custom2custom");
     if(!outROOTDir_)
       throw std::runtime_error("Output:Output : ROOT Directory is nullptr");
@@ -29,7 +30,8 @@ namespace out {
 
   Output::~Output()
   {
-    std::cout << "Closing output file : " << outFilePath_ << " for process : " << process_ << std::endl;
+    LOG(INFO) << BOLDGREEN << "\t Process : " << WHITE << process_ << RESET;
+    LOG(INFO) << BOLDYELLOW << "Closing output file : " << WHITE << outFilePath_ << RESET;
     outFile_->Close();
   }
 
