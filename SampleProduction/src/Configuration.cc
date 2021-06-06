@@ -80,15 +80,17 @@ namespace conf {
     selCutsMap_.insert(std::make_pair(processName, selCuts));
   }
 
-  std::string Configuration::GetEra(){ return era_; }
+  std::string Configuration::GetEra(void){ return era_; }
 
-  std::string Configuration::GetFilePath(){ return confFilePath_; }
+  std::string Configuration::GetFilePath(void){ return confFilePath_; }
 
   VecStr Configuration::GetDataFileList(const std::string& process){ return dataFileMap_[process]; }
 
   std::string Configuration::GetOutputFileName(const std::string& process){ return outFileMap_[process]; }
 
   VecStr Configuration::GetProcessList(){ return processList_; }
+
+  SelCuts Configuration::GetSelCuts(const std::string& process){ return selCutsMap_[process];}
 
   float Configuration::GetCutTauPt(const std::string& process){ return selCutsMap_[process].tauPt; }
 

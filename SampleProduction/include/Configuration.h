@@ -13,16 +13,18 @@
 #include <stdexcept>
 #include <cstdlib>
 
-struct SelCuts {
-    float tauPt;
-    float tauEta;
-    float taudZ;
-    float taudXY;
-    float taudeltaR; 
-    float taudR;
-};
+
 
 namespace conf {
+
+  struct SelCuts {
+      float tauPt;
+      float tauEta;
+      float taudZ;
+      float taudXY;
+      float taudeltaR; 
+      float taudR;
+  };
 
   typedef std::vector<std::string> VecStr;
   typedef std::map< std::string, VecStr > MapStrToVecStr;
@@ -39,11 +41,13 @@ namespace conf {
       void ParseOutputFile(pugi::xml_node processNode);
       void ParseSelectionCuts(pugi::xml_node processNode);
 
-      std::string GetFilePath();
-      std::string GetEra();
-      VecStr GetProcessList();
+      std::string GetFilePath(void);
+      std::string GetEra(void);
+      VecStr GetProcessList(void);
       VecStr GetDataFileList(const std::string& process);
       std::string GetOutputFileName(const std::string& process);
+
+      SelCuts GetSelCuts(const std::string& process);
 
       float GetCutTauPt(const std::string& process);
       float GetCutTauEta(const std::string& process);
