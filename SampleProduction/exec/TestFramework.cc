@@ -28,11 +28,6 @@ int main(int argc, char* argv[])
       exit(1);
   }
 
-  std::string dataFilePath = "data/TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17/TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt";
-  //std::string dataFile = "root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/user/sobhatta/Tau/crab_Tau_Run2018A-17Sep2018-v1_MINIAOD/210401_095406/0000/custom_1.root";
-  in::Input input(dataFilePath);
-  if(input.GetDataFile().is_open()) LOG(INFO) << BOLDYELLOW << "HELLO" << RESET;
-
   conf::Configuration conf("settings/Selection_TauPair.xml", "2017");
   std::cout << "XML settings file" << conf.GetFilePath() << std::endl;
   std::cout << "Era : " << conf.GetEra() << std::endl;
@@ -53,6 +48,11 @@ int main(int argc, char* argv[])
   std::cout << "\t\t tau dXY : " << +conf.GetCutTaudXY(process) << std::endl;
   std::cout << "\t\t tau deltaR : " << +conf.GetCutTaudeltaR(process) << std::endl;
   std::cout << "\t\t tau dR : " << +conf.GetCutTaudR(process) << std::endl;
+
+  std::string dataFilePath = "data/TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17/TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt";
+  //std::string dataFile = "root://dcache-cms-xrootd.desy.de//pnfs/desy.de/cms/tier2/store/user/sobhatta/Tau/crab_Tau_Run2018A-17Sep2018-v1_MINIAOD/210401_095406/0000/custom_1.root";
+  in::Input input(process, dataFilePath);
+  if(input.GetDataFile().is_open()) LOG(INFO) << BOLDYELLOW << "HELLO" << RESET;
  
   return 0;
 }
