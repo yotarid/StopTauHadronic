@@ -35,166 +35,171 @@ namespace out {
     outFile_->Close();
   }
 
-  TFile* Output::GetFile(){ return outFile_; }
+  TFile* Output::GetFile(void){ return outFile_; }
 
-  std::string Output::GetFilePath(){ return outFilePath_; }
+  std::string Output::GetFilePath(void){ return outFilePath_; }
 
-  TTree* Output::GetRecoSelTree(){ return recoSelTree_; }
+  TTree* Output::GetRecoSelTree(void){ return recoSelTree_; }
 
-  int Output::GetRecoSelTreeNEvents(){ return (int)recoSelTree_->GetEntries(); }
+  int Output::GetRecoSelTreeNEvents(void){ return (int)recoSelTree_->GetEntries(); }
 
-  TTree* Output::GetGenSelTree(){ return genSelTree_; }
+  TTree* Output::GetGenSelTree(void){ return genSelTree_; }
 
-  int Output::GetGenSelTreeNEvents(){ return (int)genSelTree_->GetEntries(); }
+  int Output::GetGenSelTreeNEvents(void){ return (int)genSelTree_->GetEntries(); }
 
-  void Output::InitialiseEvent()
+  void Output::InitialiseOutput(void)
   {
     //Tau1
-    recoSelTree_->Branch("tau1_E_reco", &tau1EReco_);
-    recoSelTree_->Branch("tau1_px_reco", &tau1PxReco_);
-    recoSelTree_->Branch("tau1_py_reco", &tau1PyReco_);
-    recoSelTree_->Branch("tau1_pz_reco", &tau1PzReco_);
-    recoSelTree_->Branch("tau1_dxy_reco", &tau1dXYReco_);
-    recoSelTree_->Branch("tau1_dz_reco", &tau1dZReco_);
-    recoSelTree_->Branch("tau1_DeepTauIDvsJet_reco", tau1DeepTauIDvsJetReco_);
-    recoSelTree_->Branch("tau1_DeepTauIDvsEl_reco", tau1DeepTauIDvsElReco_);
-    recoSelTree_->Branch("tau1_DeepTauIDvsMu_reco", tau1DeepTauIDvsMuReco_);
-    recoSelTree_->Branch("tau1_decayMode_reco", tau1DecayModeReco_);
+    recoSelTree_->Branch("tau1_E_reco", &recoTau1E_);
+    recoSelTree_->Branch("tau1_px_reco", &recoTau1Px_);
+    recoSelTree_->Branch("tau1_py_reco", &recoTau1Py_);
+    recoSelTree_->Branch("tau1_pz_reco", &recoTau1Pz_);
+    recoSelTree_->Branch("tau1_dxy_reco", &recoTau1dXY_);
+    recoSelTree_->Branch("tau1_dz_reco", &recoTau1dZ_);
+    recoSelTree_->Branch("tau1_DeepTauIDvsJet_reco", &recoTau1DeepTauIDvsJet_);
+    recoSelTree_->Branch("tau1_DeepTauIDvsEl_reco", &recoTau1DeepTauIDvsEl_);
+    recoSelTree_->Branch("tau1_DeepTauIDvsMu_reco", &recoTau1DeepTauIDvsMu_);
+    recoSelTree_->Branch("tau1_decayMode_reco", &recoTau1DecayMode_);
+    //Tau2tau
+    recoSelTree_->Branch("tau2_px_reco", &recoTau2Px_);
+    recoSelTree_->Branch("tau2_py_reco", &recoTau2Py_);
+    recoSelTree_->Branch("tau2_pz_reco", &recoTau2Pz_);
+    recoSelTree_->Branch("tau2_dxy_reco", &recoTau2dXY_);
+    recoSelTree_->Branch("tau2_dz_reco", &recoTau2dZ_);
+    recoSelTree_->Branch("tau2_DeepTauIDvsJet_reco", &recoTau2DeepTauIDvsJet_);
+    recoSelTree_->Branch("tau2_DeepTauIDvsEl_reco", &recoTau2DeepTauIDvsEl_);
+    recoSelTree_->Branch("tau2_DeepTauIDvsMu_reco", &recoTau2DeepTauIDvsMu_);
+    recoSelTree_->Branch("tau2_decayMode_reco", &recoTau2DecayMode_);
+    //Tau pairtau
+    recoSelTree_->Branch("tau_pair_MET_E_reco", &recoTauPairMETE_);
+    recoSelTree_->Branch("tau_pair_MET_phi_reco", &recoTauPairMETPhi_);
+    recoSelTree_->Branch("tau_pair_HT_reco", &recoTauPairHT_);
+    recoSelTree_->Branch("tau_pair_mT2_reco", &recoTauPairmT2_);
 
-    //Tau2
-    recoSelTree_->Branch("tau2_E_reco", &tau2EReco_);
-    recoSelTree_->Branch("tau2_px_reco", &tau2PxReco_);
-    recoSelTree_->Branch("tau2_py_reco", &tau2PyReco_);
-    recoSelTree_->Branch("tau2_pz_reco", &tau2PzReco_);
-    recoSelTree_->Branch("tau2_dxy_reco", &tau2dXYReco_);
-    recoSelTree_->Branch("tau2_dz_reco", &tau2dZReco_);
-    recoSelTree_->Branch("tau2_DeepTauIDvsJet_reco", tau2DeepTauIDvsJetReco_);
-    recoSelTree_->Branch("tau2_DeepTauIDvsEl_reco", tau2DeepTauIDvsElReco_);
-    recoSelTree_->Branch("tau2_DeepTauIDvsMu_reco", tau2DeepTauIDvsMuReco_);
-    recoSelTree_->Branch("tau2_decayMode_reco", tau2DecayModeReco_);
-
-    //Tau pair
-    recoSelTree_->Branch("tau_pair_MET_E_reco", tauPairMETEReco_);
-    recoSelTree_->Branch("tau_pair_MET_phi_reco", tauPairMETPhiReco_);
-    recoSelTree_->Branch("tau_pair_HT_reco", tauPairHTReco_);
-    recoSelTree_->Branch("tau_pair_mT2_reco", tauPairmT2Reco_);
-
-    isEventInitialised_ = true;
+    isOutputInitialised_ = true;
   }
 
-  void Output::LoadNewEvent()
+  void Output::LoadNewEvent(void)
   {  
     recoSelTree_->Fill();
     genSelTree_->Fill();
   }  
 
+  void Output::FinaliseOutput(void)
+  {
+    LOG(INFO) << BOLDMAGENTA << "\t Closing output file : " << WHITE << outFilePath_ << RESET;
+    LOG(INFO) << " " << RESET;
+    outFile_->Write();
+    outFile_->Close();
+    isOutputInitialised_ = false;
+  }
 
-  void Output::SetTauEReco(int tauIdx, double tauE)
+  void Output::SetRecoTauE(int tauIdx, double tauE)
   {
     switch(tauIdx)
     {
-      case 1 : tau1EReco_ = tauE; break;
-      case 2 : tau2EReco_ = tauE; break;
-      default : throw std::runtime_error("Output::SetTauEReco : undefined Tau index");
+      case 1 : recoTau1E_ = tauE; break;
+      case 2 : recoTau2E_ = tauE; break;
+      default : throw std::runtime_error("Output::SetRecoTauEReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauPxReco(int tauIdx, double tauPx)
+  void Output::SetRecoTauPx(int tauIdx, double tauPx)
   {
     switch(tauIdx)
     {
-      case 1 : tau1PxReco_ = tauPx; break;
-      case 2 : tau2PxReco_ = tauPx; break;
-      default : throw std::runtime_error("Output::SetTauPxReco : undefined Tau index");
+      case 1 : recoTau1Px_ = tauPx; break;
+      case 2 : recoTau2Px_ = tauPx; break;
+      default : throw std::runtime_error("Output::SetRecoTauPxReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauPyReco(int tauIdx, double tauPy)
+  void Output::SetRecoTauPy(int tauIdx, double tauPy)
   {
     switch(tauIdx)
     {
-      case 1 : tau1PyReco_ = tauPy; break;
-      case 2 : tau2PyReco_ = tauPy; break;
-      default : throw std::runtime_error("Output::SetTauPyReco : undefined Tau index");
+      case 1 : recoTau1Py_ = tauPy; break;
+      case 2 : recoTau2Py_ = tauPy; break;
+      default : throw std::runtime_error("Output::SetRecoTauPyReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauPzReco(int tauIdx, double tauPz)
+  void Output::SetRecoTauPz(int tauIdx, double tauPz)
   {
     switch(tauIdx)
     {
-      case 1 : tau1PzReco_ = tauPz; break;
-      case 2 : tau2PzReco_ = tauPz; break;
-      default : throw std::runtime_error("Output::SetTauPzReco : undefined Tau index");
+      case 1 : recoTau1Pz_ = tauPz; break;
+      case 2 : recoTau2Pz_ = tauPz; break;
+      default : throw std::runtime_error("Output::SetRecoTauPzReco : undefined Tau index");
     }
   }
 
-  void Output::SetTaudXYReco(int tauIdx, double taudXY)
+  void Output::SetRecoTaudXY(int tauIdx, double taudXY)
   {
     switch(tauIdx)
     {
-      case 1 : tau1dXYReco_ = taudXY; break;
-      case 2 : tau2dXYReco_ = taudXY; break;
-      default : throw std::runtime_error("Output::SetTaudXYReco : undefined Tau index");
+      case 1 : recoTau1dXY_ = taudXY; break;
+      case 2 : recoTau2dXY_ = taudXY; break;
+      default : throw std::runtime_error("Output::SetRecoTaudXYReco : undefined Tau index");
     }
   }
 
-  void Output::SetTaudZReco(int tauIdx, double taudZ)
+  void Output::SetRecoTaudZ(int tauIdx, double taudZ)
   {
     switch(tauIdx)
     {
-      case 1 : tau1dZReco_ = taudZ; break;
-      case 2 : tau2dZReco_ = taudZ; break;
-      default : throw std::runtime_error("Output::SetTaudZReco : undefined Tau index");
+      case 1 : recoTau1dZ_ = taudZ; break;
+      case 2 : recoTau2dZ_ = taudZ; break;
+      default : throw std::runtime_error("Output::SetRecoTaudZReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauDeepTauIDvsJetReco(int tauIdx, const std::string& deepTauIDwp)
+  void Output::SetRecoTauDeepTauIDvsJet(int tauIdx, const std::string& deepTauIDwp)
   {
     switch(tauIdx)
     {
-      case 1 : tau1DeepTauIDvsJetReco_ = tauIDwpMap_[deepTauIDwp]; break;
-      case 2 : tau2DeepTauIDvsJetReco_ = tauIDwpMap_[deepTauIDwp]; break;
-      default : throw std::runtime_error("Output::SetTauDeepTauIDvsJetReco : undefined Tau index");
+      case 1 : recoTau1DeepTauIDvsJet_ = tauIDwpMap_[deepTauIDwp]; break;
+      case 2 : recoTau2DeepTauIDvsJet_ = tauIDwpMap_[deepTauIDwp]; break;
+      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsJetReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauDeepTauIDvsElReco(int tauIdx, const std::string& deepTauIDwp)
+  void Output::SetRecoTauDeepTauIDvsEl(int tauIdx, const std::string& deepTauIDwp)
   {
     switch(tauIdx)
     {
-      case 1 : tau1DeepTauIDvsElReco_ = tauIDwpMap_[deepTauIDwp]; break;
-      case 2 : tau2DeepTauIDvsElReco_ = tauIDwpMap_[deepTauIDwp]; break;
-      default : throw std::runtime_error("Output::SetTauDeepTauIDvsElReco : undefined Tau index");
+      case 1 : recoTau1DeepTauIDvsEl_ = tauIDwpMap_[deepTauIDwp]; break;
+      case 2 : recoTau2DeepTauIDvsEl_ = tauIDwpMap_[deepTauIDwp]; break;
+      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsElReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauDeepTauIDvsMuReco(int tauIdx, const std::string& deepTauIDwp)
+  void Output::SetRecoTauDeepTauIDvsMu(int tauIdx, const std::string& deepTauIDwp)
   {
     switch(tauIdx)
     {
-      case 1 : tau1DeepTauIDvsMuReco_ = tauIDwpMap_[deepTauIDwp]; break;
-      case 2 : tau2DeepTauIDvsMuReco_ = tauIDwpMap_[deepTauIDwp]; break;
-      default : throw std::runtime_error("Output::SetTauDeepTauIDvsMuReco : undefined Tau index");
+      case 1 : recoTau1DeepTauIDvsMu_ = tauIDwpMap_[deepTauIDwp]; break;
+      case 2 : recoTau2DeepTauIDvsMu_ = tauIDwpMap_[deepTauIDwp]; break;
+      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsMuReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauDecayModeReco(int tauIdx, double tauDecayMode)
+  void Output::SetRecoTauDecayMode(int tauIdx, double tauDecayMode)
   {
     switch(tauIdx)
     {
-      case 1 : tau1DecayModeReco_ = tauDecayMode; break;
-      case 2 : tau2DecayModeReco_ = tauDecayMode; break;
-      default : throw std::runtime_error("Output::SetTauDecayModeReco : undefined Tau index");
+      case 1 : recoTau1DecayMode_ = tauDecayMode; break;
+      case 2 : recoTau2DecayMode_ = tauDecayMode; break;
+      default : throw std::runtime_error("Output::SetRecoTauDecayModeReco : undefined Tau index");
     }
   }
 
-  void Output::SetTauPairHTReco(double tauPairHT){ tauPairHTReco_ = tauPairHT; }
+  void Output::SetRecoTauPairHT(double tauPairHT){ recoTauPairHT_ = tauPairHT; }
 
-  void Output::SetTauPairmT2Reco(double tauPairmT2){ tauPairmT2Reco_ = tauPairmT2; }
+  void Output::SetRecoTauPairmT2(double tauPairmT2){ recoTauPairmT2_ = tauPairmT2; }
 
-  void Output::SetTauPairMETEReco(double tauPairMETE){ tauPairMETEReco_ = tauPairMETE; }
+  void Output::SetRecoTauPairMETE(double tauPairMETE){ recoTauPairMETE_ = tauPairMETE; }
 
-  void Output::SetTauPairMETPhiReco(double tauPairMETPhi){ tauPairMETPhiReco_ = tauPairMETPhi; }
+  void Output::SetRecoTauPairMETPhi(double tauPairMETPhi){ recoTauPairMETPhi_ = tauPairMETPhi; }
 
 }//namespace out

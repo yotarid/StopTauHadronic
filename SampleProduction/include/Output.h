@@ -20,32 +20,33 @@ namespace out {
       explicit Output(const std::string& outFileName, const std::string& era, const std::string& process);
       ~Output();
 
-      TFile* GetFile();
-      std::string GetFilePath();
+      TFile* GetFile(void);
+      std::string GetFilePath(void);
 
-      TTree* GetRecoSelTree();
-      int GetRecoSelTreeNEvents();
+      TTree* GetRecoSelTree(void);
+      int GetRecoSelTreeNEvents(void);
 
-      TTree* GetGenSelTree();
-      int GetGenSelTreeNEvents();
+      TTree* GetGenSelTree(void);
+      int GetGenSelTreeNEvents(void);
 
-      void InitialiseEvent();
-      void LoadNewEvent();
+      void InitialiseOutput(void);
+      void LoadNewEvent(void);
+      void FinaliseOutput(void);
 
-      void SetTauEReco(int tauIdx, double tauE);
-      void SetTauPxReco(int tauIdx, double tauPx);
-      void SetTauPyReco(int tauIdx, double tauPy);
-      void SetTauPzReco(int tauIdx, double tauPz);
-      void SetTaudXYReco(int tauIdx, double taudXY);
-      void SetTaudZReco(int tauIdx, double taudZ);
-      void SetTauDeepTauIDvsJetReco(int tauIdx, const std::string& deepTauIDwp);
-      void SetTauDeepTauIDvsElReco(int tauIdx, const std::string& deepTauIDwp);
-      void SetTauDeepTauIDvsMuReco(int tauIdx, const std::string& deepTauIDwp);
-      void SetTauDecayModeReco(int tauIdx, double tauDecayMode);
-      void SetTauPairHTReco(double tauPairHT);
-      void SetTauPairmT2Reco(double tauPairmT2);
-      void SetTauPairMETEReco(double tauPairMETE);
-      void SetTauPairMETPhiReco(double tauPairMETPhi);
+      void SetRecoTauE(int tauIdx, double tauE);
+      void SetRecoTauPx(int tauIdx, double tauPx);
+      void SetRecoTauPy(int tauIdx, double tauPy);
+      void SetRecoTauPz(int tauIdx, double tauPz);
+      void SetRecoTaudXY(int tauIdx, double taudXY);
+      void SetRecoTaudZ(int tauIdx, double taudZ);
+      void SetRecoTauDeepTauIDvsJet(int tauIdx, const std::string& deepTauIDwp);
+      void SetRecoTauDeepTauIDvsEl(int tauIdx, const std::string& deepTauIDwp);
+      void SetRecoTauDeepTauIDvsMu(int tauIdx, const std::string& deepTauIDwp);
+      void SetRecoTauDecayMode(int tauIdx, double tauDecayMode);
+      void SetRecoTauPairHT(double tauPairHT);
+      void SetRecoTauPairmT2(double tauPairmT2);
+      void SetRecoTauPairMETE(double tauPairMETE);
+      void SetRecoTauPairMETPhi(double tauPairMETPhi);
 
 
     private :
@@ -58,28 +59,28 @@ namespace out {
       TTree *recoSelTree_, *genSelTree_;
       int recoSelNEvents_, genSeleNEvents_;
 
-      bool isEventInitialised_ = false;
+      bool isOutputInitialised_ = false;
 
-      double tau1EReco_ = 0, 
-             tau1PxReco_ = 0, tau1PyReco_ = 0, tau1PzReco_ = 0,
-             tau1dXYReco_ = 0, tau1dZReco_ = 0,
-             tau1DeepTauIDvsJetReco_ = -1,
-             tau1DeepTauIDvsElReco_ = -1,
-             tau1DeepTauIDvsMuReco_ = -1,
-             tau1DecayModeReco_ = 0;
+      double recoTau1E_ = 0, 
+             recoTau1Px_ = 0, recoTau1Py_ = 0, recoTau1Pz_ = 0,
+             recoTau1dXY_ = 0, recoTau1dZ_ = 0,
+             recoTau1DeepTauIDvsJet_ = -1,
+             recoTau1DeepTauIDvsEl_ = -1,
+             recoTau1DeepTauIDvsMu_ = -1,
+             recoTau1DecayMode_ = 0;
 
-      double tau2EReco_ = 0, 
-             tau2PxReco_ = 0, tau2PyReco_ = 0, tau2PzReco_ = 0,
-             tau2dXYReco_ = 0, tau2dZReco_ = 0,
-             tau2DeepTauIDvsJetReco_ = -1,
-             tau2DeepTauIDvsElReco_ = -1,
-             tau2DeepTauIDvsMuReco_ = -1,
-             tau2DecayModeReco_ = 0;
+      double recoTau2E_ = 0, 
+             recoTau2Px_ = 0, recoTau2Py_ = 0, recoTau2Pz_ = 0,
+             recoTau2dXY_ = 0, recoTau2dZ_ = 0,
+             recoTau2DeepTauIDvsJet_ = -1,
+             recoTau2DeepTauIDvsEl_ = -1,
+             recoTau2DeepTauIDvsMu_ = -1,
+             recoTau2DecayMode_ = 0;
 
-      double tauPairHTReco_ = 0;
-      double tauPairmT2Reco_ = 0;
-      double tauPairMETEReco_ = 0;
-      double tauPairMETPhiReco_ = 0;
+      double recoTauPairHT_ = 0;
+      double recoTauPairmT2_ = 0;
+      double recoTauPairMETE_ = 0;
+      double recoTauPairMETPhi_ = 0;
 
       //Tau ID working point map
       std::map<std::string, int> tauIDwpMap_ = {{"VVVLoose", 0}, {"VVLoose", 1}, {"VLoose", 2}, {"Loose", 3}, {"Medium", 4}, {"Tight", 5}, {"VTight", 6}, {"VVTight", 7}};
