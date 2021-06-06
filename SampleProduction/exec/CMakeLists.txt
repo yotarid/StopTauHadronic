@@ -12,7 +12,12 @@ set(LIBS ${LIBS} SampleProduction_src SampleProduction_utils)
 if(${ROOT_FOUND})
   include_directories(${ROOT_INCLUDE_DIRS})
   set(LIBS ${LIBS} ${ROOT_LIBRARIES})
-endif()
+endif(${ROOT_FOUND})
+
+if(${CLHEP_FOUND})
+  include_directories(${CLHEP_INCLUDE_DIRS})
+  set(LIBS ${LIBS} ${CLHEP_LIBRARIES})
+endif(${CLHEP_FOUND})
 
 file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/exec *.cc)
 

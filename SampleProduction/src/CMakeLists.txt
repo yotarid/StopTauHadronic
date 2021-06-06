@@ -10,7 +10,12 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 if(${ROOT_FOUND})
   include_directories(${ROOT_INCLUDE_DIRS})
   set(LIBS ${LIBS} ${ROOT_LIBRARIES})
-endif()
+endif(${ROOT_FOUND})
+
+if(${CLHEP_FOUND})
+  include_directories(${CLHEP_INCLUDE_DIRS})
+  set(LIBS ${LIBS} ${CLHEP_LIBRARIES})
+endif(${CLHEP_FOUND})
 
 file(GLOB HEADERS *.h)
 file(GLOB SOURCES *.cc)

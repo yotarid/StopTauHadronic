@@ -35,8 +35,6 @@ CACHE PATH
 "Single Directory for all Executables."
 )
 
-set(ROOT_FLAGS "$ENV{ROOT_FLAGS}")
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_FLAGS "-g -std=c++17 -gdwarf-4 -O2 -Werror -pedantic -Wall -Wextra -Wcpp")
@@ -48,6 +46,15 @@ if(ROOT_FOUND)
   MESSAGE(STATUS "---- Using ROOT version ${ROOT_VERSION}")
 endif(ROOT_FOUND)
 MESSAGE(STATUS "----")
+
+find_package(CLHEP)
+if(CLHEP_FOUND)
+  MESSAGE(STATUS "---- Found CLHEP")
+endif(CLHEP_FOUND)
+MESSAGE(STATUS "----")
+
+set(CLHEP_INCLUDE_DIRS $ENV{CLHEP_INCLUDE})
+set(CLHEP_LIBRARY_DIRS $ENV{CLHEP_LIB})
 
 include_directories(include)
 add_subdirectory(src)
