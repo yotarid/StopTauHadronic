@@ -37,7 +37,8 @@ CACHE PATH
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_FLAGS "-g -std=c++17 -gdwarf-4 -O2 -Werror -pedantic -Wall -Wextra -Wcpp")
+set (GCC_NOERROR_FLAGS " -Wno-error=unused-result  -Wno-error=deprecated-declarations -Wno-error=unused-function")
+set(CMAKE_CXX_FLAGS "-g -std=c++17 -gdwarf-4 -O2 -Werror -pedantic -Wall -Wextra -Wcpp ${GCC_NOERROR_FLAGS}")
 
 MESSAGE(STATUS "----")
 MESSAGE(STATUS "---- ${BoldCyan}### Searching for ROOT ###${Reset}")
