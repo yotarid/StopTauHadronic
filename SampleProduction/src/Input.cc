@@ -121,6 +121,13 @@ namespace in {
   double Input::GetRecoTauPy(int iTau){ return recoTauPyVector_->at(iTau); }
 
   double Input::GetRecoTauPz(int iTau){ return recoTauPzVector_->at(iTau); }
+  
+  double Input::GetRecoTauPt(int iTau)
+  { 
+    double pX = recoTauPxVector_->at(iTau);
+    double pY = recoTauPyVector_->at(iTau);
+    return std::sqrt( std::pow(pX,2) + std::pow(pY,2) );
+  }
 
   double Input::GetRecoTaudXY(int iTau){ return recoTaudXYVector_->at(iTau); }
 
@@ -173,8 +180,8 @@ namespace in {
   }
 
   double Input::GetRecoMETE(void){ return recoMETE_; }
-  double Input::GetRecoMETPhi(void){ return recoMETPhi_; }
 
+  double Input::GetRecoMETPhi(void){ return recoMETPhi_; }
 
   CLHEP::HepLorentzVector Input::GetRecoTau4Mom(int iTau)
   {
@@ -186,7 +193,6 @@ namespace in {
     return recoTau4Mom;
   }
 
-
   std::vector<int> Input::GetRecoTauSelected(const conf::SelCuts& cuts)
   {
     std::vector<int> recoTauSelected;
@@ -197,9 +203,9 @@ namespace in {
       if(! (recoTau4Mom.perp() > cuts.tauPt)
             && (fabs(recoTau4Mom.eta()) < cuts.tauEta)
             && (fabs(GetRecoTaudZ(iTau)) < cuts.taudZ)
-            && (IsRecoTauDeepIDvsEl(iTau, "Tight"))
-            && (IsRecoTauDeepIDvsMu(iTau, "Tight"))
-            && (IsRecoTauDeepIDvsJet(iTau, "Tight"))
+            && (IsRecoTauDeepIDvsEl(iTau, cuts.deepTauID))
+            && (IsRecoTauDeepIDvsMu(iTau, cuts.deepTauID))
+            && (IsRecoTauDeepIDvsJet(iTau, cuts.deepTauID))
       ) continue;
 
       recoTauSelected.push_back(iTau);
@@ -207,9 +213,10 @@ namespace in {
     return std::move(recoTauSelected);
   }
 
-  std::pair<int, int> Input::GetRecoTauPair(const conf::SelCuts& cuts, const std::vector<int>& recoTauSelected)
+  std::vector<int> Input::GetRecoTauPair(const conf::SelCuts& cuts)
   {      
-    std::pair<int, int> tauPair(-1, -1);
+    std::vector<int> recoTauSelected = GetRecoTauSelected(cuts);
+    std::vector<int> tauPair;
     double tauPairHT = 0;
     for(auto iTau1 : recoTauSelected)
     {
@@ -238,24 +245,24 @@ namespace in {
         if(tauPairNewHT > tauPairHT)
         {            
           tauPairHT = tauPairNewHT;
-          tauPair = std::make_pair(iTau1, iTau2);
+          tauPair = {iTau1, iTau2};
         }
       }
     }
     return std::move(tauPair);
   }
 
-  double Input::GetRecoTauPairHT(const std::pair<int, int>& tauPair)
+  double Input::GetRecoTauPairHT(const std::vector<int>& tauPair)
   {
-    CLHEP::HepLorentzVector tau1 = GetRecoTau4Mom(tauPair.first);
-    CLHEP::HepLorentzVector tau2 = GetRecoTau4Mom(tauPair.second);
+    CLHEP::HepLorentzVector tau1 = GetRecoTau4Mom(tauPair[0]);
+    CLHEP::HepLorentzVector tau2 = GetRecoTau4Mom(tauPair[1]);
     return tau1.perp() + tau2.perp();
   }
 
-  double Input::GetRecoTauPairmT2(const std::pair<int, int>& tauPair)
+  double Input::GetRecoTauPairmT2(const std::vector<int>& tauPair)
   {
-    CLHEP::HepLorentzVector tau1 = GetRecoTau4Mom(tauPair.first);
-    CLHEP::HepLorentzVector tau2 = GetRecoTau4Mom(tauPair.second);
+    CLHEP::HepLorentzVector tau1 = GetRecoTau4Mom(tauPair[0]);
+    CLHEP::HepLorentzVector tau2 = GetRecoTau4Mom(tauPair[1]);
 
     double tauPairmT2 = asymm_mt2_lester_bisect::get_mT2(tau1.m(), tau1.px(), tau1.py(),
                                                       tau2.m(), tau2.px(), tau2.py(),

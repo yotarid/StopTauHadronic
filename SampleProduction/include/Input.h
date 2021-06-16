@@ -52,6 +52,7 @@ namespace in {
       double GetRecoTauPx(int iTau);
       double GetRecoTauPy(int iTau);
       double GetRecoTauPz(int iTau);
+      double GetRecoTauPt(int iTau);
       double GetRecoTaudXY(int iTau);
       double GetRecoTaudZ(int iTau);
       double GetRecoTauDecayMode(int iTau);
@@ -68,10 +69,10 @@ namespace in {
       CLHEP::HepLorentzVector GetRecoTau4Mom(int iTau);
 
       std::vector<int> GetRecoTauSelected(const conf::SelCuts& cuts);
-      std::pair<int, int> GetRecoTauPair(const conf::SelCuts& cuts, const std::vector<int>& recoTauSelected);
+      std::vector<int> GetRecoTauPair(const conf::SelCuts& cuts);
       
-      double GetRecoTauPairmT2(const std::pair<int, int>& tauPair);
-      double GetRecoTauPairHT(const std::pair<int, int>& tauPair);
+      double GetRecoTauPairmT2(const std::vector<int>& tauPair);
+      double GetRecoTauPairHT(const std::vector<int>& tauPair);
 
       /************/
       /* GEN Taus */
