@@ -24,11 +24,13 @@ namespace conf {
       float taudXY;
       float taudeltaR; 
       float taudR;
+      std::string deepTauID;
   };
 
   typedef std::vector<std::string> VecStr;
-  typedef std::map< std::string, VecStr > MapStrToVecStr;
   typedef std::map< std::string, std::string > MapStrToStr;
+  typedef std::map< std::string, VecStr > MapStrToVecStr;
+  typedef std::map< std::string, std::map < std::string, std::string > > MapStrToMapStr;
   typedef std::map< std::string, SelCuts > SelCutsMap;
 
   class Configuration {
@@ -37,32 +39,25 @@ namespace conf {
       ~Configuration() {}
 
       void ParseSettings(const std::string& confFilePath);
-      void ParseDataFileList(pugi::xml_node processNode);
-      void ParseOutputFile(pugi::xml_node processNode);
-      void ParseSelectionCuts(pugi::xml_node processNode);
+      void ParseFileMap(const std::string& processName, pugi::xml_node dataNode);
+      void ParseSelectionCuts(const std::string& processName, pugi::xml_node selCutNode);
 
       std::string GetFilePath(void);
       std::string GetEra(void);
       VecStr GetProcessList(void);
-      VecStr GetDataFileList(const std::string& process);
-      std::string GetOutputFileName(const std::string& process);
+      VecStr GetChannelList(const std::string& process);
+      std::string GetDataFileName(const std::string& process, const std::string& channel);
+      std::string GetOutputFileName(const std::string& process, const std::string& channel);
 
       SelCuts GetSelCuts(const std::string& process);
-
-      float GetCutTauPt(const std::string& process);
-      float GetCutTauEta(const std::string& process);
-      float GetCutTaudZ(const std::string& process);
-      float GetCutTaudXY(const std::string& process);
-      float GetCutTaudeltaR(const std::string& process);
-      float GetCutTaudR(const std::string& process);
 
     private : 
       std::string confFilePath_;
       std::string era_;
-
       VecStr processList_;
-      MapStrToVecStr dataFileMap_;
-      MapStrToStr outFileMap_;
+      MapStrToVecStr channelMap_;
+      MapStrToMapStr dataFileMap_;
+      MapStrToMapStr outFileMap_;
       SelCutsMap selCutsMap_;
   };
 

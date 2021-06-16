@@ -24,46 +24,38 @@ namespace conf {
       {
         for(pugi::xml_node processNode = eraNode.child("Process"); processNode; processNode = processNode.next_sibling())
         {
-          ParseDataFileList(processNode);
-          ParseOutputFile(processNode);
-          ParseSelectionCuts(processNode);
+          std::string processName = processNode.attribute("name").value();
+          ParseFileMap(processName, processNode.child("Data"));
+          ParseSelectionCuts(processName, processNode.child("SelectionCuts"));
         }
       }
     }
   }
 
-  void Configuration::ParseDataFileList(pugi::xml_node processNode)
+  void Configuration::ParseFileMap(const std::string& processName, pugi::xml_node dataNode)
   {
-    //get process name
-    std::string processName = processNode.attribute("name").value();
-    //fill process directory list
-    VecStr dataFileList;
-    for(pugi::xml_node fileNode = processNode.child("Data").child("File"); fileNode; fileNode = fileNode.next_sibling())
+    VecStr channelList;
+    MapStrToStr channelDataFileMap, channelOutputFileMap;
+    for(pugi::xml_node channelNode = dataNode.child("Channel"); channelNode; channelNode = channelNode.next_sibling())
     {
-      std::string filePath = std::getenv("SAMPLEPRODUCTION_DATA_DIR") + std::string("/") + fileNode.attribute("directory").value() + std::string("/") + fileNode.attribute("name").value();
-      dataFileList.push_back(filePath);
+      std::string channelName = channelNode.attribute("name").value();
+      channelList.push_back(channelName);
+      // 
+      std::string dataFile = std::getenv("SAMPLEPRODUCTION_DATA_DIR") + std::string("/") + channelNode.attribute("directory").value() + std::string("/") + channelNode.attribute("file").value();
+      channelDataFileMap.insert(std::make_pair(channelName, dataFile));
+      //
+      std::string outputFile = channelName + "_selected.root";
+      channelOutputFileMap.insert(std::make_pair(channelName, outputFile));
     }
-    //fill input directory map
-    dataFileMap_.insert(std::make_pair(processName, dataFileList));
+    channelMap_.insert(std::make_pair(processName, channelList));
+    dataFileMap_.insert(std::make_pair(processName, channelDataFileMap));
+    outFileMap_.insert(std::make_pair(processName, channelOutputFileMap));
   }
 
-  void Configuration::ParseOutputFile(pugi::xml_node processNode)
+  void Configuration::ParseSelectionCuts(const std::string& processName, pugi::xml_node selCutNode)
   {
-    //get process name
-    std::string processName = processNode.attribute("name").value();
-    //get process output file name
-    std::string outFileName = processNode.child("Output").attribute("name").value();
-    //fill output file map
-    outFileMap_.insert(std::make_pair(processName, outFileName));
-  }
-
-  void Configuration::ParseSelectionCuts(pugi::xml_node processNode)
-  {
-    //get process name
-    std::string processName = processNode.attribute("name").value();
-    //get selection cuts
     SelCuts selCuts;
-    for(pugi::xml_node cutNode = processNode.child("SelectionCuts").child("cut"); cutNode; cutNode = cutNode.next_sibling())
+    for(pugi::xml_node cutNode = selCutNode.child("cut"); cutNode; cutNode = cutNode.next_sibling())
     {
       std::string object = cutNode.attribute("name").value();
       if(object == "tau")
@@ -74,6 +66,7 @@ namespace conf {
         selCuts.taudXY = cutNode.attribute("dXY").as_float(2);
         selCuts.taudeltaR = cutNode.attribute("deltaR").as_float(0.5);
         selCuts.taudR = cutNode.attribute("dR").as_float(0.5);
+        selCuts.deepTauID = cutNode.attribute("deepTauID").value();
       }
     }
     //fill selection cuts map
@@ -84,24 +77,14 @@ namespace conf {
 
   std::string Configuration::GetFilePath(void){ return confFilePath_; }
 
-  VecStr Configuration::GetDataFileList(const std::string& process){ return dataFileMap_[process]; }
+  std::string Configuration::GetDataFileName(const std::string& process, const std::string& channel){ return dataFileMap_[process][channel]; }
 
-  std::string Configuration::GetOutputFileName(const std::string& process){ return outFileMap_[process]; }
+  std::string Configuration::GetOutputFileName(const std::string& process, const std::string& channel){ return outFileMap_[process][channel]; }
 
   VecStr Configuration::GetProcessList(){ return processList_; }
 
-  SelCuts Configuration::GetSelCuts(const std::string& process){ return selCutsMap_[process];}
+  VecStr Configuration::GetChannelList(const std::string& process){ return channelMap_[process]; }
 
-  float Configuration::GetCutTauPt(const std::string& process){ return selCutsMap_[process].tauPt; }
-
-  float Configuration::GetCutTauEta(const std::string& process){ return selCutsMap_[process].tauEta; }
-
-  float Configuration::GetCutTaudZ(const std::string& process){ return selCutsMap_[process].taudZ; }
-
-  float Configuration::GetCutTaudXY(const std::string& process){ return selCutsMap_[process].taudXY; }
-
-  float Configuration::GetCutTaudeltaR(const std::string& process){ return selCutsMap_[process].taudeltaR; }
-
-  float Configuration::GetCutTaudR(const std::string& process){ return selCutsMap_[process].taudR; }
+  SelCuts Configuration::GetSelCuts(const std::string& process){ return selCutsMap_[process]; }
 
 }//namespace configuration
