@@ -54,6 +54,7 @@ namespace out {
     recoSelTree_->Branch("tau1_px_reco", &recoTau1Px_);
     recoSelTree_->Branch("tau1_py_reco", &recoTau1Py_);
     recoSelTree_->Branch("tau1_pz_reco", &recoTau1Pz_);
+    recoSelTree_->Branch("tau1_pt_reco", &recoTau1Pt_);
     recoSelTree_->Branch("tau1_dxy_reco", &recoTau1dXY_);
     recoSelTree_->Branch("tau1_dz_reco", &recoTau1dZ_);
     recoSelTree_->Branch("tau1_DeepTauIDvsJet_reco", &recoTau1DeepTauIDvsJet_);
@@ -64,6 +65,7 @@ namespace out {
     recoSelTree_->Branch("tau2_px_reco", &recoTau2Px_);
     recoSelTree_->Branch("tau2_py_reco", &recoTau2Py_);
     recoSelTree_->Branch("tau2_pz_reco", &recoTau2Pz_);
+    recoSelTree_->Branch("tau2_pt_reco", &recoTau2Pt_);
     recoSelTree_->Branch("tau2_dxy_reco", &recoTau2dXY_);
     recoSelTree_->Branch("tau2_dz_reco", &recoTau2dZ_);
     recoSelTree_->Branch("tau2_DeepTauIDvsJet_reco", &recoTau2DeepTauIDvsJet_);
@@ -100,7 +102,7 @@ namespace out {
     {
       case 1 : recoTau1E_ = tauE; break;
       case 2 : recoTau2E_ = tauE; break;
-      default : throw std::runtime_error("Output::SetRecoTauEReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauE : undefined Tau index");
     }
   }
 
@@ -110,7 +112,7 @@ namespace out {
     {
       case 1 : recoTau1Px_ = tauPx; break;
       case 2 : recoTau2Px_ = tauPx; break;
-      default : throw std::runtime_error("Output::SetRecoTauPxReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauPx : undefined Tau index");
     }
   }
 
@@ -120,7 +122,7 @@ namespace out {
     {
       case 1 : recoTau1Py_ = tauPy; break;
       case 2 : recoTau2Py_ = tauPy; break;
-      default : throw std::runtime_error("Output::SetRecoTauPyReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauPy : undefined Tau index");
     }
   }
 
@@ -130,7 +132,17 @@ namespace out {
     {
       case 1 : recoTau1Pz_ = tauPz; break;
       case 2 : recoTau2Pz_ = tauPz; break;
-      default : throw std::runtime_error("Output::SetRecoTauPzReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauPz : undefined Tau index");
+    }
+  }
+
+  void Output::SetRecoTauPt(int tauIdx, double tauPt)
+  {
+    switch(tauIdx)
+    {
+      case 1 : recoTau1Pt_ = tauPt; break;
+      case 2 : recoTau2Pt_ = tauPt; break;
+      default : throw std::runtime_error("Output::SetRecoTauPt : undefined Tau index");
     }
   }
 
@@ -140,7 +152,7 @@ namespace out {
     {
       case 1 : recoTau1dXY_ = taudXY; break;
       case 2 : recoTau2dXY_ = taudXY; break;
-      default : throw std::runtime_error("Output::SetRecoTaudXYReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTaudXY : undefined Tau index");
     }
   }
 
@@ -150,7 +162,7 @@ namespace out {
     {
       case 1 : recoTau1dZ_ = taudZ; break;
       case 2 : recoTau2dZ_ = taudZ; break;
-      default : throw std::runtime_error("Output::SetRecoTaudZReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTaudZ : undefined Tau index");
     }
   }
 
@@ -160,7 +172,7 @@ namespace out {
     {
       case 1 : recoTau1DeepTauIDvsJet_ = tauIDwpMap_[deepTauIDwp]; break;
       case 2 : recoTau2DeepTauIDvsJet_ = tauIDwpMap_[deepTauIDwp]; break;
-      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsJetReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsJet : undefined Tau index");
     }
   }
 
@@ -170,7 +182,7 @@ namespace out {
     {
       case 1 : recoTau1DeepTauIDvsEl_ = tauIDwpMap_[deepTauIDwp]; break;
       case 2 : recoTau2DeepTauIDvsEl_ = tauIDwpMap_[deepTauIDwp]; break;
-      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsElReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsEl : undefined Tau index");
     }
   }
 
@@ -180,7 +192,7 @@ namespace out {
     {
       case 1 : recoTau1DeepTauIDvsMu_ = tauIDwpMap_[deepTauIDwp]; break;
       case 2 : recoTau2DeepTauIDvsMu_ = tauIDwpMap_[deepTauIDwp]; break;
-      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsMuReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauDeepTauIDvsMu : undefined Tau index");
     }
   }
 
@@ -190,7 +202,7 @@ namespace out {
     {
       case 1 : recoTau1DecayMode_ = tauDecayMode; break;
       case 2 : recoTau2DecayMode_ = tauDecayMode; break;
-      default : throw std::runtime_error("Output::SetRecoTauDecayModeReco : undefined Tau index");
+      default : throw std::runtime_error("Output::SetRecoTauDecayMode : undefined Tau index");
     }
   }
 

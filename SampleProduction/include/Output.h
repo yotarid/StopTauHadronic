@@ -37,6 +37,7 @@ namespace out {
       void SetRecoTauPx(int tauIdx, double tauPx);
       void SetRecoTauPy(int tauIdx, double tauPy);
       void SetRecoTauPz(int tauIdx, double tauPz);
+      void SetRecoTauPt(int tauIdx, double tauPt);
       void SetRecoTaudXY(int tauIdx, double taudXY);
       void SetRecoTaudZ(int tauIdx, double taudZ);
       void SetRecoTauDeepTauIDvsJet(int tauIdx, const std::string& deepTauIDwp);
@@ -62,7 +63,7 @@ namespace out {
       bool isOutputInitialised_ = false;
 
       double recoTau1E_ = 0, 
-             recoTau1Px_ = 0, recoTau1Py_ = 0, recoTau1Pz_ = 0,
+             recoTau1Px_ = 0, recoTau1Py_ = 0, recoTau1Pz_ = 0, recoTau1Pt_ = 0,
              recoTau1dXY_ = 0, recoTau1dZ_ = 0,
              recoTau1DeepTauIDvsJet_ = -1,
              recoTau1DeepTauIDvsEl_ = -1,
@@ -70,7 +71,7 @@ namespace out {
              recoTau1DecayMode_ = 0;
 
       double recoTau2E_ = 0, 
-             recoTau2Px_ = 0, recoTau2Py_ = 0, recoTau2Pz_ = 0,
+             recoTau2Px_ = 0, recoTau2Py_ = 0, recoTau2Pz_ = 0, recoTau2Pt_ = 0,
              recoTau2dXY_ = 0, recoTau2dZ_ = 0,
              recoTau2DeepTauIDvsJet_ = -1,
              recoTau2DeepTauIDvsEl_ = -1,
