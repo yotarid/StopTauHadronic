@@ -45,12 +45,12 @@ int main(int argc, char* argv[])
 
   conf::Configuration conf(configFile, era);
 
-  out::Output output(conf.GetOutputFileName(process), era, process);
-  output.InitialiseOutput();
-
-  for(auto dataFile : conf.GetDataFileList(process))
+  for(auto channel : conf.GetChannelList(process))
   {
-    in::Input input(process, dataFile);
+    out::Output output(conf.GetOutputFileName(process, channel), era, process);
+    output.InitialiseOutput();
+    //
+    in::Input input(process, conf.GetDataFileName(process, channel));
     std::string inFile;
     while(std::getline(input.GetDataFile(), inFile))
     {
@@ -61,46 +61,38 @@ int main(int argc, char* argv[])
         if(!input.LoadNewEvent(iEvent)) continue;
         if(input.GetRecoTauN() < 2) continue;
 
-        //Get list of Taus passing selection criteria
-        std::vector<int> recoTauSelected = input.GetRecoTauSelected(conf.GetSelCuts(process)); 
-        if(recoTauSelected.size() < 2) continue;
-
         //Select Tau pair
-        std::pair<int, int> recoTauPair = input.GetRecoTauPair(conf.GetSelCuts(process), recoTauSelected);
-        if(recoTauPair.first == -1 || recoTauPair.second == -1) continue;
+        std::vector<int> recoTauPair = input.GetRecoTauPair(conf.GetSelCuts(process));
+        if(recoTauPair.size() != 2) continue;
 
+        //Fill output event
+        for(int i = 0; i < 2; i++) 
+        {
+          int iTau = (i == 0) ? 1 : 2;
+          int iTauIdx = recoTauPair[i];
+          //
+          output.SetRecoTauE(iTau, input.GetRecoTauE(iTauIdx));
+          output.SetRecoTauPx(iTau, input.GetRecoTauPx(iTauIdx));
+          output.SetRecoTauPy(iTau, input.GetRecoTauPy(iTauIdx));
+          output.SetRecoTauPz(iTau, input.GetRecoTauPz(iTauIdx));
+          output.SetRecoTauPt(iTau, input.GetRecoTauPt(iTauIdx));
+          output.SetRecoTaudXY(iTau, input.GetRecoTaudXY(iTauIdx));
+          output.SetRecoTaudZ(iTau, input.GetRecoTaudZ(iTauIdx));
+          output.SetRecoTauDeepTauIDvsJet(iTau, conf.GetSelCuts(process).deepTauID);
+          output.SetRecoTauDeepTauIDvsEl(iTau, conf.GetSelCuts(process).deepTauID);
+          output.SetRecoTauDeepTauIDvsMu(iTau, conf.GetSelCuts(process).deepTauID);
+          output.SetRecoTauDecayMode(iTau, input.GetRecoTauDecayMode(iTauIdx));
+        }
         output.SetRecoTauPairMETE(input.GetRecoMETE());
         output.SetRecoTauPairMETPhi(input.GetRecoMETPhi());
-
-        output.SetRecoTauE(1, input.GetRecoTauE(recoTauPair.first));
-        output.SetRecoTauPx(1, input.GetRecoTauPx(recoTauPair.first));
-        output.SetRecoTauPy(1, input.GetRecoTauPy(recoTauPair.first));
-        output.SetRecoTauPz(1, input.GetRecoTauPz(recoTauPair.first));
-        output.SetRecoTaudXY(1, input.GetRecoTaudXY(recoTauPair.first));
-        output.SetRecoTaudZ(1, input.GetRecoTaudZ(recoTauPair.first));
-        output.SetRecoTauDeepTauIDvsJet(1, "Tight");
-        output.SetRecoTauDeepTauIDvsEl(1, "Tight");
-        output.SetRecoTauDeepTauIDvsMu(1, "Tight");
-        output.SetRecoTauDecayMode(1, input.GetRecoTauDecayMode(recoTauPair.first));
-
-        output.SetRecoTauE(2, input.GetRecoTauE(recoTauPair.second));
-        output.SetRecoTauPx(2, input.GetRecoTauPx(recoTauPair.second));
-        output.SetRecoTauPy(2, input.GetRecoTauPy(recoTauPair.second));
-        output.SetRecoTauPz(2, input.GetRecoTauPz(recoTauPair.second));
-        output.SetRecoTaudXY(2, input.GetRecoTaudXY(recoTauPair.second));
-        output.SetRecoTaudZ(2, input.GetRecoTaudZ(recoTauPair.second));
-        output.SetRecoTauDeepTauIDvsJet(2, "Tight");
-        output.SetRecoTauDeepTauIDvsEl(2, "Tight");
-        output.SetRecoTauDeepTauIDvsMu(2, "Tight");
-        output.SetRecoTauDecayMode(2, input.GetRecoTauDecayMode(recoTauPair.second));
-
         output.SetRecoTauPairmT2(input.GetRecoTauPairmT2(recoTauPair));
         output.SetRecoTauPairHT(input.GetRecoTauPairHT(recoTauPair));
-
+        //
         output.LoadNewEvent();
       }
       input.FinaliseInput();
     }
+    output.FinaliseOutput();
     input.GetDataFile().close();
   }
 
