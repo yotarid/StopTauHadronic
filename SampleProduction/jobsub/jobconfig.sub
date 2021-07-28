@@ -1,0 +1,26 @@
+#executable = @executable@
+#arguments  = @arguments@
+
+executable = jobsub/jobsub.sh
+
+#request_memory  = 10GB
+#request_cpus    = 1
+#request_disk    = 10GB 
+
+error   = jobsub/jobs/2017/error_TEST.err
+output  = jobsub/jobs/2017/output_TEST.out
+log     = jobsub/jobs/2017/log_TEST.log
+
+#error   = @error@
+#output  = @output@
+#log     = @log@
+
+#should_transfer_files  = ??
+transfer_input_files     = IF_NEEDED
+when_to_transfer_output = ON_EXIT
+
+getenv = True
+
++RequestRunTime = 172800
+
+queue
