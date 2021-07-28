@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RunDescription>
+  <Era date="2017">
+
+    <Process name="TauTauData">
+      <Data>
+        <Channel  name="au_Run2017B-31Mar2018-v1_MINIAOD" directory="au_Run2017B-31Mar2018-v1_MINIAOD" file="au_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="Tau_Run2017C-31Mar2018-v1_MINIAOD" directory="Tau_Run2017C-31Mar2018-v1_MINIAOD" file="Tau_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="Tau_Run2017D-31Mar2018-v1_MINIAOD" directory="Tau_Run2017D-31Mar2018-v1_MINIAOD" file="Tau_Run2017D-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="Tau_Run2017E-31Mar2018-v1_MINIAOD" directory="Tau_Run2017E-31Mar2018-v1_MINIAOD" file="Tau_Run2017E-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="Tau_Run2017F-31Mar2018-v1_MINIAOD" directory="Tau_Run2017F-31Mar2018-v1_MINIAOD" file="Tau_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="ElMuData">
+      <Data>
+        <Channel  name="MuonEG_Run2017B-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017B-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="MuonEG_Run2017C-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017C-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="MuonEG_Run2017D-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017D-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017D-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="MuonEG_Run2017E-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017E-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017E-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="MuonEG_Run2017F-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017F-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="MuMuData">
+      <Data>
+        <Channel  name="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017D-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017D-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017D-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017E-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017E-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017E-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="MuTauData">
+      <Data>
+        <Channel  name="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017D-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017D-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017D-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017E-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017E-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017E-31Mar2018-v1_MINIAOD_custom.txt" />
+        <Channel  name="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="StopPairMC">
+      <Data>
+        <Channel  name="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" directory="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" file="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="DYJetsMC">
+      <Data>
+        <Channel  name="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="DY2JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DY2JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DY2JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="DY3JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DY3JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DY3JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="WJetsMC">
+      <Data>
+        <Channel  name="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="W2JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="W2JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="W2JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="W3JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="W3JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="W3JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="VHMC">
+      <Data>
+        <Channel  name="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Fall17" directory="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Fall17" file="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Fall17_custom.txt" />
+        <Channel  name="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" directory="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" file="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17_custom.txt" />
+        <Channel  name="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" directory="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" file="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="VVMC">
+      <Data>
+        <Channel  name="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
+        <Channel  name="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
+        <Channel  name="WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
+        <Channel  name="WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2_Fall17" directory="WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2_Fall17" file="WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2_Fall17_custom.txt" />
+        <Channel  name="WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
+        <Channel  name="ZZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="ZZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="ZZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
+        <Channel  name="ZZTo4L_13TeV_powheg_pythia8_Fall17" directory="ZZTo4L_13TeV_powheg_pythia8_Fall17" file="ZZTo4L_13TeV_powheg_pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="WGMC">
+      <Data>
+        <Channel  name="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="TTbarMC">
+      <Data>
+        <Channel  name="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Fall17" file="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17" file="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8_Fall17" file="TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTJets_DiLept_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="TTJets_DiLept_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="TTJets_DiLept_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8_FastSim_Fall17" directory="TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8_FastSim_Fall17" file="TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8_FastSim_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="SingleTopMC">
+      <Data>
+        <Channel  name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" file="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
+        <Channel  name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" file="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
+        <Channel  name="ST_t-channel_antitop_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" directory="ST_t-channel_antitop_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" file="ST_t-channel_antitop_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17_custom.txt" />
+        <Channel  name="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" directory="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" file="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+
+    <Process name="TTXMC">
+      <Data>
+        <Channel  name="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" directory="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" file="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" directory="TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" file="TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17" directory="TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17" file="TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17_custom.txt" />
+        <Channel  name="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17" directory="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17" file="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17_custom.txt" />
+      </Data>
+
+      <SelectionCuts>
+        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+      </SelectionCuts>
+    </Process>
+  </Era>
+</RunDescription>
