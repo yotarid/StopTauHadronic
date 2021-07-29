@@ -5,3 +5,8 @@ output/
 build/
 bin/
 logs/
+myeasylog.log
+jobsub/logs/
+jobsub/jobs/
+jobsub/myeasylog.log
+
