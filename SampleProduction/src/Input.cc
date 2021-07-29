@@ -3,10 +3,10 @@
 
 namespace in {
 
-  Input::Input(const std::string& process, const std::string& dataFilePath) 
-    :  process_(process), dataFile_(dataFilePath), dataFilePath_(dataFilePath)
+  Input::Input(const std::string& era, const std::string& process, const std::string& channel, const std::string& dataFilePath) 
+    :  era_(era), process_(process), channel_(channel), dataFile_(dataFilePath), dataFilePath_(dataFilePath)
   {
-    LOG(INFO) << BOLDYELLOW << " Data file path : " << WHITE << dataFilePath << RESET;
+    LOG(INFO) << BOLDYELLOW << "\tUsing data file path : " << WHITE << dataFilePath << RESET;
   }
 
   Input::~Input(){}
@@ -30,7 +30,7 @@ namespace in {
   void Input::InitialiseInput(const std::string& inFilePath)
   {
     //Input data TFile
-    LOG(INFO) << BOLDBLUE << "\t Opening input file : " << WHITE << inFilePath << RESET;
+    LOG(INFO) << BOLDBLUE << "\t\tOpening input file : " << WHITE << inFilePath << RESET;
     inFilePath_ = inFilePath;
     inFile_ = TFile::Open(inFilePath.c_str(), "READ");
     //Input data TTree
@@ -92,12 +92,15 @@ namespace in {
     genTree_->SetBranchAddress("METFixEE2017_E_gen", &genMETE_);
     genTree_->SetBranchAddress("METFixEE2017_phi_gen", &genMETPhi_);
 
+    //Disabling mT2 library copyright message
+    asymm_mt2_lester_bisect::disableCopyrightMessage();
+
     isInputInitialised_ = true;
   }
 
   void Input::FinaliseInput(void)
   {
-    LOG(INFO) << BOLDMAGENTA << "\t Closing input file : " << WHITE << inFilePath_ << RESET;
+    LOG(INFO) << BOLDMAGENTA << "\t\tClosing input file : " << WHITE << inFilePath_ << RESET;
     LOG(INFO) << " " << RESET;
     inFile_->Close();
     isInputInitialised_ = false;
@@ -105,7 +108,7 @@ namespace in {
 
   bool Input::LoadNewEvent(int iEvent)
   {
-    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading Event : " << +iEvent << RESET;
+    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\tProcessing Event : " << +iEvent << RESET;
     return (recoTree_->GetEntry(iEvent) != -1) && (genTree_->GetEntry(iEvent) != -1);
   }
 
@@ -199,17 +202,20 @@ namespace in {
     for(int iTau = 0; iTau < recoTauN_; iTau++)
     {
       CLHEP::HepLorentzVector recoTau4Mom = GetRecoTau4Mom(iTau);
-
-      if(! (recoTau4Mom.perp() > cuts.tauPt)
+      // LOG(INFO) << BOLDRED << "perp = " << recoTau4Mom.perp() << " , tauPt =" << GetRecoTauPt(iTau) << RESET;
+      if(!(
+            (recoTau4Mom.perp() > cuts.tauPt)
             && (fabs(recoTau4Mom.eta()) < cuts.tauEta)
             && (fabs(GetRecoTaudZ(iTau)) < cuts.taudZ)
             && (IsRecoTauDeepIDvsEl(iTau, cuts.deepTauID))
             && (IsRecoTauDeepIDvsMu(iTau, cuts.deepTauID))
             && (IsRecoTauDeepIDvsJet(iTau, cuts.deepTauID))
+          )
       ) continue;
 
       recoTauSelected.push_back(iTau);
     }
+    // for(auto tau : recoTauSelected) LOG(INFO) << "tau" << +tau << " pt = " << GetRecoTauPt(tau) << RESET;
     return std::move(recoTauSelected);
   }
 
@@ -249,6 +255,7 @@ namespace in {
         }
       }
     }
+    // LOG(INFO) << "pt cut = " << cuts.tauPt << " tau1 pt = " << GetRecoTauPt(tauPair[0]) << " tau2 pt = " << GetRecoTauPt(tauPair[1]) << RESET;
     return std::move(tauPair);
   }
 

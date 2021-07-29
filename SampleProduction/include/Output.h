@@ -17,7 +17,7 @@
 namespace out {
   class Output {
     public : 
-      explicit Output(const std::string& outFileName, const std::string& era, const std::string& process);
+      explicit Output(const std::string& era, const std::string& process, const std::string& channel, const std::string& outFileName);
       ~Output();
 
       TFile* GetFile(void);
@@ -51,7 +51,7 @@ namespace out {
 
 
     private :
-      std::string era_, process_;
+      std::string era_, process_, channel_;
 
       TFile* outFile_;
       TDirectory* outROOTDir_;

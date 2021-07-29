@@ -25,7 +25,7 @@ namespace in {
 
   class Input {
     public : 
-      explicit Input(const std::string& process, const std::string& dataFilePath);
+      explicit Input(const std::string& era, const std::string& process, const std::string& channel, const std::string& dataFilePath);
       ~Input();
 
       TFile* GetInputFile(void);
@@ -93,7 +93,7 @@ namespace in {
 
 
     private :
-      std::string process_;
+      std::string era_, process_, channel_;
 
       std::ifstream dataFile_;
       std::string dataFilePath_;

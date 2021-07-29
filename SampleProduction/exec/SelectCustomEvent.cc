@@ -47,10 +47,10 @@ int main(int argc, char* argv[])
 
   for(auto channel : conf.GetChannelList(process))
   {
-    out::Output output(conf.GetOutputFileName(process, channel), era, process);
+    out::Output output(era, process, channel, conf.GetOutputFileName(process, channel));
     output.InitialiseOutput();
     //
-    in::Input input(process, conf.GetDataFileName(process, channel));
+    in::Input input(era, process, channel, conf.GetDataFileName(process, channel));
     std::string inFile;
     while(std::getline(input.GetDataFile(), inFile))
     {

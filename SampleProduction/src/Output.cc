@@ -2,21 +2,22 @@
 
 namespace out {
 
-  Output::Output(const std::string& outFileName, const std::string& era, const std::string& process)
-    : era_(era), process_(process)
+  Output::Output(const std::string& era, const std::string& process, const std::string& channel, const std::string& outFileName)
+    : era_(era), process_(process), channel_(channel)
   {
-    std::string outDirPath = Form("%s/%s/%s", std::getenv("SAMPLEPRODUCTION_OUT_DIR"), era.c_str(), process.c_str());
-    LOG(INFO) << BOLDYELLOW << "Creating output directory : " << WHITE << outDirPath << RESET;
-    LOG(INFO) << BOLDGREEN << "\t Process : " << WHITE << process << RESET;
+    std::string outDirPath = Form("%s/%s/%s/%s", std::getenv("SAMPLEPRODUCTION_OUT_DIR"), era.c_str(), process.c_str(), channel.c_str());
+    LOG(INFO) << "" << RESET;
+    LOG(INFO) << BOLDGREEN << "Era : " << WHITE << era << BOLDGREEN << ", Process : " << WHITE << process << BOLDGREEN << ", Channel : " << channel << RESET;
+    LOG(INFO) << BOLDYELLOW << "\tCreating output directory : " << WHITE << outDirPath << RESET;
     system(Form("mkdir -p %s", outDirPath.c_str()));
     //
-    LOG(INFO) << BOLDYELLOW << "\t\t Creating output file : " << WHITE << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << RESET;
+    LOG(INFO) << BOLDYELLOW << "\t\tCreating output file : " << WHITE << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << RESET;
     outFile_ = TFile::Open(Form("%s/%s", outDirPath.c_str(), outFileName.c_str()), "RECREATE");
     outFilePath_ = outDirPath + "/" + outFileName;
     if(!outFile_)
       throw std::runtime_error("Output:Output : ROOT File is nullptr");
     //
-    LOG(INFO) << BOLDYELLOW << "\t\t Creating ROOT directory : " << WHITE << "miniaodsim2custom2custom" << RESET;
+    LOG(INFO) << BOLDYELLOW << "\t\t\tCreating ROOT directory : " << WHITE << "miniaodsim2custom2custom" << RESET;
     outROOTDir_ = outFile_->mkdir("miniaodsim2custom2custom");
     if(!outROOTDir_)
       throw std::runtime_error("Output:Output : ROOT Directory is nullptr");
@@ -30,8 +31,7 @@ namespace out {
 
   Output::~Output()
   {
-    LOG(INFO) << BOLDGREEN << "\t Process : " << WHITE << process_ << RESET;
-    LOG(INFO) << BOLDYELLOW << "Closing output file : " << WHITE << outFilePath_ << RESET;
+    //LOG(INFO) << BOLDYELLOW << "\t\tClosing output file : " << WHITE << outFilePath_ << RESET;
     outFile_->Close();
   }
 
@@ -89,7 +89,7 @@ namespace out {
 
   void Output::FinaliseOutput(void)
   {
-    LOG(INFO) << BOLDMAGENTA << "\t Closing output file : " << WHITE << outFilePath_ << RESET;
+    //LOG(INFO) << BOLDMAGENTA << "\t Closing output file : " << WHITE << outFilePath_ << RESET;
     LOG(INFO) << " " << RESET;
     outFile_->Write();
     outFile_->Close();
