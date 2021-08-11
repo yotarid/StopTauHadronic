@@ -7,7 +7,7 @@ namespace out {
   {
     std::string outDirPath = Form("%s/%s/%s/%s", std::getenv("SAMPLEPRODUCTION_OUT_DIR"), era.c_str(), process.c_str(), channel.c_str());
     LOG(INFO) << "" << RESET;
-    LOG(INFO) << BOLDGREEN << "Era : " << WHITE << era << BOLDGREEN << ", Process : " << WHITE << process << BOLDGREEN << ", Channel : " << channel << RESET;
+    LOG(INFO) << BOLDGREEN << "Era : " << WHITE << era << BOLDGREEN << ", Process : " << WHITE << process << BOLDGREEN << ", Channel : " << WHITE << channel << RESET;
     LOG(INFO) << BOLDYELLOW << "\tCreating output directory : " << WHITE << outDirPath << RESET;
     system(Form("mkdir -p %s", outDirPath.c_str()));
     //
