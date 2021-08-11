@@ -29,7 +29,7 @@ fi
 
 THISROOTSH=${ROOTSYS}/bin/thisroot.sh
 sleep 1
-echo "Sourcing thisroot.sh"
+echo "Sourcing ROOT"
 source ${THISROOTSH}
 
 ####################
@@ -38,6 +38,7 @@ source ${THISROOTSH}
 export SAMPLEPRODUCTION_BASE_DIR=$(pwd)
 export SAMPLEPRODUCTION_OUT_DIR=$(pwd)/output
 export SAMPLEPRODUCTION_DATA_DIR=$(pwd)/data
+export SAMPLEPRODUCTION_JOBSUB_DIR=$(pwd)/jobsub
 
 ##########
 # System #
