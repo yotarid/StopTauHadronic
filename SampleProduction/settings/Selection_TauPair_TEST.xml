@@ -20,7 +20,7 @@
       </Data>
       <!---->
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight"/>
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight"/>
       </SelectionCuts>
     </Process>
 
