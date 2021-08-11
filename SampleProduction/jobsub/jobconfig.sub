@@ -1,19 +1,12 @@
-#executable = @executable@
-#arguments  = @arguments@
-
-executable = jobsub/jobsub.sh
+executable = @EXECUTABLE_PATH@
 
 #request_memory  = 10GB
 #request_cpus    = 1
 #request_disk    = 10GB 
 
-error   = jobsub/jobs/2017/error_TEST.err
-output  = jobsub/jobs/2017/output_TEST.out
-log     = jobsub/jobs/2017/log_TEST.log
-
-#error   = @error@
-#output  = @output@
-#log     = @log@
+error   = @ERROR_PATH@/error.err
+output  = @OUTPUT_PATH@/output.out
+log     = @LOG_PATH@log.log
 
 #should_transfer_files  = ??
 transfer_input_files     = IF_NEEDED
