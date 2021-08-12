@@ -9,4 +9,4 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 eval `scramv1 runtime -sh`
 
-$SAMPLEPRODUCTION_BASE_DIR/bin/SelectCustomEvent -f $SAMPLEPRODUCTION_BASE_DIR/settings/Selection_TauPair.xml -e @ERA@ -p @PROCESS@
+$SAMPLEPRODUCTION_BASE_DIR/bin/SelectCustomEvent -f $SAMPLEPRODUCTION_BASE_DIR/settings/Selection_TauPair.xml -e @ERA@ -p @PROCESS@ -c @CHANNEL@ -x @EXTENSION@

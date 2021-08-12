@@ -44,7 +44,7 @@ namespace conf {
       std::string dataFile = std::getenv("SAMPLEPRODUCTION_DATA_DIR") + std::string("/") + channelNode.attribute("directory").value() + std::string("/") + channelNode.attribute("file").value();
       channelDataFileMap.insert(std::make_pair(channelName, dataFile));
       //
-      std::string outputFile = channelName + "_selected.root";
+      std::string outputFile = channelName + "_selected";
       channelOutputFileMap.insert(std::make_pair(channelName, outputFile));
     }
     channelMap_.insert(std::make_pair(processName, channelList));

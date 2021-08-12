@@ -11,8 +11,8 @@ namespace out {
     LOG(INFO) << BOLDYELLOW << "\tCreating output directory : " << WHITE << outDirPath << RESET;
     system(Form("mkdir -p %s", outDirPath.c_str()));
     //
-    LOG(INFO) << BOLDYELLOW << "\t\tCreating output file : " << WHITE << Form("%s/%s", outDirPath.c_str(), outFileName.c_str()) << RESET;
-    outFile_ = TFile::Open(Form("%s/%s", outDirPath.c_str(), outFileName.c_str()), "RECREATE");
+    LOG(INFO) << BOLDYELLOW << "\t\tCreating output file : " << WHITE << Form("%s/%s.root", outDirPath.c_str(), outFileName.c_str()) << RESET;
+    outFile_ = TFile::Open(Form("%s/%s.root", outDirPath.c_str(), outFileName.c_str()), "RECREATE");
     outFilePath_ = outDirPath + "/" + outFileName;
     if(!outFile_)
       throw std::runtime_error("Output:Output : ROOT File is nullptr");

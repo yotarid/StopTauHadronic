@@ -34,6 +34,9 @@ int main(int argc, char* argv[])
   //
   cmd.defineOption("channel", "Run channel [see available in XML settings file]", ArgvParser::OptionRequiresValue);
   cmd.defineOptionAlternative("channel", "c");
+  //
+  cmd.defineOption("extension", "Output file extension. Empty if not passed", ArgvParser::OptionRequiresValue);
+  cmd.defineOptionAlternative("extension", "x");
 
   int result = cmd.parse(argc, argv);
   if(result != ArgvParser::NoParserError)
@@ -45,11 +48,12 @@ int main(int argc, char* argv[])
   std::string configFile = cmd.foundOption("file") ? cmd.optionValue("file") : "";
   std::string era = cmd.foundOption("era") ? cmd.optionValue("era") : "";
   std::string process = cmd.foundOption("process") ? cmd.optionValue("process") : "";
-  std::string channel = cmd.foundOption("channwl") ? cmd.optionValue("channel") : "";
+  std::string channel = cmd.foundOption("channel") ? cmd.optionValue("channel") : "";
+  std::string outfileExt = cmd.foundOption("extension") ? cmd.optionValue("extension") : "";
 
   conf::Configuration conf(configFile, era);
 
-  out::Output output(era, process, channel, conf.GetOutputFileName(process, channel));
+  out::Output output(era, process, channel, conf.GetOutputFileName(process, channel) + outfileExt);
   output.InitialiseOutput();
   //
   in::Input input(era, process, channel, conf.GetDataFileName(process, channel));

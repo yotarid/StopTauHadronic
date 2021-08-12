@@ -4,9 +4,9 @@ executable = @EXECUTABLE_PATH@
 #request_cpus    = 1
 #request_disk    = 10GB 
 
-error   = @ERROR_PATH@/error.err
-output  = @OUTPUT_PATH@/output.out
-log     = @LOG_PATH@log.log
+error   = @ERROR_PATH@/error@EXTENSION@.err
+output  = @OUTPUT_PATH@/output@EXTENSION@.out
+log     = @LOG_PATH@/log@EXTENSION@.log
 
 #should_transfer_files  = ??
 transfer_input_files     = IF_NEEDED

@@ -7,15 +7,13 @@ import xml.etree.ElementTree as xml
 import os.path
 from colors import *
 
-
-
 def create_job_log_directory(era, process, channel) : 
   #create the directory tree for job logging files
-  os.system("mkdir -p " + os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era))
-  os.system("mkdir -p " + os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era, process))
-  os.system("mkdir -p " + os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era, process, channel))
+  os.system("mkdir -p " + os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era))
+  os.system("mkdir -p " + os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process))
+  os.system("mkdir -p " + os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process, channel))
 
-def create_jobsub_file(era, process, channel) : 
+def create_jobsub_file(era, process, channel, extension="") : 
   #open original jobsub file
   jobsub_path = os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobsub.sh")
   jobsub_content = open(jobsub_path, "r").read()
@@ -23,8 +21,9 @@ def create_jobsub_file(era, process, channel) :
   jobsub_content = jobsub_content.replace("@ERA@", era)
   jobsub_content = jobsub_content.replace("@PROCESS@", process)
   jobsub_content = jobsub_content.replace("@CHANNEL@", channel)
+  jobsub_content = jobsub_content.replace("@EXTENSION@", extension)
   #create new jobsub file
-  jobsub_mod_path = os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era, process, channel, "jobsub.sh")
+  jobsub_mod_path = os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process, channel, "jobsub" + extension + ".sh")
   jobsub_mod = open(jobsub_mod_path, "w")
   jobsub_mod.write(jobsub_content)
   #allow execution of jobsub file
@@ -34,18 +33,20 @@ def create_jobsub_file(era, process, channel) :
   jobconfig_path = os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobconfig.sub")
   jobconfig_content = open(jobconfig_path, "r").read()
   #modify original jobconfig file
-  condor_logging_path = os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era, process, channel)
+  condor_logging_path = os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process, channel)
   jobconfig_content = jobconfig_content.replace("@EXECUTABLE_PATH@", jobsub_mod_path)
   jobconfig_content = jobconfig_content.replace("@ERROR_PATH@", condor_logging_path)
   jobconfig_content = jobconfig_content.replace("@OUTPUT_PATH@", condor_logging_path)
   jobconfig_content = jobconfig_content.replace("@LOG_PATH@", condor_logging_path)
+  jobconfig_content = jobconfig_content.replace("@EXTENSION@", extension)
   #create new jobconfig file
-  jobconfig_modified = open(os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era, process, channel, "jobconfig.sub"), "w")
+  jobconfig_modified = open(os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process, channel, "jobconfig" + extension + ".sub"), "w")
   jobconfig_modified.write(jobconfig_content)
 
-def launch_job(era, process, channel) : 
+def launch_job(era, process, channel, extension="") : 
   #launch condor job submission command
-  failure = os.system("condor_submit -file " + os.path.join(os.getenv('SAMPLEPRODUCTION_JOBSUB_DIR'), "jobs", era, process, channel, "jobconfig.sub") )
+  print("")
+  failure = os.system("condor_submit -file " + os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process, channel, "jobconfig" + extension + ".sub"))
   if not failure :
     print(tcolors.GREEN + "Successfuly submited job for " + era + ", " + process + ", " + channel + tcolors.RESET)
   else :
@@ -94,8 +95,10 @@ if (__name__ == "__main__") :
       process_name = process.attrib['name']
       if process_name not in run_list[era_date] : #check if process is chosen
         continue
+      pT = process.find("SelectionCuts").find("cut").attrib['pT']
+      extension = "_" + pT + "GeV"
       for channel in process.find("Data").iter("Channel") :
         channel_name = channel.attrib['name']
         create_job_log_directory(era_date, process_name, channel_name)
-        create_jobsub_file(era_date, process_name, channel_name)
-        launch_job(era_date, process_name, channel_name)
+        create_jobsub_file(era_date, process_name, channel_name, extension)
+        launch_job(era_date, process_name, channel_name, extension)
