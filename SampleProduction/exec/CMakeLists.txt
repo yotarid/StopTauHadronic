@@ -3,7 +3,6 @@ MESSAGE(STATUS "---- ${BoldBlue}================================================
 MESSAGE(STATUS "---- ${BoldYellow}ANALYSIS${Reset} [stand-alone/analysis]: [${BoldCyan}SampleProduction/exec/CMakeLists.txt${Reset}. ${BoldRed}Begin...${Reset}")
 MESSAGE(STATUS "--")
 
-include_directories(${PROJET_SOURCE_DIR}/include)
 include_directories(${PROJET_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -19,7 +18,7 @@ if(${CLHEP_FOUND})
   set(LIBS ${LIBS} ${CLHEP_LIBRARIES})
 endif(${CLHEP_FOUND})
 
-file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/exec *.cc)
+file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/exec *.cxx)
 
 MESSAGE("-------- ${BoldCyan}#### Building the following executables : ####${Reset}")
 foreach(sourcefile ${BINARIES} )
