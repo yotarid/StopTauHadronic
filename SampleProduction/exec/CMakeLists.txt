@@ -23,7 +23,7 @@ file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/exec *.cc)
 
 MESSAGE("-------- ${BoldCyan}#### Building the following executables : ####${Reset}")
 foreach(sourcefile ${BINARIES} )
-    string(REPLACE ".cc" "" name ${sourcefile})
+    string(REPLACE ".cxx" "" name ${sourcefile})
     MESSAGE(STATUS "-------- ${name}")
     add_executable(${name} ${sourcefile})
     target_link_libraries(${name} ${LIBS})
