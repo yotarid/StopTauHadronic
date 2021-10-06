@@ -1,4 +1,0 @@
-[submodule "extern/xgboost"]
-	path = extern/xgboost
-	url = git@github.com:yotarid/xgboost.git
-  branch = mytag_1.5.0rc1
