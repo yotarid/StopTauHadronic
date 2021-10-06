@@ -1,0 +1,7 @@
+bin/
+logs/
+output/
+build/
+jobsub/logs
+jobsub/*.log
+*.log
