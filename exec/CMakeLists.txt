@@ -6,7 +6,7 @@ MESSAGE(STATUS "--")
 include_directories(${PROJET_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(LIBS ${LIBS} SampleProduction_src SampleProduction_utils)
+set(LIBS ${LIBS} SampleProduction_src SampleProduction_extern)
 
 if(${ROOT_FOUND})
   include_directories(${ROOT_INCLUDE_DIRS})
