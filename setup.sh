@@ -10,6 +10,9 @@ module load cmssw
 #########
 # CLHEP #
 #########
+echo "Sourcing CLHEP"
+CLHEPINITISH=/cvmfs/cms.cern.ch/slc6_amd64_gcc530/external/clhep/2.3.4.2/etc/profile.d/init.sh
+source ${CLHEPINITISH}
 export CLHEP_INCLUDE=/cvmfs/cms.cern.ch/slc6_amd64_gcc530/external/clhep/2.3.4.2/include/
 export CLHEP_LIB=/cvmfs/cms.cern.ch/slc6_amd64_gcc530/external/clhep/2.3.4.2/lib
 
