@@ -1,8 +1,8 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
-#include "../utils/easylogging++.h"
-#include "../utils/consolecolor.h"
+#include "../utils/easylogging/easylogging++.h"
+#include "../utils/easylogging/consolecolor.h"
 
 #include <map>
 #include <iostream>

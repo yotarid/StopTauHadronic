@@ -1,6 +1,6 @@
-#include "../utils/argvparser.h"
-#include "../utils/easylogging++.h"
-#include "../utils/consolecolor.h"
+#include "../utils/argvparser/argvparser.h"
+#include "../utils/easylogging/easylogging++.h"
+#include "../utils/easylogging/consolecolor.h"
 
 #include "TFile.h"
 #include "TTree.h"

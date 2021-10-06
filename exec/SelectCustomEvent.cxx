@@ -2,8 +2,8 @@
 #include "../include/Output.h"
 #include "../include/Configuration.h"
 
-#include "../utils/argvparser.h"
-#include "../utils/easylogging++.h"
+#include "../utils/argvparser/argvparser.h"
+#include "../utils/easylogging/easylogging++.h"
 
 #include <CLHEP/Vector/LorentzVector.h>
 

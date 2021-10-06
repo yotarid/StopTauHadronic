@@ -1,10 +1,10 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
-#include "../utils/pugixml.hpp"
-#include "../utils/pugiconfig.hpp"
-#include "../utils/easylogging++.h"
-#include "../utils/consolecolor.h"
+#include "../utils/pugixml/pugixml.hpp"
+#include "../utils/pugixml/pugiconfig.hpp"
+#include "../utils/easylogging/easylogging++.h"
+#include "../utils/easylogging/consolecolor.h"
 
 #include <iostream>
 #include <string>

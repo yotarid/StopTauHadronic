@@ -3,8 +3,8 @@
 
 #include "Configuration.h"
 
-#include "../utils/easylogging++.h"
-#include "../utils/consolecolor.h"
+#include "../utils/easylogging/easylogging++.h"
+#include "../utils/easylogging/consolecolor.h"
 
 #include <iostream>
 #include <map>
