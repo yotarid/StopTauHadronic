@@ -5,11 +5,17 @@
 #include "../extern/argvparser/argvparser.h"
 #include "../extern/easylogging/easylogging++.h"
 
+#include <chrono>
+
 #include <CLHEP/Vector/LorentzVector.h>
 
 INITIALIZE_EASYLOGGINGPP
 
 using namespace CommandLineProcessing;
+using namespace in;
+using namespace out;
+using namespace obj;
+typedef std::vector<std::unique_ptr<Tau>> TauVector;
 
 int main(int argc, char* argv[])
 {
@@ -52,56 +58,36 @@ int main(int argc, char* argv[])
   std::string outfileExt = cmd.foundOption("extension") ? cmd.optionValue("extension") : "";
 
   conf::Configuration conf(configFile, era);
+  conf::SelCuts selCuts = conf.GetSelCuts(process);
 
-  out::Output output(era, process, channel, conf.GetOutputFileName(process, channel) + outfileExt);
-  output.InitialiseOutput();
+  std::unique_ptr<Output> output = std::make_unique<Output>(era, process, channel);
+  output->Initialise(conf.GetOutputFileName(process, channel) + outfileExt);
   //
-  in::Input input(era, process, channel, conf.GetDataFileName(process, channel));
+  std::unique_ptr<Input> input = std::make_unique<Input>(era, process, channel, conf.GetDataFileName(process, channel));
   std::string inFile;
-  while(std::getline(input.GetDataFile(), inFile))
+  std::shared_ptr<out::OutputRecoEvent> recoOutEvent = output->GetRecoEvent();
+  while(std::getline(input->GetDataFile(), inFile))
   {
-    input.InitialiseInput(inFile);
-    for(int iEvent = 0; iEvent < input.GetRecoNEvents(); iEvent++)
+    input->Initialise(inFile);
+    for(int iEvent = 0; iEvent < input->GetRecoEventN(); iEvent++)
     {
-      //Load branch contents 
-      if(!input.LoadNewEvent(iEvent)) continue;
-      if(input.GetRecoTauN() < 2) continue;
-
+      std::shared_ptr<InputRecoEvent> recoInEvent = input->GetNewRecoEvent(iEvent);
       //Select Tau pair
-      std::vector<int> recoTauPair = input.GetRecoTauPair(conf.GetSelCuts(process));
-      if(recoTauPair.size() != 2) continue;
+      // auto start = std::chrono::system_clock::now();
+      TauPair tauPair = recoInEvent->GetSelectedTauPair(selCuts);
+      double METE = recoInEvent->GetMETE();
+      double METPhi = recoInEvent->GetMETPhi();
 
-      //Fill output event
-      for(int i = 0; i < 2; i++) 
-      {
-        int iTau = (i == 0) ? 1 : 2;
-        int iTauIdx = recoTauPair[i];
-        //
-        output.SetRecoTauE(iTau, input.GetRecoTauE(iTauIdx));
-        output.SetRecoTauPx(iTau, input.GetRecoTauPx(iTauIdx));
-        output.SetRecoTauPy(iTau, input.GetRecoTauPy(iTauIdx));
-        output.SetRecoTauPz(iTau, input.GetRecoTauPz(iTauIdx));
-        output.SetRecoTauPt(iTau, input.GetRecoTauPt(iTauIdx));
-        output.SetRecoTaudXY(iTau, input.GetRecoTaudXY(iTauIdx));
-        output.SetRecoTaudZ(iTau, input.GetRecoTaudZ(iTauIdx));
-        output.SetRecoTauDeepTauIDvsJet(iTau, conf.GetSelCuts(process).deepTauID);
-        output.SetRecoTauDeepTauIDvsEl(iTau, conf.GetSelCuts(process).deepTauID);
-        output.SetRecoTauDeepTauIDvsMu(iTau, conf.GetSelCuts(process).deepTauID);
-        output.SetRecoTauDecayMode(iTau, input.GetRecoTauDecayMode(iTauIdx));
-      }
-      output.SetRecoTauPairMETE(input.GetRecoMETE());
-      output.SetRecoTauPairMETPhi(input.GetRecoMETPhi());
-      output.SetRecoTauPairmT2(input.GetRecoTauPairmT2(recoTauPair));
-      output.SetRecoTauPairHT(input.GetRecoTauPairHT(recoTauPair));
-      //
-      output.LoadNewEvent();
+      // auto end = std::chrono::system_clock::now();
+      // auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+      // LOG(INFO) << BOLDYELLOW << "GetSelectedRECOTauPair : " << +elapsed.count() << " us" << RESET;
+      if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
+      recoOutEvent->LoadNewEvent(std::move(tauPair), selCuts.deepTauID, METE, METPhi);
     }
-    input.FinaliseInput();
+    input->Finalise();
   }
-  output.FinaliseOutput();
-  input.GetDataFile().close();
-
-
+  output->Finalise();
+  input->GetDataFile().close();
 
   return 0;
 }
