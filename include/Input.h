@@ -6,6 +6,8 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
+#include "InputRecoEvent.h"
+
 #include <iostream>
 #include <map>
 #include <string>
@@ -16,10 +18,11 @@
 
 #include <TFile.h>
 #include <TTree.h>
+#include <TObject.h>
 #include <TBranch.h>
 
 #include <CLHEP/Vector/LorentzVector.h>
-# include "lester_mt2_bisect_mod.h"
+#include "lester_mt2_bisect_mod.h"
 
 namespace in {
 
@@ -28,134 +31,49 @@ namespace in {
       explicit Input(const std::string& era, const std::string& process, const std::string& channel, const std::string& dataFilePath);
       ~Input();
 
-      TFile* GetInputFile(void);
-      std::string GetInputFilePath(void);
+      bool Initialise(const std::string& inFilePath);
 
-      std::ifstream& GetDataFile(void);
-      std::string GetDataFilePath(void);
-      
-      TTree* GetRecoTree(void);
-      int GetRecoNEvents(void);
+      void Finalise(void);
 
-      TTree* GetGenTree(void);
-      int GetGenNEvents(void);
+      std::ifstream& GetDataFile(void){ 
+        return dataFile_; 
+      }
 
-      void InitialiseInput(const std::string& inFilePath);
-      bool LoadNewEvent(int iEvent);
-      void FinaliseInput(void);
+      std::string GetDataFilePath(void){ 
+        return dataFilePath_; 
+      }
+    
+      TFile* GetInputFile(void){ 
+        return inFile_; 
+      }
 
-      /*************/
-      /* RECO Taus */
-      /*************/
-      int GetRecoTauN();
-      double GetRecoTauE(int iTau);
-      double GetRecoTauPx(int iTau);
-      double GetRecoTauPy(int iTau);
-      double GetRecoTauPz(int iTau);
-      double GetRecoTauPt(int iTau);
-      double GetRecoTaudXY(int iTau);
-      double GetRecoTaudZ(int iTau);
-      double GetRecoTauDecayMode(int iTau);
+      std::string GetInputFilePath(void){ 
+        return inFilePath_; 
+      }
 
+      int GetRecoEventN(void){
+        return recoEventN_;
+      }
 
-      bool IsRecoTauDeepIDvsEl(int iTau, const std::string& deepTauIDwp);
-      bool IsRecoTauDeepIDvsJet(int iTau, const std::string& deepTauIDwp);
-      bool IsRecoTauDeepIDvsMu(int iTau, const std::string& deepTauIDwp);
+      std::shared_ptr<InputRecoEvent> GetNewRecoEvent(int iEvent);
 
+      std::shared_ptr<InputRecoEvent> GetRecoEvent(void){
+        return recoEvent_;
+      }
 
-      double GetRecoMETE(void);
-      double GetRecoMETPhi(void);
+     private :
 
-      CLHEP::HepLorentzVector GetRecoTau4Mom(int iTau);
-
-      std::vector<int> GetRecoTauSelected(const conf::SelCuts& cuts);
-      std::vector<int> GetRecoTauPair(const conf::SelCuts& cuts);
-      
-      double GetRecoTauPairmT2(const std::vector<int>& tauPair);
-      double GetRecoTauPairHT(const std::vector<int>& tauPair);
-
-      /************/
-      /* GEN Taus */
-      /************/
-      int GetGenTauVisN(void);
-      double GetGenTauVisE(int iTau);
-      double GetGenTauVisPx(int iTau);
-      double GetGenTauVisPy(int iTau);
-      double GetGenTauVisPz(int iTau);
-
-      double GetGenTauE(int iTau);
-      double GetGenTauPx(int iTau);
-      double GetGenTauPy(int iTau);
-      double GetGenTauPz(int iTau);
-
-      double GetGenMETE(void);
-      double GetGenMETPhi(void);
-
-
-    private :
       std::string era_, process_, channel_;
-
       std::ifstream dataFile_;
       std::string dataFilePath_;
 
       TFile* inFile_;
       std::string inFilePath_;
 
-      TTree *recoTree_, *genTree_;
-      int recoNEvents_, genNEvents_;
+      std::shared_ptr<InputRecoEvent> recoEvent_;
+      int recoEventN_;
 
-      bool isInputInitialised_ = false;
-      //Number of reconstructed taus
-      int recoTauN_ = 0;
-      //Tau containers
-      std::vector <double>
-                  // Tau Energy and Kinematics
-                  *recoTauEVector_ = nullptr, 
-                  *recoTauPxVector_ = nullptr, *recoTauPyVector_ = nullptr, *recoTauPzVector_ = nullptr,
-                  *recoTaudXYVector_ = nullptr, *recoTaudZVector_ = nullptr,
-                  //Deep Tau Id
-                  //Tau Vs Jet
-                  *recoTauVVVLooseDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauVVLooseDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauVLooseDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauLooseDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauMediumDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauTightDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauVTightDeepTau2017v2p1VSjetVector_ = nullptr,
-                  *recoTauVVTightDeepTau2017v2p1VSjetVector_ = nullptr,
-                  //Tau Vs Electron
-                  *recoTauVVVLooseDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauVVLooseDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauVLooseDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauLooseDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauMediumDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauTightDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauVTightDeepTau2017v2p1VSeVector_ = nullptr,
-                  *recoTauVVTightDeepTau2017v2p1VSeVector_ = nullptr,
-                  //Tau Vs Muon 
-                  *recoTauVLooseDeepTau2017v2p1VSmuVector_ = nullptr,
-                  *recoTauLooseDeepTau2017v2p1VSmuVector_ = nullptr,
-                  *recoTauMediumDeepTau2017v2p1VSmuVector_ = nullptr,
-                  *recoTauTightDeepTau2017v2p1VSmuVector_ = nullptr,
-                  //Tau Decay Mode 
-                  *recoTauDecayModeVector_ = nullptr;
-      //Missing Transverse Energy
-      double  recoMETE_ = 0 , recoMETPhi_ = 0;
-
-      //Tau GEN variables
-      //Number of visible generated taus
-      int genTauVisN_ = 0;
-      //Tau containers
-      std::vector <double>
-                  *genTauEVector_ = nullptr, 
-                  *genTauPxVector_ = nullptr, *genTauPyVector_ = nullptr, *genTauPzVector_ = nullptr, 
-                  *genTauVisEVector_ = nullptr, 
-                  *genTauVisPxVector_ = nullptr, *genTauVisPyVector_ = nullptr, *genTauVisPzVector_ = nullptr;
-      //Missing Transverse Energy
-      double genMETE_ = 0, genMETPhi_ = 0;
-
-      //Tau ID working point map
-      std::map<std::string, int> tauIDwpMap_ = {{"VVVLoose", 0}, {"VVLoose", 1}, {"VLoose", 2}, {"Loose", 3}, {"Medium", 4}, {"Tight", 5}, {"VTight", 6}, {"VVTight", 7}};
+      bool isInitialised_;
   };
 }//namespace in
 
