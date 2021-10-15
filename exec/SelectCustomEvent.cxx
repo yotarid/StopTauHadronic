@@ -72,15 +72,11 @@ int main(int argc, char* argv[])
     for(int iEvent = 0; iEvent < input->GetRecoEventN(); iEvent++)
     {
       std::shared_ptr<InputRecoEvent> recoInEvent = input->GetNewRecoEvent(iEvent);
-      //Select Tau pair
-      // auto start = std::chrono::system_clock::now();
+
       TauPair tauPair = recoInEvent->GetSelectedTauPair(selCuts);
       double METE = recoInEvent->GetMETE();
       double METPhi = recoInEvent->GetMETPhi();
 
-      // auto end = std::chrono::system_clock::now();
-      // auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-      // LOG(INFO) << BOLDYELLOW << "GetSelectedRECOTauPair : " << +elapsed.count() << " us" << RESET;
       if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
       recoOutEvent->LoadNewEvent(std::move(tauPair), selCuts.deepTauID, METE, METPhi);
     }

@@ -127,9 +127,7 @@ namespace in {
 
   TauVector InputRecoEvent::GetSelectedTaus(const conf::SelCuts& cuts)
   {
-    // auto start = std::chrono::system_clock::now();
     std::vector<std::unique_ptr<obj::Tau>> selectedTaus;
-    // LOG(INFO) << BOLDWHITE << "Taus size : " << taus_.size() << RESET;
     for(auto&& tau : taus_)
     {
       if(tau == nullptr) continue;
@@ -142,22 +140,12 @@ namespace in {
       ) continue;
       selectedTaus.push_back(std::move(tau));
     }
-    // auto end = std::chrono::system_clock::now();
-    // auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    // LOG(INFO) << BOLDYELLOW << "GetSelectedTaus loop : " << +elapsed.count() << " us" << RESET;
     return std::move(selectedTaus);
   }
 
   obj::TauPair InputRecoEvent::GetSelectedTauPair(const conf::SelCuts& cuts)
   {
-    // auto start = std::chrono::system_clock::now();
     TauVector selectedTaus = GetSelectedTaus(cuts);
-    // auto end = std::chrono::system_clock::now();
-    // auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    // LOG(INFO) << BOLDYELLOW << "GetSelectedTaus : " << +elapsed.count() << " us" << RESET;
-    // LOG(INFO) << BOLDWHITE << "Selected Taus size : " << selectedTaus.size() << RESET;
-
-    // start = std::chrono::system_clock::now();
     obj::TauPair tauPair;
     double tauPairHT = 0;
     for(auto&& tau1 : selectedTaus)
@@ -175,18 +163,11 @@ namespace in {
         if(tauPairNewHT > tauPairHT)
         {
           tauPairHT = tauPairNewHT;
-          // auto start = std::chrono::system_clock::now();
           tauPair.leadTau = std::move(tau1);
           tauPair.subleadTau = std::move(tau2);
-          // auto end = std::chrono::system_clock::now();
-          // auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-          // LOG(INFO) << BOLDYELLOW << "GetSelectedTauPair make pair : " << +elapsed.count() << " us" << RESET;
         }
       }
     }
-    // end = std::chrono::system_clock::now();
-    // elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    // LOG(INFO) << BOLDYELLOW << "GetSelectedTauPair loop : " << +elapsed.count() << " us" << RESET;
     return std::move(tauPair);
   }
 
@@ -206,5 +187,4 @@ namespace in {
       HT += fourMom.perp();
     return HT; 
   }
-
 }
