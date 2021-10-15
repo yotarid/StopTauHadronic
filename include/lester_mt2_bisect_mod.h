@@ -532,94 +532,94 @@ class asymm_mt2_lester_bisect {
   }
 };
 
-static void myversion(){
+// static void myversion(){
 
-  std::cout << "Version is : 2014_11_13" << std::endl;
+//   std::cout << "Version is : 2014_11_13" << std::endl;
 
-}
+// }
 
-static double MT(double px1, double px2, double py1, double py2, double m1 , double m2){
-  double E1 = sqrt(px1*px1+py1*py1+m1*m1);
-  double E2 = sqrt(px2*px2+py2*py2+m2*m2);
-  double Msq = (E1+E2)*(E1+E2)-(px1+px2)*(px1+px2)-(py1+py2)*(py1+py2);
-  if (Msq < 0) Msq = 0;
-  return sqrt(Msq);
-}
+// static double MT(double px1, double px2, double py1, double py2, double m1 , double m2){
+//   double E1 = sqrt(px1*px1+py1*py1+m1*m1);
+//   double E2 = sqrt(px2*px2+py2*py2+m2*m2);
+//   double Msq = (E1+E2)*(E1+E2)-(px1+px2)*(px1+px2)-(py1+py2)*(py1+py2);
+//   if (Msq < 0) Msq = 0;
+//   return sqrt(Msq);
+// }
 
-static std::pair <double,double>  ben_findsols(double MT2, double px, double py, double visM, double Ma, double pxb, double pyb, double metx, double mety, double visMb, double Mb){
+// static std::pair <double,double>  ben_findsols(double MT2, double px, double py, double visM, double Ma, double pxb, double pyb, double metx, double mety, double visMb, double Mb){
 
-  //Visible particle (px,py,visM)                                                                                                                  
-  std::pair <double,double> sols;
+//   //Visible particle (px,py,visM)                                                                                                                  
+//   std::pair <double,double> sols;
 
-  ///////                                                                                                                                          
-  //Find the minimizing points given MT2                                                                                                           
-  //////                      
+//   ///////                                                                                                                                          
+//   //Find the minimizing points given MT2                                                                                                           
+//   //////                      
 
-  double Pt = sqrt(px*px+py*py);
-  double E = sqrt(Pt*Pt+visM*visM);
-  double M = MT2;
-  double E2 = E*E;
-  double M2 = M*M;
-  double M4 = M2*M2;
-  double Ma2 = Ma*Ma;
-  double Ma4 = Ma2*Ma2;
-  double px2 = px*px;
-  double py2 = py*py;
-  double px4 = px2*px2;
-  double py4 = py2*py2;
-  double py3 = py2*py;
-  double E4 = E2*E2;
-  double TermA = E2*px-M2*px+Ma2*px-px2*px-px*py2;
-  double TermB = -2.*px*py;
-  double TermSqy0 = E4*E2-2.*E4*M2-2.*E4*Ma2-2.*E4*px2-2.*E4*py2+E2*M4-2.*E2*M2*Ma2+2.*E2*M2*px2+2.*E2*M2*py2+E2*Ma4+2.*E2*Ma2*px2-2.*E2*Ma2*py2+E2*px4+2.*E2*px2*py2+E2*py4;
-  double TermSqy1 = -4.*E4*py+4.*E2*M2*py-4.*E2*Ma2*py+4.*E2*px2*py+4.*E2*py3;
-  double TermSqy2 = -4.*E4+4.*E2*px2+4.*E2*py2;
+//   double Pt = sqrt(px*px+py*py);
+//   double E = sqrt(Pt*Pt+visM*visM);
+//   double M = MT2;
+//   double E2 = E*E;
+//   double M2 = M*M;
+//   double M4 = M2*M2;
+//   double Ma2 = Ma*Ma;
+//   double Ma4 = Ma2*Ma2;
+//   double px2 = px*px;
+//   double py2 = py*py;
+//   double px4 = px2*px2;
+//   double py4 = py2*py2;
+//   double py3 = py2*py;
+//   double E4 = E2*E2;
+//   double TermA = E2*px-M2*px+Ma2*px-px2*px-px*py2;
+//   double TermB = -2.*px*py;
+//   double TermSqy0 = E4*E2-2.*E4*M2-2.*E4*Ma2-2.*E4*px2-2.*E4*py2+E2*M4-2.*E2*M2*Ma2+2.*E2*M2*px2+2.*E2*M2*py2+E2*Ma4+2.*E2*Ma2*px2-2.*E2*Ma2*py2+E2*px4+2.*E2*px2*py2+E2*py4;
+//   double TermSqy1 = -4.*E4*py+4.*E2*M2*py-4.*E2*Ma2*py+4.*E2*px2*py+4.*E2*py3;
+//   double TermSqy2 = -4.*E4+4.*E2*px2+4.*E2*py2;
 
-  //First, determine the range.                                                                                                                   
-  double myx = 0.;
-  double myy = 0.;
-  if (TermSqy1*TermSqy1-4.*TermSqy0*TermSqy2 < 0){
-    //unbalanced                                                                                                                                 
-  }
-  else{
-    double sol1 = (-TermSqy1 - sqrt(TermSqy1*TermSqy1-4.*TermSqy0*TermSqy2))/(2.*TermSqy2);
-    double sol2 = (-TermSqy1 + sqrt(TermSqy1*TermSqy1-4.*TermSqy0*TermSqy2))/(2.*TermSqy2);
-    double low = sol1;
-    double high = sol2;
-    if (low > high){
-      low = sol2;
-      high = sol1;
-    }
+//   //First, determine the range.                                                                                                                   
+//   double myx = 0.;
+//   double myy = 0.;
+//   if (TermSqy1*TermSqy1-4.*TermSqy0*TermSqy2 < 0){
+//     //unbalanced                                                                                                                                 
+//   }
+//   else{
+//     double sol1 = (-TermSqy1 - sqrt(TermSqy1*TermSqy1-4.*TermSqy0*TermSqy2))/(2.*TermSqy2);
+//     double sol2 = (-TermSqy1 + sqrt(TermSqy1*TermSqy1-4.*TermSqy0*TermSqy2))/(2.*TermSqy2);
+//     double low = sol1;
+//     double high = sol2;
+//     if (low > high){
+//       low = sol2;
+//       high = sol1;
+//     }
 
-    double myclose = 99999999.;
-    for (double metpy = low; metpy<=high; metpy+=(high-low)/10000.){
-      double metpx = -(TermB*metpy+TermA-sqrt(TermSqy0+TermSqy1*metpy+TermSqy2*metpy*metpy))*0.5/(E2-px2);
-      double metpx2 = -(TermB*metpy+TermA+sqrt(TermSqy0+TermSqy1*metpy+TermSqy2*metpy*metpy))*0.5/(E2-px2);
-      double mt1a = MT(px,metpx,py,metpy,visM,Ma);
-      double mt1b = MT(px,metpx2,py,metpy,visM,Ma);
-      double metpxb = metx-metpx;
-      double metpx2b = metx-metpx2;
-      double mt2a = MT(pxb,metpxb,pyb,mety-metpy,visMb,Mb);
-      double mt2b = MT(pxb,metpx2b,pyb,mety-metpy,visMb,Mb);
-      if (fabs(mt1a-mt2a) < myclose){
-	myclose = fabs(mt1a-mt2a);
-	myy = metpy;
-	myx = metpx;
-      }
-      if (fabs(mt1b-mt2b) < myclose){
-	myclose = fabs(mt1b-mt2b);
-	myy = metpy;
-	myx = metpx2;
-      }
-    }
-  }
+//     double myclose = 99999999.;
+//     for (double metpy = low; metpy<=high; metpy+=(high-low)/10000.){
+//       double metpx = -(TermB*metpy+TermA-sqrt(TermSqy0+TermSqy1*metpy+TermSqy2*metpy*metpy))*0.5/(E2-px2);
+//       double metpx2 = -(TermB*metpy+TermA+sqrt(TermSqy0+TermSqy1*metpy+TermSqy2*metpy*metpy))*0.5/(E2-px2);
+//       double mt1a = MT(px,metpx,py,metpy,visM,Ma);
+//       double mt1b = MT(px,metpx2,py,metpy,visM,Ma);
+//       double metpxb = metx-metpx;
+//       double metpx2b = metx-metpx2;
+//       double mt2a = MT(pxb,metpxb,pyb,mety-metpy,visMb,Mb);
+//       double mt2b = MT(pxb,metpx2b,pyb,mety-metpy,visMb,Mb);
+//       if (fabs(mt1a-mt2a) < myclose){
+// 	myclose = fabs(mt1a-mt2a);
+// 	myy = metpy;
+// 	myx = metpx;
+//       }
+//       if (fabs(mt1b-mt2b) < myclose){
+// 	myclose = fabs(mt1b-mt2b);
+// 	myy = metpy;
+// 	myx = metpx2;
+//       }
+//     }
+//   }
 
-  sols.first = myx;
-  sols.second = myy;
+//   sols.first = myx;
+//   sols.second = myy;
 
-  return sols;
+//   return sols;
 
-}
+// }
 
 #endif
 
