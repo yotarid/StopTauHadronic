@@ -152,7 +152,7 @@ namespace in {
     {
       for(auto&& tau2 : selectedTaus)
       {
-        if(tau1 == tau2) continue;
+        if(tau1 == tau2 || tau1 == nullptr || tau2 == nullptr) continue;
         CLHEP::HepLorentzVector tau1FourMom = tau1->Get4Momentum();
         CLHEP::HepLorentzVector tau2FourMom = tau2->Get4Momentum();
         if( (tau1FourMom.perp() < tau2FourMom.perp())
