@@ -22,6 +22,7 @@
 #include <chrono>
 
 typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
+// typedef std::vector<std::unique_ptr<obj::Jet>> JetVector;
 
 namespace in {
 
@@ -65,6 +66,12 @@ namespace in {
       TTree* tree_;
       int eventN_;
 
+      double METE_;
+      double METPhi_;
+
+      //######################################################//
+      //####################### TAU ##########################//
+      //######################################################//
       int tauN_;
       std::vector<double>* tauEVector_ = nullptr;
       std::vector<double>* tauPxVector_ = nullptr;
@@ -98,7 +105,49 @@ namespace in {
       //Tau Decay Mode 
       std::vector<double>* tauDecayModeVector_ = nullptr;
 
-      std::map<std::string, int> tauIDwpMap_ = {{"VVVLoose", 0}, 
+      TauVector taus_;
+
+      //######################################################//
+      //####################### JET ##########################//
+      //######################################################//
+      int jetN_;
+      int jetISRN_;
+
+      std::vector<double>* jetEVector_ = nullptr;
+      std::vector<double>* jetPxVector_ = nullptr;
+      std::vector<double>* jetPyVector_ = nullptr;
+      std::vector<double>* jetPzVector_ = nullptr;
+      std::vector<double>* jetPartonFlavourVector_ = nullptr;
+      std::vector<double>* jetHadronFlavourVector_ = nullptr;
+      std::vector<double>* jetIsISRVector_ = nullptr;
+      std::vector<double>* jetPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_ = nullptr;
+      std::vector<double>* jetLoosePFCombinedInclusiveSecondaryVertexV2BJetTagsVector_ = nullptr;
+      std::vector<double>* jetMediumPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_ = nullptr;
+      std::vector<double>* jetTightPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_ = nullptr;
+      std::vector<double>* jetPFDeepCSVJetTagsVector_ = nullptr;
+      std::vector<double>* jetLoosePFDeepCSVJetTagsVector_ = nullptr;
+      std::vector<double>* jetMediumPFDeepCSVJetTagsVector_ = nullptr;
+      std::vector<double>* jetTightPFDeepCSVJetTagsVector_ = nullptr;
+      std::vector<double>* jetPFDeepFlavourJetTagsVector_ = nullptr;
+      std::vector<double>* jetLoosePFDeepFlavourJetTagsVector_ = nullptr;
+      std::vector<double>* jetMediumPFDeepFlavourJetTagsVector_ = nullptr;
+      std::vector<double>* jetTightPFDeepFlavourJetTagsVector_ = nullptr;
+      std::vector<double>* jetJECCorrVector_ = nullptr;
+      std::vector<double>* jetJECCorrUpVector_ = nullptr;
+      std::vector<double>* jetJECCorrDownVector_ = nullptr;
+      std::vector<double>* jetJERCorrVector_ = nullptr;
+      std::vector<double>* jetJERCorrUpVector_ = nullptr;
+      std::vector<double>* jetJERCorrDownVector_ = nullptr;
+      std::vector<double>* jetJECCorr1Vector_ = nullptr;
+      std::vector<double>* jetJECCorr2Vector_ = nullptr;
+      std::vector<double>* jetJECCorr3Vector_ = nullptr;
+      std::vector<double>* jetJECCorr4Vector_ = nullptr;
+
+      // JetVector jets_;
+
+      bool isInitialised_;
+
+      std::map<std::string, int> deepIDwpMap_ = {{"VVVLoose", 0}, 
                                                 {"VVLoose", 1}, 
                                                 {"VLoose", 2}, 
                                                 {"Loose", 3}, 
@@ -106,13 +155,8 @@ namespace in {
                                                 {"Tight", 5}, 
                                                 {"VTight", 6}, 
                                                 {"VVTight", 7}};
+ 
 
-      double METE_;
-      double METPhi_;
-
-      bool isInitialised_;
-
-      TauVector taus_;
   };
 }
 

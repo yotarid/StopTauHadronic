@@ -66,9 +66,9 @@ namespace out {
     leadTauPt_ = tauPair.leadTau->GetpT(); 
     leadTaudXY_ = tauPair.leadTau->GetdXY(); 
     leadTaudZ_ = tauPair.leadTau->GetdZ(); 
-    leadTauDeepTauIDvsEl_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
-    leadTauDeepTauIDvsJet_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
-    leadTauDeepTauIDvsMu_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    leadTauDeepTauIDvsEl_ = deepIDwpMap_[tauPair.deepTauIDwp]; 
+    leadTauDeepTauIDvsJet_ = deepIDwpMap_[tauPair.deepTauIDwp]; 
+    leadTauDeepTauIDvsMu_ = deepIDwpMap_[tauPair.deepTauIDwp]; 
     leadTauDecayMode_ = tauPair.leadTau->GetDecayMode(); 
 
     subleadTauE_ = tauPair.subleadTau->GetE();
@@ -78,9 +78,9 @@ namespace out {
     subleadTauPt_ = tauPair.subleadTau->GetpT(); 
     subleadTaudXY_ = tauPair.subleadTau->GetdXY(); 
     subleadTaudZ_ = tauPair.subleadTau->GetdZ(); 
-    subleadTauDeepTauIDvsEl_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
-    subleadTauDeepTauIDvsJet_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
-    subleadTauDeepTauIDvsMu_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    subleadTauDeepTauIDvsEl_ = deepIDwpMap_[tauPair.deepTauIDwp]; 
+    subleadTauDeepTauIDvsJet_ = deepIDwpMap_[tauPair.deepTauIDwp]; 
+    subleadTauDeepTauIDvsMu_ = deepIDwpMap_[tauPair.deepTauIDwp]; 
     subleadTauDecayMode_ = tauPair.subleadTau->GetDecayMode(); 
 
     HT_ = HT;

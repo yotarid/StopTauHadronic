@@ -20,6 +20,10 @@ namespace in {
   {
     if(tree == nullptr) throw std::runtime_error(std::string("ERROR : Input RECO tree is nullptr"));
 
+    tree->SetBranchAddress("METFixEE2017_E_reco", &METE_);
+    tree->SetBranchAddress("METFixEE2017_phi_reco", &METPhi_);
+
+    //####################### TAU ##########################//
     tree->SetBranchAddress("tau_n_reco", &tauN_);
     tree->SetBranchAddress("tau_E_reco", &tauEVector_);
     tree->SetBranchAddress("tau_px_reco", &tauPxVector_);
@@ -27,7 +31,6 @@ namespace in {
     tree->SetBranchAddress("tau_pz_reco", &tauPzVector_);
     tree->SetBranchAddress("tau_dxy_reco", &taudXYVector_);
     tree->SetBranchAddress("tau_dz_reco", &taudZVector_);
-    //DeepTau vs Jets
     tree->SetBranchAddress("tau_byVVVLooseDeepTau2017v2p1VSjet_reco", &tauVVVLooseDeepTau2017v2p1VSjetVector_);
     tree->SetBranchAddress("tau_byVVLooseDeepTau2017v2p1VSjet_reco", &tauVVLooseDeepTau2017v2p1VSjetVector_);
     tree->SetBranchAddress("tau_byVLooseDeepTau2017v2p1VSjet_reco", &tauVLooseDeepTau2017v2p1VSjetVector_);
@@ -36,7 +39,6 @@ namespace in {
     tree->SetBranchAddress("tau_byTightDeepTau2017v2p1VSjet_reco", &tauTightDeepTau2017v2p1VSjetVector_);
     tree->SetBranchAddress("tau_byVTightDeepTau2017v2p1VSjet_reco", &tauVTightDeepTau2017v2p1VSjetVector_);
     tree->SetBranchAddress("tau_byVVTightDeepTau2017v2p1VSjet_reco", &tauVVTightDeepTau2017v2p1VSjetVector_);
-    //DeepTau vs Electrons
     tree->SetBranchAddress("tau_VVVLooseDeepTau2017v2p1VSe_reco", &tauVVVLooseDeepTau2017v2p1VSeVector_);
     tree->SetBranchAddress("tau_VVLooseDeepTau2017v2p1VSe_reco", &tauVVLooseDeepTau2017v2p1VSeVector_);
     tree->SetBranchAddress("tau_VLooseDeepTau2017v2p1VSe_reco", &tauVLooseDeepTau2017v2p1VSeVector_);
@@ -44,16 +46,45 @@ namespace in {
     tree->SetBranchAddress("tau_MediumDeepTau2017v2p1VSe_reco", &tauMediumDeepTau2017v2p1VSeVector_);
     tree->SetBranchAddress("tau_TightDeepTau2017v2p1VSe_reco", &tauTightDeepTau2017v2p1VSeVector_);
     tree->SetBranchAddress("tau_VTightDeepTau2017v2p1VSe_reco", &tauVTightDeepTau2017v2p1VSeVector_);
-    // tree->SetBranchAddress("tau_VVTightDeepTau2017v2p1VSe_reco", &tauVVTightDeepTau2017v2p1VSeVector_);
-    //DeepTau vs Muons
     tree->SetBranchAddress("tau_byVLooseDeepTau2017v2p1VSmu_reco", &tauVLooseDeepTau2017v2p1VSmuVector_);
     tree->SetBranchAddress("tau_byLooseDeepTau2017v2p1VSmu_reco", &tauLooseDeepTau2017v2p1VSmuVector_);
     tree->SetBranchAddress("tau_byMediumDeepTau2017v2p1VSmu_reco", &tauMediumDeepTau2017v2p1VSmuVector_);
     tree->SetBranchAddress("tau_byTightDeepTau2017v2p1VSmu_reco", &tauTightDeepTau2017v2p1VSmuVector_);
-    //
     tree->SetBranchAddress("tau_decayMode_reco", &tauDecayModeVector_); 
-    tree->SetBranchAddress("METFixEE2017_E_reco", &METE_);
-    tree->SetBranchAddress("METFixEE2017_phi_reco", &METPhi_);
+
+    //####################### JET ##########################//
+    tree->SetBranchAddress("jet_n_reco", &jetN_);
+    tree->SetBranchAddress("jet_nISR_reco", &jetISRN_);
+    tree->SetBranchAddress("jet_E_reco", &jetEVector_);
+    tree->SetBranchAddress("jet_px_reco", &jetPxVector_);
+    tree->SetBranchAddress("jet_py_reco", &jetPyVector_);
+    tree->SetBranchAddress("jet_pz_reco", &jetPzVector_);
+    tree->SetBranchAddress("jet_partonFlavour_reco", &jetPartonFlavourVector_);
+    tree->SetBranchAddress("jet_hadronFlavour_reco", &jetHadronFlavourVector_);
+    tree->SetBranchAddress("jet_isISR_reco", &jetIsISRVector_);
+    tree->SetBranchAddress("jet_pfCombinedInclusiveSecondaryVertexV2BJetTags_reco", &jetPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_);
+    tree->SetBranchAddress("jet_byLoosePfCombinedInclusiveSecondaryVertexV2BJetTags_reco", &jetLoosePFCombinedInclusiveSecondaryVertexV2BJetTagsVector_);
+    tree->SetBranchAddress("jet_byMediumPfCombinedInclusiveSecondaryVertexV2BJetTags_reco", &jetMediumPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_);
+    tree->SetBranchAddress("jet_byTightPfCombinedInclusiveSecondaryVertexV2BJetTags_reco", &jetTightPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_);
+    tree->SetBranchAddress("jet_pfDeepCSVJetTags_reco", &jetPFDeepCSVJetTagsVector_);
+    tree->SetBranchAddress("jet_byLoosePfDeepCSVJetTags_reco", &jetLoosePFDeepCSVJetTagsVector_);
+    tree->SetBranchAddress("jet_byMediumPfDeepCSVJetTags_reco", &jetMediumPFDeepCSVJetTagsVector_);
+    tree->SetBranchAddress("jet_byTightPfDeepCSVJetTags_reco", &jetTightPFDeepCSVJetTagsVector_);
+    tree->SetBranchAddress("jet_pfDeepFlavourJetTags_reco", &jetPFDeepFlavourJetTagsVector_);
+    tree->SetBranchAddress("jet_byLoosePfDeepFlavourJetTags_reco", &jetLoosePFDeepFlavourJetTagsVector_);
+    tree->SetBranchAddress("jet_byMediumPfDeepFlavourJetTags_reco", &jetMediumPFDeepFlavourJetTagsVector_);
+    tree->SetBranchAddress("jet_byTightPfDeepFlavourJetTags_reco", &jetTightPFDeepFlavourJetTagsVector_);
+    tree->SetBranchAddress("jet_JECcorr_reco", &jetJECCorrVector_);
+    tree->SetBranchAddress("jet_JECcorrUp_reco", &jetJECCorrUpVector_);
+    tree->SetBranchAddress("jet_JECcorrDown_reco", &jetJECCorrDownVector_);
+    tree->SetBranchAddress("jet_JERcorr_reco", &jetJERCorrVector_);
+    tree->SetBranchAddress("jet_JERcorrUp_reco", &jetJERCorrUpVector_);
+    tree->SetBranchAddress("jet_JERcorrDown_reco", &jetJERCorrDownVector_);
+    tree->SetBranchAddress("jet_JECcorr_reco", &jetJECCorr1Vector_);
+    tree->SetBranchAddress("jet_JECcorr_reco", &jetJECCorr2Vector_);
+    tree->SetBranchAddress("jet_JECcorr_reco", &jetJECCorr3Vector_);
+    tree->SetBranchAddress("jet_JECcorr_reco", &jetJECCorr4Vector_);
+
 
     LOG(INFO) << BOLDBLUE << "\tInitialised input event " << RESET;
     tree_ = tree;
@@ -96,29 +127,29 @@ namespace in {
       tau->SetDecayMode(tauDecayModeVector_->at(iTau));
 
       //set DeepTau ID vs El
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(tauIDwpMap_["VTight"], tauVTightDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VTight"], tauVTightDeepTau2017v2p1VSeVector_->at(iTau));
 
       //set DeepTau ID vs Jet
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["VTight"], tauVTightDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(tauIDwpMap_["VVTight"], tauVVTightDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VTight"], tauVTightDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VVTight"], tauVVTightDeepTau2017v2p1VSjetVector_->at(iTau));
 
       //set DeepTau ID vs Mu
-      tau->SetIsDeepTauIDvsMu(tauIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSmuVector_->at(iTau));
-      tau->SetIsDeepTauIDvsMu(tauIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSmuVector_->at(iTau));
-      tau->SetIsDeepTauIDvsMu(tauIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSmuVector_->at(iTau));
-      tau->SetIsDeepTauIDvsMu(tauIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSmuVector_->at(iTau));
  
       //push back
       taus_.push_back(std::move(tau));
@@ -134,9 +165,9 @@ namespace in {
       if( (tau->Get4Momentum().perp() < cuts.tauPt)
           || (fabs(tau->Get4Momentum().eta() > cuts.tauEta))
           || (fabs(tau->GetdZ() > cuts.taudZ))
-          || (tau->IsDeepTauIDvsEl(tauIDwpMap_[cuts.deepTauID]) == false)
-          || (tau->IsDeepTauIDvsMu(tauIDwpMap_[cuts.deepTauID]) == false)
-          || (tau->IsDeepTauIDvsJet(tauIDwpMap_[cuts.deepTauID]) == false)
+          || (tau->IsDeepTauIDvsEl(deepIDwpMap_[cuts.deepTauID]) == false)
+          || (tau->IsDeepTauIDvsMu(deepIDwpMap_[cuts.deepTauID]) == false)
+          || (tau->IsDeepTauIDvsJet(deepIDwpMap_[cuts.deepTauID]) == false)
       ) continue;
       selectedTaus.push_back(std::move(tau));
     }

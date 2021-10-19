@@ -76,7 +76,7 @@ namespace out {
       double METPhi_;
       double mT2_;
 
-      std::map<std::string, int> tauIDwpMap_ = {{"VVVLoose", 0}, 
+      std::map<std::string, int> deepIDwpMap_ = {{"VVVLoose", 0}, 
                                                 {"VVLoose", 1}, 
                                                 {"VLoose", 2}, 
                                                 {"Loose", 3}, 
