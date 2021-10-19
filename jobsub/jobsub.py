@@ -83,6 +83,7 @@ if (__name__ == "__main__") :
     process_list = str(raw_input(tcolors.GREEN + "Process choice for " + era.attrib['date'] + " : " + tcolors.RESET)).strip().split()
     run_list[era.attrib['date']] = process_list
 
+  extension = str(raw_input(tcolors.GREEN + "Choose output file extension : " + tcolors.RESET))
   ##############################
   ##### LAUNCH CONDOR JOBS #####
   ##############################
@@ -96,7 +97,8 @@ if (__name__ == "__main__") :
       if process_name not in run_list[era_date] : #check if process is chosen
         continue
       pT = process.find("SelectionCuts").find("cut").attrib['pT']
-      extension = "_" + pT + "GeV"
+      if extension :
+        extension = "-x " + extension
       for channel in process.find("Data").iter("Channel") :
         channel_name = channel.attrib['name']
         create_job_log_directory(era_date, process_name, channel_name)
