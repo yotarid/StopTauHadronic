@@ -16,7 +16,7 @@
         <Channel  name="Tau_Run2016H-17Jul2018-v1_MINIAOD" directory="Tau_Run2016H-17Jul2018-v1_MINIAOD" file="Tau_Run2016H-17Jul2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -31,7 +31,7 @@
         <Channel  name="MuonEG_Run2016H-07Aug17-v1_MINIAOD" directory="MuonEG_Run2016H-07Aug17-v1_MINIAOD" file="MuonEG_Run2016H-07Aug17-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -46,7 +46,7 @@
         <Channel  name="SingleMuon_Run2016H-17Jul2018-v1_MINIAOD" directory="SingleMuon_Run2016H-17Jul2018-v1_MINIAOD" file="SingleMuon_Run2016H-17Jul2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -61,7 +61,7 @@
         <Channel  name="SingleMuon_Run2016H-17Jul2018-v1_MINIAOD" directory="SingleMuon_Run2016H-17Jul2018-v1_MINIAOD" file="SingleMuon_Run2016H-17Jul2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -75,7 +75,7 @@
         <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -88,7 +88,7 @@
         <Channel  name="DY4JetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="DY4JetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="DY4JetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -101,7 +101,7 @@
         <Channel  name="W4JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="W4JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="W4JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -111,7 +111,7 @@
         <Channel  name="WH_HToBB_WToLNu_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" directory="WH_HToBB_WToLNu_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" file="WH_HToBB_WToLNu_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -127,7 +127,7 @@
         <Channel  name="WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" directory="WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" file="WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -138,7 +138,7 @@
         <Channel  name="WGstarToLNuEE_012Jets_13TeV-madgraph_Summer16" directory="WGstarToLNuEE_012Jets_13TeV-madgraph_Summer16" file="WGstarToLNuEE_012Jets_13TeV-madgraph_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -149,7 +149,7 @@
         <!-- <Channel  name="TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" /> -->
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -161,7 +161,7 @@
         <Channel  name="ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1_Summer16" directory="ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1_Summer16" file="ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -173,7 +173,7 @@
         <Channel  name="TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8_Summer16" directory="TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8_Summer16" file="TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8_Summer16_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
   </Era>
@@ -191,7 +191,7 @@
         <Channel  name="Tau_Run2017F-31Mar2018-v1_MINIAOD" directory="Tau_Run2017F-31Mar2018-v1_MINIAOD" file="Tau_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -204,7 +204,7 @@
         <Channel  name="MuonEG_Run2017F-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017F-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -217,7 +217,7 @@
         <Channel  name="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -230,7 +230,7 @@
         <Channel  name="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017F-31Mar2018-v1_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -241,7 +241,7 @@
         <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -254,7 +254,7 @@
         <Channel  name="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -267,7 +267,7 @@
         <Channel  name="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -278,7 +278,7 @@
         <Channel  name="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" directory="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" file="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -293,7 +293,7 @@
         <Channel  name="ZZTo4L_13TeV_powheg_pythia8_Fall17" directory="ZZTo4L_13TeV_powheg_pythia8_Fall17" file="ZZTo4L_13TeV_powheg_pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -302,7 +302,7 @@
         <Channel  name="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -315,7 +315,7 @@
         <!-- <Channel  name="TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8_FastSim_Fall17" directory="TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8_FastSim_Fall17" file="TTJets_DiLept_TuneCP2_13TeV-madgraphMLM-pythia8_FastSim_Fall17_custom.txt" /> -->
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -327,7 +327,7 @@
         <Channel  name="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" directory="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17" file="ST_t-channel_top_4f_inclusiveDecays_TuneCP5_13TeV-powhegV2-madspin-pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -339,7 +339,7 @@
         <Channel  name="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17" directory="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17" file="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Fall17_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
   </Era>
@@ -357,7 +357,7 @@
         <Channel  name="Tau_Run2018D-PromptReco-v2_MINIAOD" directory="Tau_Run2018D-PromptReco-v2_MINIAOD" file="Tau_Run2018D-PromptReco-v2_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -369,7 +369,7 @@
         <Channel  name="SingleMuon_Run2018D-22Jan2019-v2_MINIAOD" directory="SingleMuon_Run2018D-22Jan2019-v2_MINIAOD" file="SingleMuon_Run2018D-22Jan2019-v2_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -381,7 +381,7 @@
         <Channel  name="SingleMuon_Run2018D-22Jan2019-v2_MINIAOD" directory="SingleMuon_Run2018D-22Jan2019-v2_MINIAOD" file="SingleMuon_Run2018D-22Jan2019-v2_MINIAOD_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -392,7 +392,7 @@
         <!-- <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p75_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" /> -->
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -405,7 +405,7 @@
         <Channel  name="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="DY4JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -418,7 +418,7 @@
         <Channel  name="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="W4JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -429,7 +429,7 @@
         <Channel  name="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Autumn18" directory="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Autumn18" file="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -444,7 +444,7 @@
         <Channel  name="ZZTo4L_TuneCP5_13TeV-amcatnloFXFX-pythia8_Autumn18" directory="ZZTo4L_TuneCP5_13TeV-amcatnloFXFX-pythia8_Autumn18" file="ZZTo4L_TuneCP5_13TeV-amcatnloFXFX-pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -453,7 +453,7 @@
         <Channel  name="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -466,7 +466,7 @@
         <!-- <Channel  name="TTJets_DiLept_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="TTJets_DiLept_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="TTJets_DiLept_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" /> -->
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -478,7 +478,7 @@
         <Channel  name="ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18" directory="ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18" file="ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
 
@@ -490,7 +490,7 @@
         <Channel  name="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Autumn18" directory="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Autumn18" file="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Autumn18_custom.txt" />
       </Data>
       <SelectionCuts>
-        <cut name="tau" pT="40" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
+        <cut name="tau" pT="25" eta="2.1" dZ="24" dXY="2" deltaR="0.5" dR="0.5" deepTauID="Tight" />
       </SelectionCuts>
     </Process>
   </Era>

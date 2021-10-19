@@ -1,5 +1,5 @@
-#ifndef OUTPUTRECOEVENT_H
-#define OUTPUTRECOEVENT_H
+#ifndef OUTEVENT_H
+#define OUTEVENT_H
 
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
@@ -25,17 +25,17 @@ typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 namespace out {
 
-  class OutputRecoEvent {
+  class OUTEvent {
     public :
-      explicit OutputRecoEvent();
+      explicit OUTEvent();
 
-      ~OutputRecoEvent();
+      ~OUTEvent();
 
-      OutputRecoEvent& operator=(OutputRecoEvent&& other);
+      OUTEvent& operator=(OUTEvent&& other);
 
       bool Initialise(TTree* tree);
 
-      void LoadNewEvent(obj::TauPair tauPair, const std::string& deepTauIDwp, double METE, double METPhi);
+      void LoadNewEvent(obj::TauPair tauPair, double METE, double METPhi, double HT, double mT2);
 
       bool IsInitialised(void){ 
         return isInitialised_; 

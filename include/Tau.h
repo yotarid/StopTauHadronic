@@ -65,6 +65,7 @@ namespace obj {
   struct TauPair {
     std::unique_ptr<Tau> leadTau;
     std::unique_ptr<Tau> subleadTau;
+    std::string deepTauIDwp;
   };
 }
 

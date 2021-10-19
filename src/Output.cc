@@ -5,7 +5,7 @@ namespace out {
   Output::Output(const std::string& era, const std::string& process, const std::string& channel)
     : era_(era), process_(process), channel_(channel)
   {
-    recoEvent_ = std::make_shared<OutputRecoEvent>();
+    event_ = std::make_shared<out::OUTEvent>();
     LOG(INFO) << "" << RESET;
     LOG(INFO) << BOLDGREEN << "Era : " << WHITE << era << BOLDGREEN << ", Process : " << WHITE << process << BOLDGREEN << ", Channel : " << WHITE << channel << RESET;
   }
@@ -34,8 +34,8 @@ namespace out {
       throw std::runtime_error("Output:Output : ROOT Directory is nullptr");
     outROOTDir_->cd();
     //
-    TTree* recoTree = new TTree("reco", "Selection of reconstructed events");
-    isInitialised_ = recoEvent_->Initialise(recoTree);
+    TTree* tree = new TTree("skimmed", "Selection of reconstructed events");
+    isInitialised_ = event_->Initialise(tree);
 
     return isInitialised_;
   }

@@ -1,11 +1,11 @@
-#include "../include/OutputRecoEvent.h"
+#include "../include/OUTEvent.h"
 
 namespace out {
-  OutputRecoEvent::OutputRecoEvent(){}
+  OUTEvent::OUTEvent(){}
 
-  OutputRecoEvent::~OutputRecoEvent(){}
+  OUTEvent::~OUTEvent(){}
 
-  OutputRecoEvent& OutputRecoEvent::operator=(OutputRecoEvent&& other)
+  OUTEvent& OUTEvent::operator=(OUTEvent&& other)
   {
     if(tree_)
     {
@@ -16,7 +16,7 @@ namespace out {
     return *this;
   }
 
-  bool OutputRecoEvent::Initialise(TTree* tree)
+  bool OUTEvent::Initialise(TTree* tree)
   {
     if(tree == nullptr) throw std::runtime_error(std::string("ERROR : Output RECO tree is nullptr"));
 
@@ -57,37 +57,37 @@ namespace out {
     return isInitialised_;
   }
 
-  void OutputRecoEvent::LoadNewEvent(obj::TauPair tauPair, const std::string& deepTauIDwp, double METE, double METPhi)
+  void OUTEvent::LoadNewEvent(obj::TauPair tauPair, double METE, double METPhi, double HT, double mT2)
   {
     leadTauE_ = tauPair.leadTau->GetE();
     leadTauPx_ = tauPair.leadTau->GetpX();
     leadTauPy_ = tauPair.leadTau->GetpY();
-    leadTauPz_ = tauPair.leadTau->GetpZ();
-    leadTauPt_ = tauPair.leadTau->GetpT();
-    leadTaudXY_ = tauPair.leadTau->GetdXY();
-    leadTaudZ_ = tauPair.leadTau->GetdZ();
-    leadTauDeepTauIDvsEl_ = tauPair.leadTau->IsDeepTauIDvsEl(tauIDwpMap_[deepTauIDwp]);
-    leadTauDeepTauIDvsJet_ = tauPair.leadTau->IsDeepTauIDvsJet(tauIDwpMap_[deepTauIDwp]);
-    leadTauDeepTauIDvsMu_ = tauPair.leadTau->IsDeepTauIDvsMu(tauIDwpMap_[deepTauIDwp]);
-    leadTauDecayMode_ = tauPair.leadTau->GetDecayMode();
+    leadTauPz_ = tauPair.leadTau->GetpZ(); 
+    leadTauPt_ = tauPair.leadTau->GetpT(); 
+    leadTaudXY_ = tauPair.leadTau->GetdXY(); 
+    leadTaudZ_ = tauPair.leadTau->GetdZ(); 
+    leadTauDeepTauIDvsEl_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    leadTauDeepTauIDvsJet_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    leadTauDeepTauIDvsMu_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    leadTauDecayMode_ = tauPair.leadTau->GetDecayMode(); 
 
     subleadTauE_ = tauPair.subleadTau->GetE();
     subleadTauPx_ = tauPair.subleadTau->GetpX();
     subleadTauPy_ = tauPair.subleadTau->GetpY();
-    subleadTauPz_ = tauPair.subleadTau->GetpZ();
-    subleadTauPt_ = tauPair.subleadTau->GetpT();
-    subleadTaudXY_ = tauPair.subleadTau->GetdXY();
-    subleadTaudZ_ = tauPair.subleadTau->GetdZ();
-    subleadTauDeepTauIDvsEl_ = tauPair.subleadTau->IsDeepTauIDvsEl(tauIDwpMap_[deepTauIDwp]);
-    subleadTauDeepTauIDvsJet_ = tauPair.subleadTau->IsDeepTauIDvsJet(tauIDwpMap_[deepTauIDwp]);
-    subleadTauDeepTauIDvsMu_ = tauPair.subleadTau->IsDeepTauIDvsMu(tauIDwpMap_[deepTauIDwp]);
-    subleadTauDecayMode_ = tauPair.subleadTau->GetDecayMode();
+    subleadTauPz_ = tauPair.subleadTau->GetpZ(); 
+    subleadTauPt_ = tauPair.subleadTau->GetpT(); 
+    subleadTaudXY_ = tauPair.subleadTau->GetdXY(); 
+    subleadTaudZ_ = tauPair.subleadTau->GetdZ(); 
+    subleadTauDeepTauIDvsEl_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    subleadTauDeepTauIDvsJet_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    subleadTauDeepTauIDvsMu_ = tauIDwpMap_[tauPair.deepTauIDwp]; 
+    subleadTauDecayMode_ = tauPair.subleadTau->GetDecayMode(); 
 
+    HT_ = HT;
     METE_ = METE;
     METPhi_ = METPhi;
+    mT2_ = mT2;
 
     tree_->Fill();
   }
-
-
 }

@@ -10,7 +10,7 @@
 #include <string>
 #include <cstdlib>
 
-#include "OutputRecoEvent.h"
+#include "OUTEvent.h"
 
 #include "TFile.h"
 #include "TDirectory.h"
@@ -35,8 +35,8 @@ namespace out {
         return outFilePath_;
       }
 
-      std::shared_ptr<OutputRecoEvent> GetRecoEvent(void){
-        return recoEvent_;
+      std::shared_ptr<out::OUTEvent> GetEvent(void){
+        return event_;
       }
 
     private :
@@ -48,11 +48,8 @@ namespace out {
 
       bool isInitialised_;
 
-      std::shared_ptr<OutputRecoEvent> recoEvent_;
-
-
+      std::shared_ptr<out::OUTEvent> event_;
   };
-
 }//namespace out
 
 #endif

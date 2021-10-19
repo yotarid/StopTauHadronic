@@ -25,13 +25,13 @@ typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 namespace in {
 
-  class InputRecoEvent {
+  class INRECOEvent {
     public:
-      explicit InputRecoEvent();
+      explicit INRECOEvent();
 
-      ~InputRecoEvent();
+      ~INRECOEvent();
 
-      InputRecoEvent& operator=(InputRecoEvent&& other);
+      INRECOEvent& operator=(INRECOEvent&& other);
 
       bool Initialise(TTree* tree);
 

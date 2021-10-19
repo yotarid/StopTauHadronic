@@ -6,7 +6,7 @@ namespace in {
   Input::Input(const std::string& era, const std::string& process, const std::string& channel, const std::string& dataFilePath) 
     :  era_(era), process_(process), channel_(channel), dataFile_(dataFilePath), dataFilePath_(dataFilePath)
   {
-    recoEvent_ = std::make_unique<InputRecoEvent>();
+    recoEvent_ = std::make_unique<in::INRECOEvent>();
     LOG(INFO) << BOLDYELLOW << "\tUsing data file path : " << WHITE << dataFilePath << RESET;
   }
 
@@ -32,7 +32,7 @@ namespace in {
     return isInitialised_;
   }
 
-  std::shared_ptr<InputRecoEvent> Input::GetNewRecoEvent(int iEvent)
+  std::shared_ptr<in::INRECOEvent> Input::GetNewRECOEvent(int iEvent)
   { 
     recoEvent_->LoadNewEvent(iEvent);
     return recoEvent_;

@@ -6,7 +6,7 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "InputRecoEvent.h"
+#include "INRECOEvent.h"
 
 #include <iostream>
 #include <map>
@@ -51,13 +51,13 @@ namespace in {
         return inFilePath_; 
       }
 
-      int GetRecoEventN(void){
+      int GetRECOEventN(void){
         return recoEventN_;
       }
 
-      std::shared_ptr<InputRecoEvent> GetNewRecoEvent(int iEvent);
+      std::shared_ptr<in::INRECOEvent> GetNewRECOEvent(int iEvent);
 
-      std::shared_ptr<InputRecoEvent> GetRecoEvent(void){
+      std::shared_ptr<in::INRECOEvent> GetRECOEvent(void){
         return recoEvent_;
       }
 
@@ -70,7 +70,7 @@ namespace in {
       TFile* inFile_;
       std::string inFilePath_;
 
-      std::shared_ptr<InputRecoEvent> recoEvent_;
+      std::shared_ptr<in::INRECOEvent> recoEvent_;
       int recoEventN_;
 
       bool isInitialised_;
