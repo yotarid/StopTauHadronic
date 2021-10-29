@@ -25,13 +25,13 @@ typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 namespace out {
 
-  class OUTEvent {
+  class OutEvent {
     public :
-      explicit OUTEvent();
+      explicit OutEvent();
 
-      ~OUTEvent();
+      ~OutEvent();
 
-      OUTEvent& operator=(OUTEvent&& other);
+      OutEvent& operator=(OutEvent&& other);
 
       bool Initialise(TTree* tree);
 

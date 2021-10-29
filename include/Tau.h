@@ -6,8 +6,10 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <vector>
 
 namespace obj {
+  
   class Tau : public Object {
     public : 
 
@@ -24,9 +26,13 @@ namespace obj {
 
       void SetIsDeepTauIDvsMu(int deepTauIDwpID, bool isDeepTauIDvsMu);
 
-      int GetId(){ return id_; }
+      int GetId(){ 
+        return id_; 
+      }
 
-      double GetDecayMode(void){ return decayMode_; };
+      double GetDecayMode(void){ 
+        return decayMode_; 
+      };
 
       bool IsDeepTauIDvsEl(int deepTauIDwpID);
       

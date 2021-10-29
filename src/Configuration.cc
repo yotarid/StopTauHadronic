@@ -25,6 +25,9 @@ namespace conf {
         for(pugi::xml_node processNode = eraNode.child("Process"); processNode; processNode = processNode.next_sibling())
         {
           std::string processName = processNode.attribute("name").value();
+          bool isSignal = ( std::string(processNode.attribute("isSignal").value()) == "true" ) ? true : false;
+          LOG(INFO) << BOLDWHITE << "Process isSignal = " << std::boolalpha << isSignal << RESET;
+          isSignalMap_.insert(std::make_pair(processName, isSignal));
           ParseFileMap(processName, processNode.child("Data"));
           ParseSelectionCuts(processName, processNode.child("SelectionCuts"));
         }
@@ -72,19 +75,4 @@ namespace conf {
     //fill selection cuts map
     selCutsMap_.insert(std::make_pair(processName, selCuts));
   }
-
-  std::string Configuration::GetEra(void){ return era_; }
-
-  std::string Configuration::GetFilePath(void){ return confFilePath_; }
-
-  std::string Configuration::GetDataFileName(const std::string& process, const std::string& channel){ return dataFileMap_[process][channel]; }
-
-  std::string Configuration::GetOutputFileName(const std::string& process, const std::string& channel){ return outFileMap_[process][channel]; }
-
-  VecStr Configuration::GetProcessList(){ return processList_; }
-
-  VecStr Configuration::GetChannelList(const std::string& process){ return channelMap_[process]; }
-
-  SelCuts Configuration::GetSelCuts(const std::string& process){ return selCutsMap_[process]; }
-
 }//namespace configuration

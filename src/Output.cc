@@ -5,7 +5,6 @@ namespace out {
   Output::Output(const std::string& era, const std::string& process, const std::string& channel)
     : era_(era), process_(process), channel_(channel)
   {
-    event_ = std::make_shared<out::OUTEvent>();
     LOG(INFO) << "" << RESET;
     LOG(INFO) << BOLDGREEN << "Era : " << WHITE << era << BOLDGREEN << ", Process : " << WHITE << process << BOLDGREEN << ", Channel : " << WHITE << channel << RESET;
   }
@@ -18,6 +17,7 @@ namespace out {
 
   bool Output::Initialise(const std::string& outFileName)
   {
+    event_ = std::make_shared<out::OutEvent>();
     std::string outDirPath = Form("%s/%s/%s/%s", std::getenv("SAMPLEPRODUCTION_OUT_DIR"), era_.c_str(), process_.c_str(), channel_.c_str());
     LOG(INFO) << BOLDYELLOW << "\tCreating output directory : " << WHITE << outDirPath << RESET;
     system(Form("mkdir -p %s", outDirPath.c_str()));

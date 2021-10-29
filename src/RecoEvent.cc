@@ -1,11 +1,11 @@
-#include "../include/INRECOEvent.h"
+#include "../include/RecoEvent.h"
 
 namespace in {
-  INRECOEvent::INRECOEvent(){}
+  RecoEvent::RecoEvent(){}
 
-  INRECOEvent::~INRECOEvent(){}
+  RecoEvent::~RecoEvent(){}
 
-  INRECOEvent& INRECOEvent::operator=(INRECOEvent&& other)
+  RecoEvent& RecoEvent::operator=(RecoEvent&& other)
   {
     if(tree_)
     {
@@ -16,7 +16,7 @@ namespace in {
     return *this;
   }
 
-  bool INRECOEvent::Initialise(TTree* tree)
+  bool RecoEvent::Initialise(TTree* tree)
   {
     if(tree == nullptr) throw std::runtime_error(std::string("ERROR : Input RECO tree is nullptr"));
 
@@ -86,16 +86,16 @@ namespace in {
     tree->SetBranchAddress("jet_JECcorr_reco", &jetJECCorr4Vector_);
 
 
-    LOG(INFO) << BOLDBLUE << "\tInitialised input event " << RESET;
+    LOG(INFO) << BOLDBLUE << "\tInitialised input RECO event " << RESET;
     tree_ = tree;
     isInitialised_ = true;
 
     return isInitialised_;
   }
 
-  bool INRECOEvent::LoadNewEvent(int iEvent)
+  bool RecoEvent::LoadEvent(int iEvent)
   {
-    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\tProcessing Event : " << +iEvent << RESET;
+    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading RECO Event : " << +iEvent << RESET;
     if( tree_->GetEntry(iEvent) == -1){
       return false;
     }else{
@@ -105,7 +105,7 @@ namespace in {
     }
   }
 
-  void INRECOEvent::LoadTaus(void)
+  void RecoEvent::LoadTaus(void)
   {
     //Load Tau objetcs
     taus_.clear();
@@ -156,25 +156,25 @@ namespace in {
     }
   }
 
-  TauVector INRECOEvent::GetSelectedTaus(const conf::SelCuts& cuts)
+  TauVector RecoEvent::GetSelectedTaus(const conf::SelCuts& cuts) 
   {
-    std::vector<std::unique_ptr<obj::Tau>> selectedTaus;
+    TauVector selectedTaus;
     for(auto&& tau : taus_)
     {
       if(tau == nullptr) continue;
       if( (tau->Get4Momentum().perp() < cuts.tauPt)
           || (fabs(tau->Get4Momentum().eta() > cuts.tauEta))
           || (fabs(tau->GetdZ() > cuts.taudZ))
-          || (tau->IsDeepTauIDvsEl(deepIDwpMap_[cuts.deepTauID]) == false)
-          || (tau->IsDeepTauIDvsMu(deepIDwpMap_[cuts.deepTauID]) == false)
-          || (tau->IsDeepTauIDvsJet(deepIDwpMap_[cuts.deepTauID]) == false)
+          || (tau->IsDeepTauIDvsEl(deepIDwpMap_.at(cuts.deepTauID)) == false)
+          || (tau->IsDeepTauIDvsMu(deepIDwpMap_.at(cuts.deepTauID)) == false)
+          || (tau->IsDeepTauIDvsJet(deepIDwpMap_.at(cuts.deepTauID)) == false)
       ) continue;
       selectedTaus.push_back(std::move(tau));
     }
     return std::move(selectedTaus);
   }
 
-  obj::TauPair INRECOEvent::GetSelectedTauPair(const conf::SelCuts& cuts)
+  obj::TauPair RecoEvent::GetTauPair(const conf::SelCuts& cuts) 
   {
     TauVector selectedTaus = GetSelectedTaus(cuts);
     obj::TauPair tauPair;
@@ -203,7 +203,7 @@ namespace in {
     return std::move(tauPair);
   }
 
-  double INRECOEvent::GetmT2(CLHEP::HepLorentzVector fourMom1, CLHEP::HepLorentzVector fourMom2)
+  double RecoEvent::GetmT2(CLHEP::HepLorentzVector fourMom1, CLHEP::HepLorentzVector fourMom2)
   {
     double mT2 = asymm_mt2_lester_bisect::get_mT2(fourMom1.m(), fourMom1.px(), fourMom1.py(),
                                                   fourMom2.m(), fourMom2.px(), fourMom2.py(),
@@ -212,7 +212,7 @@ namespace in {
     return mT2;
   }
 
-  double INRECOEvent::GetHT(const std::vector<CLHEP::HepLorentzVector>& listFourMom)
+  double RecoEvent::GetHT(const std::vector<CLHEP::HepLorentzVector>& listFourMom)
   {
     double HT = 0;
     for(auto fourMom : listFourMom)

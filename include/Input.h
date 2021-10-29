@@ -6,7 +6,8 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "INRECOEvent.h"
+#include "RecoEvent.h"
+#include "GenEvent.h"
 
 #include <iostream>
 #include <map>
@@ -28,7 +29,7 @@ namespace in {
 
   class Input {
     public : 
-      explicit Input(const std::string& era, const std::string& process, const std::string& channel, const std::string& dataFilePath);
+      explicit Input(const std::string& era, const std::string& process, const std::string& channel, bool isSignal, const std::string& dataFilePath);
       ~Input();
 
       bool Initialise(const std::string& inFilePath);
@@ -55,23 +56,29 @@ namespace in {
         return recoEventN_;
       }
 
-      std::shared_ptr<in::INRECOEvent> GetNewRECOEvent(int iEvent);
-
-      std::shared_ptr<in::INRECOEvent> GetRECOEvent(void){
-        return recoEvent_;
+      int GetGENEventN(void){
+        return genEventN_;
       }
+
+      std::shared_ptr<in::RecoEvent> GetRECOEvent(int iEvent);
+
+      std::shared_ptr<in::GenEvent> GetGENEvent(int iEvent);
 
      private :
 
       std::string era_, process_, channel_;
       std::ifstream dataFile_;
       std::string dataFilePath_;
+      bool isSignal_;
 
       TFile* inFile_;
       std::string inFilePath_;
 
-      std::shared_ptr<in::INRECOEvent> recoEvent_;
+      std::shared_ptr<in::RecoEvent> recoEvent_;
       int recoEventN_;
+
+      std::shared_ptr<in::GenEvent> genEvent_;
+      int genEventN_;
 
       bool isInitialised_;
   };

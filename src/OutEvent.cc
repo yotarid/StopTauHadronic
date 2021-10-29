@@ -1,11 +1,11 @@
-#include "../include/OUTEvent.h"
+#include "../include/OutEvent.h"
 
 namespace out {
-  OUTEvent::OUTEvent(){}
+  OutEvent::OutEvent(){}
 
-  OUTEvent::~OUTEvent(){}
+  OutEvent::~OutEvent(){}
 
-  OUTEvent& OUTEvent::operator=(OUTEvent&& other)
+  OutEvent& OutEvent::operator=(OutEvent&& other)
   {
     if(tree_)
     {
@@ -16,7 +16,7 @@ namespace out {
     return *this;
   }
 
-  bool OUTEvent::Initialise(TTree* tree)
+  bool OutEvent::Initialise(TTree* tree)
   {
     if(tree == nullptr) throw std::runtime_error(std::string("ERROR : Output RECO tree is nullptr"));
 
@@ -57,7 +57,7 @@ namespace out {
     return isInitialised_;
   }
 
-  void OUTEvent::LoadNewEvent(obj::TauPair tauPair, double METE, double METPhi, double HT, double mT2)
+  void OutEvent::LoadNewEvent(obj::TauPair tauPair, double METE, double METPhi, double HT, double mT2)
   {
     leadTauE_ = tauPair.leadTau->GetE();
     leadTauPx_ = tauPair.leadTau->GetpX();

@@ -57,30 +57,32 @@ int main(int argc, char* argv[])
   conf::Configuration conf(configFile, era);
   conf::SelCuts selCuts = conf.GetSelCuts(process);
 
-  std::unique_ptr<out::Output> output = std::make_unique<out::Output>(era, process, channel);
-  output->Initialise(conf.GetOutputFileName(process, channel) + outfileExt);
+  out::Output output = out::Output(era, process, channel);
+  output.Initialise(conf.GetOutputFileName(process, channel) + outfileExt);
   //
-  std::unique_ptr<in::Input> input = std::make_unique<in::Input>(era, process, channel, conf.GetDataFileName(process, channel));
+  in::Input input = in::Input(era, process, channel, conf.IsSignal(process), conf.GetDataFileName(process, channel));
   std::string inFile;
-  std::shared_ptr<out::OUTEvent> outEvent = output->GetEvent();
-  while(std::getline(input->GetDataFile(), inFile))
+  std::shared_ptr<out::OutEvent> outEvent = output.GetEvent();
+  while(std::getline(input.GetDataFile(), inFile))
   {
-    input->Initialise(inFile);
-    for(int iEvent = 0; iEvent < input->GetRECOEventN(); iEvent++)
+    input.Initialise(inFile);
+    for(int iEvent = 0; iEvent < input.GetRECOEventN(); iEvent++)
     {
-      std::shared_ptr<in::INRECOEvent> inRECOEvent = input->GetNewRECOEvent(iEvent);
-      obj::TauPair tauPair = inRECOEvent->GetSelectedTauPair(selCuts);
+      std::shared_ptr<in::RecoEvent> inRECOEvent = input.GetRECOEvent(iEvent);
+      // const in::GenEvent& inGENEvent = input.GetGENEvent(iEvent);
+
+      obj::TauPair tauPair = inRECOEvent->GetTauPair(selCuts);
       if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
       outEvent->LoadNewEvent(std::move(tauPair), 
-                             inRECOEvent->GetMETE(),
-                             inRECOEvent->GetMETPhi(),
-                             0,
-                             inRECOEvent->GetmT2(tauPair.leadTau->Get4Momentum(), tauPair.subleadTau->Get4Momentum()));
+                            inRECOEvent->GetMETE(),
+                            inRECOEvent->GetMETPhi(),
+                            0,
+                            inRECOEvent->GetmT2(tauPair.leadTau->Get4Momentum(), tauPair.subleadTau->Get4Momentum()));
     }
-    input->Finalise();
+    input.Finalise();
   }
-  output->Finalise();
-  input->GetDataFile().close();
+  output.Finalise();
+  input.GetDataFile().close();
 
   return 0;
 }

@@ -2,7 +2,7 @@
 
 <RunDescription>
   <Era date="2017">
-    <Process name="TTbarMC">
+    <Process name="TTbarMC" isSignal="true">
 
       <Data>
         <Channel  name="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17_TEST_2" 

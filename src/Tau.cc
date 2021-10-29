@@ -45,7 +45,7 @@ namespace obj {
     }
   }
 
-  bool Tau::IsDeepTauIDvsEl(int deepTauIDwpID)
+  bool Tau::IsDeepTauIDvsEl(int deepTauIDwpID) 
   {
     switch(deepTauIDwpID)
     {
@@ -60,7 +60,7 @@ namespace obj {
     }
   }
 
-  bool Tau::IsDeepTauIDvsJet(int deepTauIDwpID)
+  bool Tau::IsDeepTauIDvsJet(int deepTauIDwpID) 
   {
     switch(deepTauIDwpID)
     {
@@ -76,7 +76,7 @@ namespace obj {
     }
   }
 
-  bool Tau::IsDeepTauIDvsMu(int deepTauIDwpID)
+  bool Tau::IsDeepTauIDvsMu(int deepTauIDwpID) 
   {
     switch(deepTauIDwpID)
     {

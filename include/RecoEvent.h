@@ -22,45 +22,59 @@
 #include <chrono>
 
 typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
-// typedef std::vector<std::unique_ptr<obj::Jet>> JetVector;
+// typedef std::vector<obj::Jet*> JetVector;
 
 namespace in {
 
-  class INRECOEvent {
+  class RecoEvent {
     public:
-      explicit INRECOEvent();
+      explicit RecoEvent();
 
-      ~INRECOEvent();
+      ~RecoEvent();
 
-      INRECOEvent& operator=(INRECOEvent&& other);
+      RecoEvent& operator=(RecoEvent&& other);
 
       bool Initialise(TTree* tree);
 
       void LoadTaus(void);
 
-      bool IsInitialised(void){ return isInitialised_; };
+      bool IsInitialised(void){ 
+        return isInitialised_; 
+      };
 
-      TTree* GetTree(void){ return tree_; }
+      TTree* GetTree(void){ 
+        return tree_; 
+      }
 
-      int GetEventN(void){return eventN_; }
+      int GetEventN(void){
+        return eventN_; 
+      }
 
-      bool LoadNewEvent(int iEvent);
+      bool LoadEvent(int iEvent);
 
-      TauVector GetTaus(void){ return std::move(taus_); }
+      TauVector GetTaus(void){ 
+        return std::move(taus_); 
+      }
 
-      double GetMETE(void){ return METE_; };
+      double GetMETE(void){ 
+        return METE_; 
+      };
 
-      double GetMETPhi(void){ return METPhi_; };
+      double GetMETPhi(void){ 
+        return METPhi_; 
+      };
 
       TauVector GetSelectedTaus(const conf::SelCuts& cuts);
 
-      obj::TauPair GetSelectedTauPair(const conf::SelCuts& cuts);
+      obj::TauPair GetTauPair(const conf::SelCuts& cuts);
 
       double GetmT2(CLHEP::HepLorentzVector fourMom1, CLHEP::HepLorentzVector fourMom2);
 
       double GetHT(const std::vector<CLHEP::HepLorentzVector>& listFourMom);
 
-      double GetTauN(void){ return tauN_; };
+      double GetTauN(void){ 
+        return tauN_; 
+      };
 
     private:
       TTree* tree_;
@@ -79,7 +93,6 @@ namespace in {
       std::vector<double>* tauPzVector_ = nullptr;
       std::vector<double>* taudXYVector_ = nullptr;
       std::vector<double>* taudZVector_ = nullptr;
-      //Tau Vs Jet
       std::vector<double>* tauVVVLooseDeepTau2017v2p1VSjetVector_ = nullptr;
       std::vector<double>* tauVVLooseDeepTau2017v2p1VSjetVector_ = nullptr;
       std::vector<double>* tauVLooseDeepTau2017v2p1VSjetVector_ = nullptr;
@@ -88,7 +101,6 @@ namespace in {
       std::vector<double>* tauTightDeepTau2017v2p1VSjetVector_ = nullptr;
       std::vector<double>* tauVTightDeepTau2017v2p1VSjetVector_ = nullptr;
       std::vector<double>* tauVVTightDeepTau2017v2p1VSjetVector_ = nullptr;
-      //Tau Vs Electron
       std::vector<double>* tauVVVLooseDeepTau2017v2p1VSeVector_ = nullptr;
       std::vector<double>* tauVVLooseDeepTau2017v2p1VSeVector_ = nullptr;
       std::vector<double>* tauVLooseDeepTau2017v2p1VSeVector_ = nullptr;
@@ -97,12 +109,10 @@ namespace in {
       std::vector<double>* tauTightDeepTau2017v2p1VSeVector_ = nullptr;
       std::vector<double>* tauVTightDeepTau2017v2p1VSeVector_ = nullptr;
       std::vector<double>* tauVVTightDeepTau2017v2p1VSeVector_ = nullptr;
-      //Tau Vs Muon 
       std::vector<double>* tauVLooseDeepTau2017v2p1VSmuVector_ = nullptr;
       std::vector<double>* tauLooseDeepTau2017v2p1VSmuVector_ = nullptr;
       std::vector<double>* tauMediumDeepTau2017v2p1VSmuVector_ = nullptr;
       std::vector<double>* tauTightDeepTau2017v2p1VSmuVector_ = nullptr;
-      //Tau Decay Mode 
       std::vector<double>* tauDecayModeVector_ = nullptr;
 
       TauVector taus_;
@@ -145,6 +155,17 @@ namespace in {
 
       // JetVector jets_;
 
+      //######################################################//
+      //##################### ELECTRON #######################//
+      //######################################################//
+      int elN_;
+      std::vector<double>* elEVector_ = nullptr;
+      std::vector<double>* elPxVector_ = nullptr;
+      std::vector<double>* elPyVector_ = nullptr;
+      std::vector<double>* elPzVector_ = nullptr;
+      std::vector<double>* eldXYVector_ = nullptr;
+      std::vector<double>* eldZVector_ = nullptr;
+      
       bool isInitialised_;
 
       std::map<std::string, int> deepIDwpMap_ = {{"VVVLoose", 0}, 

@@ -54,6 +54,7 @@ namespace obj {
       double pZ_;
       double dXY_;
       double dZ_;
+      bool iGenMatched_ = false;
   };
 }
 

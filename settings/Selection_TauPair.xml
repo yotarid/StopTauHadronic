@@ -5,7 +5,7 @@
   <!--################################ ERA 2016 ###################################-->
   <!--#############################################################################-->
   <Era date="2016">
-    <Process name="TauTauData">
+    <Process name="TauTauData" isSignal="false">
       <Data>
         <Channel  name="Tau_Run2016B-17Jul2018_ver2-v1_MINIAOD" directory="Tau_Run2016B-17Jul2018_ver2-v1_MINIAOD" file="Tau_Run2016B-17Jul2018_ver2-v1_MINIAOD_custom.txt" />
         <Channel  name="Tau_Run2016C-17Jul2018-v1_MINIAOD" directory="Tau_Run2016C-17Jul2018-v1_MINIAOD" file="Tau_Run2016C-17Jul2018-v1_MINIAOD_custom.txt" />
@@ -20,7 +20,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="ElMuData">
+    <Process name="ElMuData" isSignal="false">
       <Data>
         <Channel  name="MuonEG_Run2016B-07Aug17_ver2-v1_MINIAOD" directory="MuonEG_Run2016B-07Aug17_ver2-v1_MINIAOD" file="MuonEG_Run2016B-07Aug17_ver2-v1_MINIAOD_custom.txt" />
         <Channel  name="MuonEG_Run2016C-07Aug17-v1_MINIAOD" directory="MuonEG_Run2016C-07Aug17-v1_MINIAOD" file="MuonEG_Run2016C-07Aug17-v1_MINIAOD_custom.txt" />
@@ -35,7 +35,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="MuMuData">
+    <Process name="MuMuData" isSignal="false">
       <Data>
         <Channel  name="SingleMuon_Run2016B-17Jul2018_ver2-v1_MINIAOD" directory="SingleMuon_Run2016B-17Jul2018_ver2-v1_MINIAOD" file="SingleMuon_Run2016B-17Jul2018_ver2-v1_MINIAOD_custom.txt" />
         <Channel  name="SingleMuon_Run2016C-17Jul2018-v1_MINIAOD" directory="SingleMuon_Run2016C-17Jul2018-v1_MINIAOD" file="SingleMuon_Run2016C-17Jul2018-v1_MINIAOD_custom.txt" />
@@ -50,7 +50,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="MuTauData">
+    <Process name="MuTauData" isSignal="false">
       <Data>
         <Channel  name="SingleMuon_Run2016B-17Jul2018_ver2-v1_MINIAOD" directory="SingleMuon_Run2016B-17Jul2018_ver2-v1_MINIAOD" file="SingleMuon_Run2016B-17Jul2018_ver2-v1_MINIAOD_custom.txt" />
         <Channel  name="SingleMuon_Run2016C-17Jul2018-v1_MINIAOD" directory="SingleMuon_Run2016C-17Jul2018-v1_MINIAOD" file="SingleMuon_Run2016C-17Jul2018-v1_MINIAOD_custom.txt" />
@@ -65,7 +65,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="StopPairMC">
+    <Process name="StopPairMC" isSignal="true">
       <Data>
         <!-- <Channel  name="SMS-T8bbstausnu_XCha0p5_XStau0p25_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="SMS-T8bbstausnu_XCha0p5_XStau0p25_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="SMS-T8bbstausnu_XCha0p5_XStau0p25_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" /> -->
         <!-- <Channel  name="SMS-T8bbstausnu_XCha0p5_XStau0p5_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="SMS-T8bbstausnu_XCha0p5_XStau0p5_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="SMS-T8bbstausnu_XCha0p5_XStau0p5_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" /> -->
@@ -79,7 +79,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="DYJetsMC">
+    <Process name="DYJetsMC" isSignal="false">
       <Data>
         <Channel  name="DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
         <Channel  name="DY1JetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="DY1JetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="DY1JetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
@@ -92,7 +92,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="WJetsMC">
+    <Process name="WJetsMC" isSignal="false">
       <Data>
         <Channel  name="WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
         <Channel  name="W1JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" directory="W1JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16" file="W1JetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_custom.txt" />
@@ -105,7 +105,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="VHMC">
+    <Process name="VHMC" isSignal="false">
       <Data>
         <Channel  name="ZH_HToBB_ZToLL_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" directory="ZH_HToBB_ZToLL_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" file="ZH_HToBB_ZToLL_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16_custom.txt" />
         <Channel  name="WH_HToBB_WToLNu_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" directory="WH_HToBB_WToLNu_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" file="WH_HToBB_WToLNu_M125_13TeV_amcatnloFXFX_madspin_pythia8_Summer16_custom.txt" />
@@ -115,7 +115,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="VVMC">
+    <Process name="VVMC" isSignal="false">
       <Data>
         <Channel  name="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" directory="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" file="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Summer16_custom.txt" />
         <Channel  name="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" directory="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Summer16" file="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Summer16_custom.txt" />
@@ -131,7 +131,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="WGMC">
+    <Process name="WGMC" isSignal="false">
       <Data>
         <Channel  name="WGToLNuG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8_Summer16" directory="WGToLNuG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8_Summer16" file="WGToLNuG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8_Summer16_custom.txt" />
         <Channel  name="WGstarToLNuMuMu_012Jets_13TeV-madgraph_Summer16" directory="WGstarToLNuMuMu_012Jets_13TeV-madgraph_Summer16" file="WGstarToLNuMuMu_012Jets_13TeV-madgraph_Summer16_custom.txt" />
@@ -142,7 +142,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="TTbarMC">
+    <Process name="TTbarMC" isSignal="false">
       <Data>
         <Channel  name="TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_Summer16" directory="TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_Summer16" file="TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_Summer16_custom.txt" />
         <!-- <Channel  name="TTJets_13TeV-madgraphMLM_FastSim_Summer16" directory="TTJets_13TeV-madgraphMLM_FastSim_Summer16" file="TTJets_13TeV-madgraphMLM_FastSim_Summer16_custom.txt" /> -->
@@ -153,7 +153,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="SingleTopMC">
+    <Process name="SingleTopMC" isSignal="false">
       <Data>
         <Channel  name="ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_Summer16" directory="ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_Summer16" file="ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_Summer16_custom.txt" />
         <Channel  name="ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_Summer16" directory="ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_Summer16" file="ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_Summer16_custom.txt" />
@@ -165,7 +165,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="TTXMC">
+    <Process name="TTXMC" isSignal="false">
       <Data>
         <Channel  name="TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_Summer16" directory="TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_Summer16" file="TTZToQQ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_Summer16_custom.txt" />
         <Channel  name="TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8_Summer16" directory="TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8_Summer16" file="TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8_Summer16_custom.txt" />
@@ -182,7 +182,7 @@
   <!--################################ ERA 2017 ###################################-->
   <!--#############################################################################-->
   <Era date="2017">
-    <Process name="TauTauData">
+    <Process name="TauTauData" isSignal="false">
       <Data>
         <Channel  name="Tau_Run2017B-31Mar2018-v1_MINIAOD" directory="Tau_Run2017B-31Mar2018-v1_MINIAOD" file="Tau_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
         <Channel  name="Tau_Run2017C-31Mar2018-v1_MINIAOD" directory="Tau_Run2017C-31Mar2018-v1_MINIAOD" file="Tau_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
@@ -195,7 +195,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="ElMuData">
+    <Process name="ElMuData" isSignal="false">
       <Data>
         <Channel  name="MuonEG_Run2017B-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017B-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
         <Channel  name="MuonEG_Run2017C-31Mar2018-v1_MINIAOD" directory="MuonEG_Run2017C-31Mar2018-v1_MINIAOD" file="MuonEG_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
@@ -208,7 +208,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="MuMuData">
+    <Process name="MuMuData" isSignal="false">
       <Data>
         <Channel  name="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
         <Channel  name="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
@@ -221,7 +221,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="MuTauData">
+    <Process name="MuTauData" isSignal="false">
       <Data>
         <Channel  name="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017B-31Mar2018-v1_MINIAOD_custom.txt" />
         <Channel  name="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" directory="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD" file="SingleMuon_Run2017C-31Mar2018-v1_MINIAOD_custom.txt" />
@@ -234,7 +234,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="StopPairMC">
+    <Process name="StopPairMC" isSignal="true">
       <Data>
         <Channel  name="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" directory="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" file="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
         <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
@@ -245,7 +245,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="DYJetsMC">
+    <Process name="DYJetsMC" isSignal="false">
       <Data>
         <Channel  name="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
         <Channel  name="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
@@ -258,7 +258,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="WJetsMC">
+    <Process name="WJetsMC" isSignal="false">
       <Data>
         <Channel  name="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
         <Channel  name="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
@@ -271,7 +271,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="VHMC">
+    <Process name="VHMC" isSignal="false">
       <Data>
         <Channel  name="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Fall17" directory="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Fall17" file="ZH_HToBB_ZToLL_M125_13TeV_powheg_pythia8_Fall17_custom.txt" />
         <Channel  name="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" directory="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17" file="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Fall17_custom.txt" />
@@ -282,7 +282,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="VVMC">
+    <Process name="VVMC" isSignal="false">
       <Data>
         <Channel  name="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
         <Channel  name="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" directory="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17" file="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_custom.txt" />
@@ -297,7 +297,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="WGMC">
+    <Process name="WGMC" isSignal="false">
       <Data>
         <Channel  name="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" directory="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17" file="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Fall17_custom.txt" />
       </Data>
@@ -306,7 +306,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="TTbarMC">
+    <Process name="TTbarMC" isSignal="false">
       <Data>
         <Channel  name="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Fall17" file="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
         <Channel  name="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17" file="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
@@ -319,7 +319,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="SingleTopMC">
+    <Process name="SingleTopMC" isSignal="false">
       <Data>
         <Channel  name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" file="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
         <Channel  name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" directory="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17" file="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Fall17_custom.txt" />
@@ -331,7 +331,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="TTXMC">
+    <Process name="TTXMC" isSignal="false">
       <Data>
         <Channel  name="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" directory="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" file="TTZToQQ_TuneCP5_13TeV-amcatnlo-pythia8_Fall17_custom.txt" />
         <Channel  name="TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" directory="TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8_Fall17" file="TTZToLLNuNu_M-10_TuneCP5_13TeV-amcatnlo-pythia8_Fall17_custom.txt" />
@@ -349,7 +349,7 @@
   <!--#############################################################################-->
     <Era date="2018">
 
-    <Process name="TauTauData">
+    <Process name="TauTauData" isSignal="false">
       <Data>
         <Channel  name="Tau_Run2018A-17Sep2018-v1_MINIAOD" directory="Tau_Run2018A-17Sep2018-v1_MINIAOD" file="Tau_Run2018A-17Sep2018-v1_MINIAOD_custom.txt" />
         <Channel  name="Tau_Run2018B-17Sep2018-v1_MINIAOD" directory="Tau_Run2018B-17Sep2018-v1_MINIAOD" file="Tau_Run2018B-17Sep2018-v1_MINIAOD_custom.txt" />
@@ -361,7 +361,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="MuMuData">
+    <Process name="MuMuData" isSignal="false">
       <Data>
         <Channel  name="SingleMuon_Run2018A-17Sep2018-v2_MINIAOD" directory="SingleMuon_Run2018A-17Sep2018-v2_MINIAOD" file="SingleMuon_Run2018A-17Sep2018-v2_MINIAOD_custom.txt" />
         <Channel  name="SingleMuon_Run2018B-17Sep2018-v1_MINIAOD" directory="SingleMuon_Run2018B-17Sep2018-v1_MINIAOD" file="SingleMuon_Run2018B-17Sep2018-v1_MINIAOD_custom.txt" />
@@ -373,7 +373,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="MuTauData">
+    <Process name="MuTauData" isSignal="false">
       <Data>
         <Channel  name="SingleMuon_Run2018A-17Sep2018-v2_MINIAOD" directory="SingleMuon_Run2018A-17Sep2018-v2_MINIAOD" file="SingleMuon_Run2018A-17Sep2018-v2_MINIAOD_custom.txt" />
         <Channel  name="SingleMuon_Run2018B-17Sep2018-v1_MINIAOD" directory="SingleMuon_Run2018B-17Sep2018-v1_MINIAOD" file="SingleMuon_Run2018B-17Sep2018-v1_MINIAOD_custom.txt" />
@@ -385,7 +385,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="StopPairMC">
+    <Process name="StopPairMC" isSignal="true">
       <Data>
         <!-- <Channel  name="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18" directory="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18" file="SMS-T8bbstausnu_XCha0p5_mStop-200to1800_XStau0p25_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" /> -->
         <Channel  name="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18" directory="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18" file="SMS-T8bbstausnu_mStop-200to1800_XCha0p5_XStau0p5_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
@@ -396,7 +396,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="DYJetsMC">
+    <Process name="DYJetsMC" isSignal="false">
       <Data>
         <Channel  name="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
         <Channel  name="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="DY1JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
@@ -409,7 +409,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="WJetsMC">
+    <Process name="WJetsMC" isSignal="false">
       <Data>
         <Channel  name="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
         <Channel  name="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="W1JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
@@ -422,7 +422,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="VHMC">
+    <Process name="VHMC" isSignal="false">
       <Data>
         <Channel  name="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Autumn18" directory="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Autumn18" file="WminusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Autumn18_custom.txt" />
         <Channel  name="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Autumn18" directory="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Autumn18" file="WplusH_HToBB_WToLNu_M125_13TeV_powheg_pythia8_Autumn18_custom.txt" />
@@ -433,7 +433,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="VVMC">
+    <Process name="VVMC" isSignal="false">
       <Data>
         <Channel  name="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18" directory="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18" file="VVTo2L2Nu_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18_custom.txt" />
         <Channel  name="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18" directory="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18" file="WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18_custom.txt" />
@@ -448,7 +448,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="WGMC">
+    <Process name="WGMC" isSignal="false">
       <Data>
         <Channel  name="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" directory="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18" file="WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_custom.txt" />
       </Data>
@@ -457,7 +457,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="TTbarMC">
+    <Process name="TTbarMC" isSignal="false">
       <Data>
         <Channel  name="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Autumn18" directory="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Autumn18" file="TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8_Autumn18_custom.txt" />
         <Channel  name="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Autumn18" directory="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Autumn18" file="TTToHadronic_TuneCP5_13TeV-powheg-pythia8_Autumn18_custom.txt" />
@@ -470,7 +470,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="SingleTopMC">
+    <Process name="SingleTopMC" isSignal="false">
       <Data>
         <Channel  name="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" directory="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" file="ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18_custom.txt" />
         <Channel  name="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" directory="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18" file="ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8_Autumn18_custom.txt" />
@@ -482,7 +482,7 @@
       </SelectionCuts>
     </Process>
 
-    <Process name="TTXMC">
+    <Process name="TTXMC" isSignal="false">
       <Data>
         <Channel  name="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Autumn18" directory="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Autumn18" file="TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Autumn18_custom.txt" />
         <Channel  name="TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Autumn18" directory="TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Autumn18" file="TTWJetsToQQ_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8_Autumn18_custom.txt" />
