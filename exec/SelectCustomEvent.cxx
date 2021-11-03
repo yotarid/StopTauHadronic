@@ -66,18 +66,20 @@ int main(int argc, char* argv[])
   while(std::getline(input.GetDataFile(), inFile))
   {
     input.Initialise(inFile);
-    for(int iEvent = 0; iEvent < input.GetRECOEventN(); iEvent++)
+    std::shared_ptr<in::EventWrapper> eventWrapper = input.GetEventWrapper();
+    int eventN = eventWrapper->GetRecoEvent()->GetEventN();
+    for(int iEvent = 0; iEvent < eventN; iEvent++)
     {
-      std::shared_ptr<in::RecoEvent> inRECOEvent = input.GetRECOEvent(iEvent);
+      eventWrapper->LoadEvent(iEvent);
       // const in::GenEvent& inGENEvent = input.GetGENEvent(iEvent);
 
-      obj::TauPair tauPair = inRECOEvent->GetTauPair(selCuts);
+      obj::TauPair tauPair = eventWrapper->GetTauPair(selCuts);
       if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
       outEvent->LoadNewEvent(std::move(tauPair), 
-                            inRECOEvent->GetMETE(),
-                            inRECOEvent->GetMETPhi(),
+                            eventWrapper->GetRecoEvent()->GetMETE(),
+                            eventWrapper->GetRecoEvent()->GetMETPhi(),
                             0,
-                            inRECOEvent->GetmT2(tauPair.leadTau->Get4Momentum(), tauPair.subleadTau->Get4Momentum()));
+                            eventWrapper->GetRecoEvent()->GetmT2(tauPair.leadTau->Get4Momentum(), tauPair.subleadTau->Get4Momentum()));
     }
     input.Finalise();
   }
@@ -86,3 +88,4 @@ int main(int argc, char* argv[])
 
   return 0;
 }
+

@@ -13,40 +13,18 @@ namespace in {
 
   bool Input::Initialise(const std::string& inFilePath)
   {
-    recoEvent_ = std::make_shared<in::RecoEvent>();
-    genEvent_ = std::make_shared<in::GenEvent>();
+    eventWrapper_ = std::make_shared<in::EventWrapper>();
     //Input data TFile
     LOG(INFO) << BOLDBLUE << "\t\tOpening input file : " << WHITE << inFilePath << RESET;
     inFilePath_ = inFilePath;
     inFile_ = static_cast<TFile*>(TFile::Open(inFilePath.c_str(), "READ"));
-    //Input data TTree
-    //RECO
-    TTree* recoTree = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/reco"));
-    recoEventN_ = recoTree->GetEntries();
-    //
-    TTree* genTree = static_cast<TTree*>(inFile_->Get("miniaodsim2custom/gen"));
-    genEventN_ = genTree->GetEntries();
 
-
-    //instantiate and initialise reco and gen event handle
-    isInitialised_ = recoEvent_->Initialise(recoTree) & genEvent_->Initialise(genTree);
+    isInitialised_ = eventWrapper_->Initialise(inFile_); 
 
     //Disabling mT2 library copyright message
     asymm_mt2_lester_bisect::disableCopyrightMessage();
 
     return isInitialised_;
-  }
-
-  std::shared_ptr<in::RecoEvent> Input::GetRECOEvent(int iEvent)
-  { 
-    recoEvent_->LoadEvent(iEvent);
-    return recoEvent_;
-  }
-
-  std::shared_ptr<in::GenEvent> Input::GetGENEvent(int iEvent)
-  { 
-    genEvent_->LoadEvent(iEvent);
-    return genEvent_;
   }
 
   void Input::Finalise(void)
@@ -57,4 +35,28 @@ namespace in {
     isInitialised_ = false;
   }
 
+  std::ifstream& Input::GetDataFile(void)
+  { 
+    return dataFile_; 
+  }
+
+  std::string Input::GetDataFilePath(void)
+  { 
+    return dataFilePath_; 
+  }
+
+  TFile* Input::GetInputFile(void)
+  { 
+    return inFile_; 
+  }
+
+  std::string Input::GetInputFilePath(void)
+  { 
+    return inFilePath_; 
+  }
+
+  std::shared_ptr<in::EventWrapper> Input::GetEventWrapper(void)
+  {
+    return eventWrapper_;
+  }
 }//namespace files

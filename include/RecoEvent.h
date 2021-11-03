@@ -4,7 +4,8 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "../include/Configuration.h"
+#include "Configuration.h"
+#include "Event.h"
 // #include "../include/Electron.h"
 // #include "../include/Muon.h"
 // #include "../include/Jet.h"
@@ -21,76 +22,30 @@
 
 #include <chrono>
 
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
-// typedef std::vector<obj::Jet*> JetVector;
-
 namespace in {
 
-  class RecoEvent {
+  class RecoEvent : public Event {
     public:
+
       explicit RecoEvent();
-
       ~RecoEvent();
-
       RecoEvent& operator=(RecoEvent&& other);
 
-      bool Initialise(TTree* tree);
-
-      void LoadTaus(void);
-
-      bool IsInitialised(void){ 
-        return isInitialised_; 
-      };
-
-      TTree* GetTree(void){ 
-        return tree_; 
-      }
-
-      int GetEventN(void){
-        return eventN_; 
-      }
-
-      bool LoadEvent(int iEvent);
-
-      TauVector GetTaus(void){ 
-        return std::move(taus_); 
-      }
-
-      double GetMETE(void){ 
-        return METE_; 
-      };
-
-      double GetMETPhi(void){ 
-        return METPhi_; 
-      };
+      bool Initialise(TTree* tree) override;
+      void LoadTaus(void) override;
+      // void LoadJets(void) override {}
+      // void LoadElectrons(void) override {}
+      // void LoadMuons(void) override {}
 
       TauVector GetSelectedTaus(const conf::SelCuts& cuts);
-
-      obj::TauPair GetTauPair(const conf::SelCuts& cuts);
-
       double GetmT2(CLHEP::HepLorentzVector fourMom1, CLHEP::HepLorentzVector fourMom2);
-
       double GetHT(const std::vector<CLHEP::HepLorentzVector>& listFourMom);
 
-      double GetTauN(void){ 
-        return tauN_; 
-      };
-
     private:
-      TTree* tree_;
-      int eventN_;
-
-      double METE_;
-      double METPhi_;
 
       //######################################################//
       //####################### TAU ##########################//
       //######################################################//
-      int tauN_;
-      std::vector<double>* tauEVector_ = nullptr;
-      std::vector<double>* tauPxVector_ = nullptr;
-      std::vector<double>* tauPyVector_ = nullptr;
-      std::vector<double>* tauPzVector_ = nullptr;
       std::vector<double>* taudXYVector_ = nullptr;
       std::vector<double>* taudZVector_ = nullptr;
       std::vector<double>* tauVVVLooseDeepTau2017v2p1VSjetVector_ = nullptr;
@@ -115,18 +70,11 @@ namespace in {
       std::vector<double>* tauTightDeepTau2017v2p1VSmuVector_ = nullptr;
       std::vector<double>* tauDecayModeVector_ = nullptr;
 
-      TauVector taus_;
 
       //######################################################//
       //####################### JET ##########################//
       //######################################################//
-      int jetN_;
       int jetISRN_;
-
-      std::vector<double>* jetEVector_ = nullptr;
-      std::vector<double>* jetPxVector_ = nullptr;
-      std::vector<double>* jetPyVector_ = nullptr;
-      std::vector<double>* jetPzVector_ = nullptr;
       std::vector<double>* jetPartonFlavourVector_ = nullptr;
       std::vector<double>* jetHadronFlavourVector_ = nullptr;
       std::vector<double>* jetIsISRVector_ = nullptr;
@@ -153,12 +101,10 @@ namespace in {
       std::vector<double>* jetJECCorr3Vector_ = nullptr;
       std::vector<double>* jetJECCorr4Vector_ = nullptr;
 
-      // JetVector jets_;
 
       //######################################################//
       //##################### ELECTRON #######################//
       //######################################################//
-      int elN_;
       std::vector<double>* elEVector_ = nullptr;
       std::vector<double>* elPxVector_ = nullptr;
       std::vector<double>* elPyVector_ = nullptr;
@@ -166,7 +112,6 @@ namespace in {
       std::vector<double>* eldXYVector_ = nullptr;
       std::vector<double>* eldZVector_ = nullptr;
       
-      bool isInitialised_;
 
       std::map<std::string, int> deepIDwpMap_ = {{"VVVLoose", 0}, 
                                                 {"VVLoose", 1}, 

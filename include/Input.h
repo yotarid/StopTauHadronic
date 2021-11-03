@@ -6,8 +6,7 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "RecoEvent.h"
-#include "GenEvent.h"
+#include "EventWrapper.h"
 
 #include <iostream>
 #include <map>
@@ -33,53 +32,21 @@ namespace in {
       ~Input();
 
       bool Initialise(const std::string& inFilePath);
-
       void Finalise(void);
-
-      std::ifstream& GetDataFile(void){ 
-        return dataFile_; 
-      }
-
-      std::string GetDataFilePath(void){ 
-        return dataFilePath_; 
-      }
-    
-      TFile* GetInputFile(void){ 
-        return inFile_; 
-      }
-
-      std::string GetInputFilePath(void){ 
-        return inFilePath_; 
-      }
-
-      int GetRECOEventN(void){
-        return recoEventN_;
-      }
-
-      int GetGENEventN(void){
-        return genEventN_;
-      }
-
-      std::shared_ptr<in::RecoEvent> GetRECOEvent(int iEvent);
-
-      std::shared_ptr<in::GenEvent> GetGENEvent(int iEvent);
+      std::ifstream& GetDataFile(void);
+      std::string GetDataFilePath(void);
+      TFile* GetInputFile(void);
+      std::string GetInputFilePath(void);
+      std::shared_ptr<in::EventWrapper> GetEventWrapper();
 
      private :
-
       std::string era_, process_, channel_;
       std::ifstream dataFile_;
       std::string dataFilePath_;
       bool isSignal_;
-
       TFile* inFile_;
       std::string inFilePath_;
-
-      std::shared_ptr<in::RecoEvent> recoEvent_;
-      int recoEventN_;
-
-      std::shared_ptr<in::GenEvent> genEvent_;
-      int genEventN_;
-
+      std::shared_ptr<in::EventWrapper> eventWrapper_;
       bool isInitialised_;
   };
 }//namespace in

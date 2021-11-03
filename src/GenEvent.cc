@@ -20,6 +20,8 @@ namespace in {
   {
     if(tree == nullptr) throw std::runtime_error(std::string("ERROR : Input GEN tree is nullptr"));
 
+    eventN_ = tree->GetEntries();
+
     tree->SetBranchAddress("stop1_m_genParam", &stopMGenParam_);
     tree->SetBranchAddress("neutralino_m_genParam", &neutralinoMGenParam_);
     tree->SetBranchAddress("outgoingParton_n_gen", &outgoingPartonNGen_);
@@ -113,18 +115,6 @@ namespace in {
     isInitialised_ = true;
 
     return isInitialised_;
-  }
-
-  bool GenEvent::LoadEvent(int iEvent)
-  {
-    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading GEN Event : " << +iEvent << RESET;
-    if( tree_->GetEntry(iEvent) == -1){
-      return false;
-    }else{
-      LoadTaus();
-      eventN_ = iEvent;
-      return true;  
-    }
   }
 
   void GenEvent::LoadTaus(void)

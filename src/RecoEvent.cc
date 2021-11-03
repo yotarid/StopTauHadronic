@@ -20,6 +20,8 @@ namespace in {
   {
     if(tree == nullptr) throw std::runtime_error(std::string("ERROR : Input RECO tree is nullptr"));
 
+    eventN_ = tree->GetEntries();
+
     tree->SetBranchAddress("METFixEE2017_E_reco", &METE_);
     tree->SetBranchAddress("METFixEE2017_phi_reco", &METPhi_);
 
@@ -93,18 +95,6 @@ namespace in {
     return isInitialised_;
   }
 
-  bool RecoEvent::LoadEvent(int iEvent)
-  {
-    if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading RECO Event : " << +iEvent << RESET;
-    if( tree_->GetEntry(iEvent) == -1){
-      return false;
-    }else{
-      LoadTaus();
-      eventN_ = iEvent;
-      return true;  
-    }
-  }
-
   void RecoEvent::LoadTaus(void)
   {
     //Load Tau objetcs
@@ -172,35 +162,6 @@ namespace in {
       selectedTaus.push_back(std::move(tau));
     }
     return std::move(selectedTaus);
-  }
-
-  obj::TauPair RecoEvent::GetTauPair(const conf::SelCuts& cuts) 
-  {
-    TauVector selectedTaus = GetSelectedTaus(cuts);
-    obj::TauPair tauPair;
-    double tauPairHT = 0;
-    for(auto&& tau1 : selectedTaus)
-    {
-      for(auto&& tau2 : selectedTaus)
-      {
-        if(tau1 == tau2 || tau1 == nullptr || tau2 == nullptr) continue;
-        CLHEP::HepLorentzVector tau1FourMom = tau1->Get4Momentum();
-        CLHEP::HepLorentzVector tau2FourMom = tau2->Get4Momentum();
-        if( (tau1FourMom.perp() < tau2FourMom.perp())
-            || (tau1->GetE() * tau2->GetE() > 0)
-            || (tau1FourMom.deltaR(tau2FourMom) < cuts.taudeltaR)
-        ) continue;
-        double tauPairNewHT = tau1FourMom.perp() + tau2FourMom.perp();
-        if(tauPairNewHT > tauPairHT)
-        {
-          tauPairHT = tauPairNewHT;
-          tauPair.leadTau = std::move(tau1);
-          tauPair.subleadTau = std::move(tau2);
-          tauPair.deepTauIDwp = cuts.deepTauID;
-        }
-      }
-    }
-    return std::move(tauPair);
   }
 
   double RecoEvent::GetmT2(CLHEP::HepLorentzVector fourMom1, CLHEP::HepLorentzVector fourMom2)

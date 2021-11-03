@@ -4,7 +4,8 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "../include/Configuration.h"
+#include "Configuration.h"
+#include "Event.h"
 // #include "../include/Electron.h"
 // #include "../include/Muon.h"
 // #include "../include/Jet.h"
@@ -20,7 +21,7 @@
 typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 namespace in {
-  class GenEvent {
+  class GenEvent : public Event {
     public : 
       explicit GenEvent();
 
@@ -28,27 +29,11 @@ namespace in {
 
       GenEvent& operator=(GenEvent&& other);
 
-      bool Initialise(TTree* tree);
+      bool Initialise(TTree* tree) override;
 
-      bool IsInitialised(void){ 
-        return isInitialised_; 
-      };
-
-      TTree* GetTree(void){ 
-        return tree_; 
-      }
-
-      int GetEventN(void){
-        return eventN_; 
-      }
-
-      bool LoadEvent(int iEvent);
-
-      void LoadTaus(void);
+      void LoadTaus(void) override;
 
     private :
-      TTree* tree_;
-      int eventN_;
 
       double stopMGenParam_;
       double neutralinoMGenParam_;
@@ -63,30 +48,15 @@ namespace in {
       double scaleWeight8_;
       double scaleWeight9_;
 
-      int elN_;
-      std::vector<double>* elEVector_ = nullptr;
-      std::vector<double>* elPxVector_ = nullptr;
-      std::vector<double>* elPyVector_ = nullptr;
-      std::vector<double>* elPzVector_ = nullptr;
       std::vector<double>* elIsPromptVector_ = nullptr;
 
-      int muN_;
-      std::vector<double>* muEVector_ = nullptr;
-      std::vector<double>* muPxVector_ = nullptr;
-      std::vector<double>* muPyVector_ = nullptr;
-      std::vector<double>* muPzVector_ = nullptr;
       std::vector<double>* muIsPromptVector_ = nullptr;
 
-      std::vector<double>* tauEVector_ = nullptr;
-      std::vector<double>* tauPxVector_ = nullptr;
-      std::vector<double>* tauPyVector_ = nullptr;
-      std::vector<double>* tauPzVector_ = nullptr;
       std::vector<double>* tauVisNVector_ = nullptr;
       std::vector<double>* tauVisEVector_ = nullptr;
       std::vector<double>* tauVisPxVector_ = nullptr;
       std::vector<double>* tauVisPyVector_ = nullptr;
       std::vector<double>* tauVisPzVector_ = nullptr;
-      TauVector taus_;
 
       int tQuarkN_;
       std::vector<double>* tQuarkEVector_ = nullptr;
@@ -130,16 +100,7 @@ namespace in {
       std::vector<double>* charginoPyVector_ = nullptr;
       std::vector<double>* charginoPzVector_ = nullptr;
 
-      int jetN_;
-      std::vector<double>* jetEVector_ = nullptr;
-      std::vector<double>* jetPxVector_ = nullptr;
-      std::vector<double>* jetPyVector_ = nullptr;
-      std::vector<double>* jetPzVector_ = nullptr;
 
-      double METE_;
-      double METPhi_;
-
-      bool isInitialised_;
   };
 }
 
