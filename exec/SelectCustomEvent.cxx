@@ -1,6 +1,6 @@
-#include "../include/Input.h"
-#include "../include/Output.h"
-#include "../include/Configuration.h"
+#include "../include/inout/Input.h"
+#include "../include/inout/Output.h"
+#include "../include/conf/Configuration.h"
 
 #include "../extern/argvparser/argvparser.h"
 #include "../extern/easylogging/easylogging++.h"
@@ -66,20 +66,20 @@ int main(int argc, char* argv[])
   while(std::getline(input.GetDataFile(), inFile))
   {
     input.Initialise(inFile);
-    std::shared_ptr<in::EventWrapper> eventWrapper = input.GetEventWrapper();
-    int eventN = eventWrapper->GetRecoEvent()->GetEventN();
+    std::shared_ptr<in::GlobalEvent> globalEvent = input.GetGlobalEvent();
+    int eventN = globalEvent->GetRecoEvent()->GetEventN();
     for(int iEvent = 0; iEvent < eventN; iEvent++)
     {
-      eventWrapper->LoadEvent(iEvent);
+      globalEvent->LoadEvent(iEvent);
       // const in::GenEvent& inGENEvent = input.GetGENEvent(iEvent);
 
-      obj::TauPair tauPair = eventWrapper->GetTauPair(selCuts);
+      obj::TauPair tauPair = globalEvent->GetTauPair(selCuts);
       if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
       outEvent->LoadNewEvent(std::move(tauPair), 
-                            eventWrapper->GetRecoEvent()->GetMETE(),
-                            eventWrapper->GetRecoEvent()->GetMETPhi(),
+                            globalEvent->GetRecoEvent()->GetMETE(),
+                            globalEvent->GetRecoEvent()->GetMETPhi(),
                             0,
-                            eventWrapper->GetRecoEvent()->GetmT2(tauPair.leadTau->Get4Momentum(), tauPair.subleadTau->Get4Momentum()));
+                            globalEvent->GetRecoEvent()->GetmT2(tauPair.leadTau->Get4Momentum(), tauPair.subleadTau->Get4Momentum()));
     }
     input.Finalise();
   }

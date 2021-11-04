@@ -1,4 +1,4 @@
-#include "../include/GenEvent.h"
+#include "../include/ev/GenEvent.h"
 
 namespace in {
   GenEvent::GenEvent(){}

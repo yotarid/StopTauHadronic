@@ -1,4 +1,4 @@
-#include "../include/Input.h"
+#include "../include/inout/Input.h"
 
 
 namespace in {
@@ -13,13 +13,13 @@ namespace in {
 
   bool Input::Initialise(const std::string& inFilePath)
   {
-    eventWrapper_ = std::make_shared<in::EventWrapper>();
+    globalEvent_ = std::make_shared<in::GlobalEvent>();
     //Input data TFile
     LOG(INFO) << BOLDBLUE << "\t\tOpening input file : " << WHITE << inFilePath << RESET;
     inFilePath_ = inFilePath;
     inFile_ = static_cast<TFile*>(TFile::Open(inFilePath.c_str(), "READ"));
 
-    isInitialised_ = eventWrapper_->Initialise(inFile_); 
+    isInitialised_ = globalEvent_->Initialise(inFile_); 
 
     //Disabling mT2 library copyright message
     asymm_mt2_lester_bisect::disableCopyrightMessage();
@@ -55,8 +55,8 @@ namespace in {
     return inFilePath_; 
   }
 
-  std::shared_ptr<in::EventWrapper> Input::GetEventWrapper(void)
+  std::shared_ptr<in::GlobalEvent> Input::GetGlobalEvent(void)
   {
-    return eventWrapper_;
+    return globalEvent_;
   }
 }//namespace files

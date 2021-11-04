@@ -17,13 +17,13 @@ if(${CLHEP_FOUND})
   set(LIBS ${LIBS} ${CLHEP_LIBRARIES})
 endif(${CLHEP_FOUND})
 
-file(GLOB HEADERS *.h)
-file(GLOB SOURCES *.cc)
+file(GLOB_RECURSE HEADERS *.h)
+file(GLOB_RECURSE SOURCES *.cc)
 
 add_library(SampleProduction_src STATIC ${SOURCES} ${HEADERS})
 target_link_libraries(SampleProduction_src ${LIBS})
 
-file(GLOB BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/src *.cc)
+file(GLOB_RECURSE BINARIES RELATIVE ${PROJECT_SOURCE_DIR}/src *.cc)
 
 MESSAGE("-------- ${BoldCyan}#### Compiling the following files : ####${Reset}")
 foreach( sourcefile ${BINARIES} )

@@ -4,8 +4,8 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "../include/Configuration.h"
-#include "../include/Tau.h"
+#include "../conf/Configuration.h"
+#include "../obj/Tau.h"
 
 #include <memory>
 #include <iostream>

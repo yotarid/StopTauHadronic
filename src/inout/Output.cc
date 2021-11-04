@@ -1,4 +1,4 @@
-#include "../include/Output.h"
+#include "../include/inout/Output.h"
 
 namespace out {
 

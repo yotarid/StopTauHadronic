@@ -4,17 +4,17 @@
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "Configuration.h"
+#include "../conf/Configuration.h"
 #include "Event.h"
 // #include "../include/Electron.h"
 // #include "../include/Muon.h"
 // #include "../include/Jet.h"
-#include "../include/Tau.h"
+#include "../obj/Tau.h"
 
 #include <TTree.h>
 #include <TBranch.h>
 
-#include "lester_mt2_bisect_mod.h"
+#include "../lester_mt2_bisect_mod.h"
 
 #include <memory>
 #include <iostream>

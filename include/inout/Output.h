@@ -10,7 +10,7 @@
 #include <string>
 #include <cstdlib>
 
-#include "OutEvent.h"
+#include "../ev/OutEvent.h"
 
 #include "TFile.h"
 #include "TDirectory.h"

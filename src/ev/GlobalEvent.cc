@@ -1,12 +1,12 @@
-#include "../include/EventWrapper.h"
+#include "../include/ev/GlobalEvent.h"
 
 
 namespace in {
-  EventWrapper::EventWrapper(){}
+  GlobalEvent::GlobalEvent(){}
 
-  EventWrapper::~EventWrapper(){}
+  GlobalEvent::~GlobalEvent(){}
 
-  bool EventWrapper::Initialise(TFile* file)
+  bool GlobalEvent::Initialise(TFile* file)
   {
     recoEvent_ = std::make_shared<in::RecoEvent>();
     TTree* recoTree = static_cast<TTree*>(file->Get("miniaodsim2custom/reco"));
@@ -18,24 +18,24 @@ namespace in {
     return isInitialised_;
   }
 
-  bool EventWrapper::IsInitialised(void)
+  bool GlobalEvent::IsInitialised(void)
   {
     return isInitialised_;
   }
 
-  std::shared_ptr<in::RecoEvent> EventWrapper::GetRecoEvent()
+  std::shared_ptr<in::RecoEvent> GlobalEvent::GetRecoEvent()
   {
     return recoEvent_;
   }
 
-  std::shared_ptr<in::GenEvent> EventWrapper::GetGenEvent()
+  std::shared_ptr<in::GenEvent> GlobalEvent::GetGenEvent()
   {
     return genEvent_;
   }
 
 
   // template <class T> 
-  // std::shared_ptr<T> EventWrapper::GetEvent(const std::string& type)
+  // std::shared_ptr<T> GlobalEvent::GetEvent(const std::string& type)
   // {
   //   if(type == "RECO")
   //   {
@@ -47,17 +47,17 @@ namespace in {
   //   }
   //   else
   //   {
-  //     throw std::runtime_error("ERROR : EventWrapper::GetEvent : Unkown event type");
+  //     throw std::runtime_error("ERROR : GlobalEvent::GetEvent : Unkown event type");
   //   }
   // }
 
-  bool EventWrapper::LoadEvent(int iEvent)
+  bool GlobalEvent::LoadEvent(int iEvent)
   {
     if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading event : " << +iEvent << RESET;
     return recoEvent_->LoadEvent(iEvent) && genEvent_->LoadEvent(iEvent);
   }
 
-  obj::TauPair EventWrapper::GetTauPair(const conf::SelCuts& cuts) 
+  obj::TauPair GlobalEvent::GetTauPair(const conf::SelCuts& cuts) 
   {
     TauVector selectedTaus = recoEvent_->GetSelectedTaus(cuts);
     obj::TauPair tauPair;

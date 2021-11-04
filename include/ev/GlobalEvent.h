@@ -1,7 +1,7 @@
-#ifndef EVENTWRAPPER_H
-#define EVENTWRAPPER_H
+#ifndef GLOBALEVENT_H
+#define GLOBALEVENT_H
 
-#include "Configuration.h"
+#include "../conf/Configuration.h"
 
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
@@ -25,12 +25,12 @@
 typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 namespace in {
-  class EventWrapper {
+  class GlobalEvent {
     public : 
 
-      explicit EventWrapper();
-      ~EventWrapper();
-      EventWrapper& operator=(EventWrapper&& other);
+      explicit GlobalEvent();
+      ~GlobalEvent();
+      GlobalEvent& operator=(GlobalEvent&& other);
       
       bool Initialise(TFile* file);
       bool IsInitialised(void);

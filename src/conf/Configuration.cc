@@ -1,4 +1,4 @@
-#include "../include/Configuration.h"
+#include "../include/conf/Configuration.h"
 
 namespace conf {
   

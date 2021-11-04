@@ -1,12 +1,12 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "Configuration.h"
+#include "../conf/Configuration.h"
 
 #include "../extern/easylogging/easylogging++.h"
 #include "../extern/easylogging/consolecolor.h"
 
-#include "EventWrapper.h"
+#include "../ev/GlobalEvent.h"
 
 #include <iostream>
 #include <map>
@@ -22,7 +22,7 @@
 #include <TBranch.h>
 
 #include <CLHEP/Vector/LorentzVector.h>
-#include "lester_mt2_bisect_mod.h"
+#include "../lester_mt2_bisect_mod.h"
 
 namespace in {
 
@@ -37,7 +37,7 @@ namespace in {
       std::string GetDataFilePath(void);
       TFile* GetInputFile(void);
       std::string GetInputFilePath(void);
-      std::shared_ptr<in::EventWrapper> GetEventWrapper();
+      std::shared_ptr<in::GlobalEvent> GetGlobalEvent();
 
      private :
       std::string era_, process_, channel_;
@@ -46,7 +46,7 @@ namespace in {
       bool isSignal_;
       TFile* inFile_;
       std::string inFilePath_;
-      std::shared_ptr<in::EventWrapper> eventWrapper_;
+      std::shared_ptr<in::GlobalEvent> globalEvent_;
       bool isInitialised_;
   };
 }//namespace in
