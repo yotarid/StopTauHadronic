@@ -5,3 +5,5 @@ build/
 jobsub/logs
 jobsub/*.log
 *.log
+.vscode/
+jobsub/__pycache__/
