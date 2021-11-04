@@ -14,9 +14,6 @@
 #include <TTree.h>
 #include <TBranch.h>
 
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
-// typedef std::vector<obj::Jet*> JetVector;
-
 namespace in {
   class Event {
     public :

@@ -21,8 +21,6 @@
 
 #include <chrono>
 
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
-
 namespace out {
 
   class OutEvent {

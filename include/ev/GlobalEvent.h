@@ -22,8 +22,6 @@
 #include <TObject.h>
 #include <TBranch.h>
 
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
-
 namespace in {
   class GlobalEvent {
     public : 

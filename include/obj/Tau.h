@@ -12,6 +12,7 @@ namespace obj {
   
   class Tau : public Object {
     public : 
+    
 
       explicit Tau(){};
       ~Tau(){};
@@ -74,5 +75,7 @@ namespace obj {
     std::string deepTauIDwp;
   };
 }
+
+typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 #endif

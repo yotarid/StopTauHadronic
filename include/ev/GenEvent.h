@@ -18,8 +18,6 @@
 #include <iostream>
 #include <utility>
 
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
-
 namespace in {
   class GenEvent : public Event {
     public : 
