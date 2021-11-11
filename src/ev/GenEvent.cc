@@ -23,7 +23,7 @@ namespace in {
     eventN_ = tree->GetEntries();
 
     tree->SetBranchAddress("stop1_m_genParam", &stopMGenParam_);
-    tree->SetBranchAddress("neutralino_m_genParam", &neutralinoMGenParam_);
+    tree->SetBranchAddress("neutralino1_m_genParam", &neutralinoMGenParam_);
     tree->SetBranchAddress("outgoingParton_n_gen", &outgoingPartonNGen_);
     tree->SetBranchAddress("scaleWeight_1", &scaleWeight1_);
     tree->SetBranchAddress("scaleWeight_2", &scaleWeight2_);
@@ -53,11 +53,12 @@ namespace in {
     tree->SetBranchAddress("tau_px_gen", &tauPxVector_);
     tree->SetBranchAddress("tau_py_gen", &tauPyVector_);
     tree->SetBranchAddress("tau_pz_gen", &tauPzVector_);
-    tree->SetBranchAddress("tau_vis_n_gen", &tauVisNVector_);
+    tree->SetBranchAddress("tau_vis_n_gen", &tauVisN_);
     tree->SetBranchAddress("tau_vis_E_gen", &tauVisEVector_);
     tree->SetBranchAddress("tau_vis_px_gen", &tauVisPxVector_);
     tree->SetBranchAddress("tau_vis_py_gen", &tauVisPyVector_);
     tree->SetBranchAddress("tau_vis_pz_gen", &tauVisPzVector_);
+    tree->SetBranchAddress("tau_isPrompt_gen", &tauIsPromptVector_);
 
     tree->SetBranchAddress("t_n_gen", &tQuarkN_);
     tree->SetBranchAddress("t_E_gen", &tQuarkEVector_);
@@ -125,16 +126,40 @@ namespace in {
     for(int iTau = 0; iTau < tauN; iTau++)
     {
       // if(tauN < 1) break;
-      std::unique_ptr<obj::Tau> tau = std::make_unique<obj::Tau>();
-
+      std::shared_ptr<obj::Tau> tau = std::make_unique<obj::Tau>();
+      tau->SetIsGen(true);
+      tau->SetIsPrompt(tauIsPromptVector_->at(iTau));
       tau->SetId(iTau);
       //set kinematics
       tau->SetE(tauEVector_->at(iTau));
       tau->SetpX(tauPxVector_->at(iTau));
       tau->SetpY(tauPyVector_->at(iTau));
       tau->SetpZ(tauPzVector_->at(iTau));
+      tau->SetEta(fabs(tau->Get4Momentum().eta()));
       //push back
-      taus_.push_back(std::move(tau));
+      taus_.push_back(tau);
+    }
+  }
+
+  void GenEvent::LoadVisibleTaus(void)
+  {
+    //Load Tau objetcs
+    taus_.clear();
+    for(int iTau = 0; iTau < tauVisN_; iTau++)
+    {
+      // if(tauN < 1) break;
+      std::shared_ptr<obj::Tau> tau = std::shared_ptr<obj::Tau>();
+      tau->SetIsGen(true);
+      tau->SetIsPrompt(tauIsPromptVector_->at(iTau));
+      tau->SetId(iTau);
+      //set kinematics
+      tau->SetE(tauVisEVector_->at(iTau));
+      tau->SetpX(tauVisPxVector_->at(iTau));
+      tau->SetpY(tauVisPyVector_->at(iTau));
+      tau->SetpZ(tauVisPzVector_->at(iTau));
+      tau->SetEta(fabs(tau->Get4Momentum().eta()));
+      //push back
+      visibleTaus_.push_back(tau);
     }
   }
 }

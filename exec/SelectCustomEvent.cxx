@@ -12,7 +12,6 @@
 INITIALIZE_EASYLOGGINGPP
 
 using namespace CommandLineProcessing;
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
 
 int main(int argc, char* argv[])
 {
@@ -71,11 +70,10 @@ int main(int argc, char* argv[])
     for(int iEvent = 0; iEvent < eventN; iEvent++)
     {
       globalEvent->LoadEvent(iEvent);
-      // const in::GenEvent& inGENEvent = input.GetGENEvent(iEvent);
 
       obj::TauPair tauPair = globalEvent->GetTauPair(selCuts);
-      if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
-      outEvent->LoadNewEvent(std::move(tauPair), 
+      if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr) || (tauPair.isGenMatched == false)) continue;
+      outEvent->LoadNewEvent(tauPair, 
                             globalEvent->GetRecoEvent()->GetMETE(),
                             globalEvent->GetRecoEvent()->GetMETPhi(),
                             0,

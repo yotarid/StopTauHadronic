@@ -102,7 +102,9 @@ namespace in {
     for(int iTau = 0; iTau < tauN_; iTau++)
     {
       if(tauN_ < 1) break;
-      std::unique_ptr<obj::Tau> tau = std::make_unique<obj::Tau>();
+      std::shared_ptr<obj::Tau> tau = std::make_shared<obj::Tau>();
+
+      tau->SetIsGen(false);
 
       tau->SetId(iTau);
       //set kinematics
@@ -112,6 +114,7 @@ namespace in {
       tau->SetpZ(tauPzVector_->at(iTau));
       tau->SetdXY(taudXYVector_->at(iTau));
       tau->SetdZ(taudZVector_->at(iTau));
+      tau->SetEta(fabs(tau->Get4Momentum().eta()));
 
       //set decay mode
       tau->SetDecayMode(tauDecayModeVector_->at(iTau));
@@ -142,7 +145,7 @@ namespace in {
       tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSmuVector_->at(iTau));
  
       //push back
-      taus_.push_back(std::move(tau));
+      taus_.push_back(tau);
     }
   }
 
@@ -159,9 +162,9 @@ namespace in {
           || (tau->IsDeepTauIDvsMu(deepIDwpMap_.at(cuts.deepTauID)) == false)
           || (tau->IsDeepTauIDvsJet(deepIDwpMap_.at(cuts.deepTauID)) == false)
       ) continue;
-      selectedTaus.push_back(std::move(tau));
+      selectedTaus.push_back(tau);
     }
-    return std::move(selectedTaus);
+    return selectedTaus;
   }
 
   double RecoEvent::GetmT2(CLHEP::HepLorentzVector fourMom1, CLHEP::HepLorentzVector fourMom2)

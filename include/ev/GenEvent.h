@@ -30,12 +30,17 @@ namespace in {
       bool Initialise(TTree* tree) override;
 
       void LoadTaus(void) override;
+      void LoadVisibleTaus(void);
+
+      TauVector GetVisibleTaus(void){
+        return visibleTaus_;
+      }
 
     private :
 
       double stopMGenParam_;
       double neutralinoMGenParam_;
-      double outgoingPartonNGen_;
+      int outgoingPartonNGen_;
       double scaleWeight1_;
       double scaleWeight2_;
       double scaleWeight3_;
@@ -47,14 +52,15 @@ namespace in {
       double scaleWeight9_;
 
       std::vector<double>* elIsPromptVector_ = nullptr;
-
       std::vector<double>* muIsPromptVector_ = nullptr;
 
-      std::vector<double>* tauVisNVector_ = nullptr;
+      int tauVisN_;
       std::vector<double>* tauVisEVector_ = nullptr;
       std::vector<double>* tauVisPxVector_ = nullptr;
       std::vector<double>* tauVisPyVector_ = nullptr;
       std::vector<double>* tauVisPzVector_ = nullptr;
+      std::vector<double>* tauIsPromptVector_ = nullptr;
+      TauVector visibleTaus_;
 
       int tQuarkN_;
       std::vector<double>* tQuarkEVector_ = nullptr;

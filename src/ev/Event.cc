@@ -45,7 +45,7 @@ namespace in {
 
   TauVector Event::GetTaus(void)
   { 
-    return std::move(taus_); 
+    return taus_; 
   }
 
   double Event::GetMETE(void)

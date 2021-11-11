@@ -17,9 +17,9 @@ namespace obj {
       explicit Tau(){};
       ~Tau(){};
 
-      void SetId(int id){ id_ = id; }
-
-      void SetDecayMode(double decayMode){ decayMode_ = decayMode; };
+      void SetDecayMode(double decayMode){ 
+        decayMode_ = decayMode; 
+      };
 
       void SetIsDeepTauIDvsEl(int deepTauIDwpID, bool isDeepTauIDvsEl);
 
@@ -27,8 +27,8 @@ namespace obj {
 
       void SetIsDeepTauIDvsMu(int deepTauIDwpID, bool isDeepTauIDvsMu);
 
-      int GetId(){ 
-        return id_; 
+      void SetIsPrompt(bool isPrompt){
+        isPrompt_ = isPrompt;
       }
 
       double GetDecayMode(void){ 
@@ -41,9 +41,12 @@ namespace obj {
 
       bool IsDeepTauIDvsMu(int deepTauIDwpID);
 
-    private : 
+      bool IsPrompt(void){
+        return isPrompt_;
+      }
 
-      int id_;
+    private : 
+      //
       double decayMode_;
       //
       bool isVVVLooseDeepTauIDvsEl_;
@@ -67,15 +70,18 @@ namespace obj {
       bool isLooseDeepTauIDvsMu_;
       bool isMediumDeepTauIDvsMu_;
       bool isTightDeepTauIDvsMu_;
+      //
+      bool isPrompt_;
   };
 
   struct TauPair {
-    std::unique_ptr<Tau> leadTau;
-    std::unique_ptr<Tau> subleadTau;
+    std::shared_ptr<Tau> leadTau;
+    std::shared_ptr<Tau> subleadTau;
     std::string deepTauIDwp;
+    bool isGenMatched = false;
   };
 }
 
-typedef std::vector<std::unique_ptr<obj::Tau>> TauVector;
+typedef std::vector<std::shared_ptr<obj::Tau>> TauVector;
 
 #endif

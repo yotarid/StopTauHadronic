@@ -33,24 +33,6 @@ namespace in {
     return genEvent_;
   }
 
-
-  // template <class T> 
-  // std::shared_ptr<T> GlobalEvent::GetEvent(const std::string& type)
-  // {
-  //   if(type == "RECO")
-  //   {
-  //     return genEvent_;
-  //   }
-  //   else if(type == "GEN")
-  //   {
-  //     return recoEvent_; 
-  //   }
-  //   else
-  //   {
-  //     throw std::runtime_error("ERROR : GlobalEvent::GetEvent : Unkown event type");
-  //   }
-  // }
-
   bool GlobalEvent::LoadEvent(int iEvent)
   {
     if(iEvent % 10000 == 0) LOG(INFO) << BOLDBLUE << "\t\t\t Loading event : " << +iEvent << RESET;
@@ -59,33 +41,74 @@ namespace in {
 
   obj::TauPair GlobalEvent::GetTauPair(const conf::SelCuts& cuts) 
   {
-    TauVector selectedTaus = recoEvent_->GetSelectedTaus(cuts);
+    TauVector selectedRecoTaus = recoEvent_->GetSelectedTaus(cuts);
+    //
     obj::TauPair tauPair;
     double tauPairHT = 0;
-    for(auto&& tau1 : selectedTaus)
+    for(auto&& recoTau1 : selectedRecoTaus)
     {
-      for(auto&& tau2 : selectedTaus)
+      for(auto&& recoTau2 : selectedRecoTaus)
       {
-        if(tau1 == tau2 || tau1 == nullptr || tau2 == nullptr) continue;
-        CLHEP::HepLorentzVector tau1FourMom = tau1->Get4Momentum();
-        CLHEP::HepLorentzVector tau2FourMom = tau2->Get4Momentum();
-        if( (tau1FourMom.perp() < tau2FourMom.perp())
-            || (tau1->GetE() * tau2->GetE() > 0)
-            || (tau1FourMom.deltaR(tau2FourMom) < cuts.taudeltaR)
+        //avoid reprocessing same tau
+        if(recoTau1 == recoTau2 || recoTau1 == nullptr || recoTau2 == nullptr) continue;
+
+        //Check if reco tau passes selection criteria 
+        CLHEP::HepLorentzVector recoTau1FourMom = recoTau1->Get4Momentum();
+        CLHEP::HepLorentzVector recoTau2FourMom = recoTau2->Get4Momentum();
+        //
+        if( (recoTau1->GetpT() < recoTau2->GetpT())
+            || (recoTau1->GetE() * recoTau2->GetE() > 0)
+            || (recoTau1FourMom.deltaR(recoTau2FourMom) < cuts.taudeltaR)
         ) continue;
-        double tauPairNewHT = tau1FourMom.perp() + tau2FourMom.perp();
+
+        double tauPairNewHT = recoTau1->GetpT() + recoTau2->GetpT();
         if(tauPairNewHT > tauPairHT)
         {
           tauPairHT = tauPairNewHT;
-          tauPair.leadTau = std::move(tau1);
-          tauPair.subleadTau = std::move(tau2);
+          tauPair.leadTau = recoTau1;
+          tauPair.subleadTau = recoTau2;
           tauPair.deepTauIDwp = cuts.deepTauID;
         }
       }
     }
-    return std::move(tauPair);
+    if(IsTauPairGenMatched(tauPair, cuts)) tauPair.isGenMatched = true;
+    return tauPair;
   }
+     
+  bool GlobalEvent::IsTauPairGenMatched(obj::TauPair tauPair, const conf::SelCuts& cuts)
+  {
+    if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) return false;
+    TauVector visibleGenTaus = genEvent_->GetVisibleTaus();
+    //two iterations to gen match each tau from the pair
+    for(int iTau = 0; iTau < 2; iTau++)
+    {
+      std::shared_ptr<obj::Tau> recoTau = (iTau == 0) ? tauPair.leadTau : tauPair.subleadTau;
+      double minDeltaR = 999;
+      int genMatchTauId = -1;
+      for(auto&& genTau : visibleGenTaus)
+      {
+        if((genTau->IsPrompt() == false)
+            || (genTau->GetpT() < cuts.tauPt)
+            || (genTau->GetEta() > cuts.tauEta)
+            || (genTau->IsUsedToGenMatch() == true)
+        ) continue;
 
-
-
+        double deltaR = recoTau->Get4Momentum().deltaR(genTau->Get4Momentum());
+        if(deltaR < minDeltaR)
+        {
+          minDeltaR = deltaR;
+          genMatchTauId = genTau->GetId();
+        }
+      }
+      if(genMatchTauId >= 0)
+      {
+        if(minDeltaR < cuts.taudeltaR)
+        {
+          recoTau->SetIsGenMatched(true);
+          visibleGenTaus[genMatchTauId]->SetIsUsedToGenMatch(true);
+        }
+      }
+    }
+    return (tauPair.leadTau->IsGenMatched() && tauPair.subleadTau->IsGenMatched());
+  }
 }

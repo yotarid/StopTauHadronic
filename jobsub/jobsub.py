@@ -21,7 +21,7 @@ def create_jobsub_file(era, process, channel, extension="") :
   jobsub_content = jobsub_content.replace("@ERA@", era)
   jobsub_content = jobsub_content.replace("@PROCESS@", process)
   jobsub_content = jobsub_content.replace("@CHANNEL@", channel)
-  jobsub_content = jobsub_content.replace("@EXTENSION@", extension)
+  jobsub_content = jobsub_content.replace("@EXTENSION@", extension if extension else "-x" + extension)
   #create new jobsub file
   jobsub_mod_path = os.path.join(os.getenv('SAMPLEPRODUCTION_BASE_DIR'), "output", era, process, channel, "jobsub" + extension + ".sh")
   jobsub_mod = open(jobsub_mod_path, "w")
@@ -97,8 +97,6 @@ if (__name__ == "__main__") :
       if process_name not in run_list[era_date] : #check if process is chosen
         continue
       pT = process.find("SelectionCuts").find("cut").attrib['pT']
-      if extension :
-        extension = "-x " + extension
       for channel in process.find("Data").iter("Channel") :
         channel_name = channel.attrib['name']
         create_job_log_directory(era_date, process_name, channel_name)
