@@ -128,7 +128,6 @@ namespace in {
       // if(tauN < 1) break;
       std::shared_ptr<obj::Tau> tau = std::make_unique<obj::Tau>();
       tau->SetIsGen(true);
-      tau->SetIsPrompt(tauIsPromptVector_->at(iTau));
       tau->SetId(iTau);
       //set kinematics
       tau->SetE(tauEVector_->at(iTau));
