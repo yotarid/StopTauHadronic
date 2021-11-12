@@ -31,7 +31,7 @@ namespace in {
       bool IsInitialised(void);
       TTree* GetTree(void);
       int GetEventN(void);
-      bool LoadEvent(int iEvent);
+      virtual bool LoadEvent(int iEvent) = 0;
 
       double GetTauN(void);
       TauVector GetTaus(void);

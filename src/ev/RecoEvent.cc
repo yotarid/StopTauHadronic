@@ -149,6 +149,17 @@ namespace in {
     }
   }
 
+  bool RecoEvent::LoadEvent(int iEvent)
+  {
+    if( tree_->GetEntry(iEvent) == -1){
+      return false;
+    }else{
+      LoadTaus();
+      eventN_ = iEvent;
+      return true;  
+    }
+  }
+
   TauVector RecoEvent::GetSelectedTaus(const conf::SelCuts& cuts) 
   {
     TauVector selectedTaus;

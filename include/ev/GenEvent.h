@@ -29,6 +29,7 @@ namespace in {
 
       bool Initialise(TTree* tree) override;
 
+      bool LoadEvent(int iEvent) override;
       void LoadTaus(void) override;
       void LoadVisibleTaus(void);
 

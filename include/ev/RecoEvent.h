@@ -32,6 +32,7 @@ namespace in {
       RecoEvent& operator=(RecoEvent&& other);
 
       bool Initialise(TTree* tree) override;
+      bool LoadEvent(int iEvent) override;
       void LoadTaus(void) override;
       // void LoadJets(void) override {}
       // void LoadElectrons(void) override {}

@@ -73,8 +73,7 @@ int main(int argc, char* argv[])
 
       obj::TauPair tauPair = globalEvent->GetTauPair(selCuts);
       if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr) || (tauPair.isGenMatched == false)) continue;
-      // if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
-      LOG(INFO) << BOLDRED << "Found Gen Matched Pair" << RESET;
+      // LOG(INFO) << BOLDRED << "Found Gen Matched Pair" << RESET;
       outEvent->LoadNewEvent(tauPair, 
                             globalEvent->GetRecoEvent()->GetMETE(),
                             globalEvent->GetRecoEvent()->GetMETPhi(),

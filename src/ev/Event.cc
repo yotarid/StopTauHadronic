@@ -17,17 +17,6 @@ namespace in {
     return *this;
   }
 
-  bool Event::LoadEvent(int iEvent)
-  {
-    if( tree_->GetEntry(iEvent) == -1){
-      return false;
-    }else{
-      LoadTaus();
-      eventN_ = iEvent;
-      return true;  
-    }
-  }
-
   bool Event::IsInitialised(void)
   { 
     return isInitialised_; 

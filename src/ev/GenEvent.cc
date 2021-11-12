@@ -118,6 +118,18 @@ namespace in {
     return isInitialised_;
   }
 
+  bool GenEvent::LoadEvent(int iEvent)
+  {
+    if( tree_->GetEntry(iEvent) == -1){
+      return false;
+    }else{
+      LoadTaus();
+      LoadVisibleTaus();
+      eventN_ = iEvent;
+      return true;  
+    }
+  }
+
   void GenEvent::LoadTaus(void)
   {
     //Load Tau objetcs
@@ -126,7 +138,7 @@ namespace in {
     for(int iTau = 0; iTau < tauN; iTau++)
     {
       // if(tauN < 1) break;
-      std::shared_ptr<obj::Tau> tau = std::make_unique<obj::Tau>();
+      std::shared_ptr<obj::Tau> tau = std::make_shared<obj::Tau>();
       tau->SetIsGen(true);
       tau->SetId(iTau);
       //set kinematics
@@ -143,11 +155,11 @@ namespace in {
   void GenEvent::LoadVisibleTaus(void)
   {
     //Load Tau objetcs
-    taus_.clear();
+    visibleTaus_.clear();
     for(int iTau = 0; iTau < tauVisN_; iTau++)
     {
       // if(tauN < 1) break;
-      std::shared_ptr<obj::Tau> tau = std::shared_ptr<obj::Tau>();
+      std::shared_ptr<obj::Tau> tau = std::make_shared<obj::Tau>();
       tau->SetIsGen(true);
       tau->SetIsPrompt(tauIsPromptVector_->at(iTau));
       tau->SetId(iTau);

@@ -71,7 +71,11 @@ namespace in {
         }
       }
     }
-    if(IsTauPairGenMatched(tauPair, cuts)) tauPair.isGenMatched = true;
+    if(IsTauPairGenMatched(tauPair, cuts))
+    {
+      tauPair.isGenMatched = true;
+      // LOG(INFO) << BOLDRED << "Matched Tau Pair" << RESET;
+    }
     return tauPair;
   }
      
@@ -79,6 +83,7 @@ namespace in {
   {
     if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) return false;
     TauVector visibleGenTaus = genEvent_->GetVisibleTaus();
+    // LOG(INFO) << BOLDRED << "Size of visibleTaus vector : " << visibleGenTaus.size() << RESET;
     //two iterations to gen match each tau from the pair
     for(int iTau = 0; iTau < 2; iTau++)
     {
@@ -92,6 +97,7 @@ namespace in {
             || (genTau->GetEta() > cuts.tauEta)
             || (genTau->IsUsedToGenMatch() == true)
         ) continue;
+        // LOG(INFO) << BOLDRED << "Good Gen Tau to use" << RESET;
 
         double deltaR = recoTau->Get4Momentum().deltaR(genTau->Get4Momentum());
         if(deltaR < minDeltaR)
