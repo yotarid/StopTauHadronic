@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
   cmd.defineOption("channel", "Run channel [see available in XML settings file]", ArgvParser::OptionRequiresValue);
   cmd.defineOptionAlternative("channel", "c");
   //
-  cmd.defineOption("extension", "Output file extension. Empty if not passed", ArgvParser::OptionRequiresValue);
+  cmd.defineOption("extension", "Output file extension. Empty if not passed");
   cmd.defineOptionAlternative("extension", "x");
 
   int result = cmd.parse(argc, argv);
@@ -73,6 +73,8 @@ int main(int argc, char* argv[])
 
       obj::TauPair tauPair = globalEvent->GetTauPair(selCuts);
       if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr) || (tauPair.isGenMatched == false)) continue;
+      // if((tauPair.leadTau == nullptr) || (tauPair.subleadTau == nullptr)) continue;
+      LOG(INFO) << BOLDRED << "Found Gen Matched Pair" << RESET;
       outEvent->LoadNewEvent(tauPair, 
                             globalEvent->GetRecoEvent()->GetMETE(),
                             globalEvent->GetRecoEvent()->GetMETPhi(),
