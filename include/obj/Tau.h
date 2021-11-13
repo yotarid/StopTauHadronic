@@ -3,11 +3,6 @@
 
 #include "Object.h"
 
-#include <string>
-#include <map>
-#include <memory>
-#include <vector>
-
 namespace obj {
   
   class Tau : public Object {
@@ -21,11 +16,11 @@ namespace obj {
         decayMode_ = decayMode; 
       };
 
-      void SetIsDeepTauIDvsEl(int deepTauIDwpID, bool isDeepTauIDvsEl);
+      void SetIsDeepTauIDvsEl(int wpID, bool isDeepTauIDvsEl);
 
-      void SetIsDeepTauIDvsJet(int deepTauIDwpID, bool isDeepTauIDvsJet);
+      void SetIsDeepTauIDvsJet(int wpID, bool isDeepTauIDvsJet);
 
-      void SetIsDeepTauIDvsMu(int deepTauIDwpID, bool isDeepTauIDvsMu);
+      void SetIsDeepTauIDvsMu(int wpID, bool isDeepTauIDvsMu);
 
       void SetIsPrompt(bool isPrompt){
         isPrompt_ = isPrompt;
@@ -35,11 +30,11 @@ namespace obj {
         return decayMode_; 
       };
 
-      bool IsDeepTauIDvsEl(int deepTauIDwpID);
+      bool IsDeepTauIDvsEl(int wpID);
       
-      bool IsDeepTauIDvsJet(int deepTauIDwpID);
+      bool IsDeepTauIDvsJet(int wpID);
 
-      bool IsDeepTauIDvsMu(int deepTauIDwpID);
+      bool IsDeepTauIDvsMu(int wpID);
 
       bool IsPrompt(void){
         return isPrompt_;

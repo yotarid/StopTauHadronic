@@ -2,6 +2,11 @@
 #define OBJECT_H
 
 #include <cmath>
+#include <string>
+#include <map>
+#include <memory>
+#include <vector>
+
 #include <CLHEP/Vector/LorentzVector.h>
 
 namespace obj {
