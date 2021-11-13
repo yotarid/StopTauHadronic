@@ -2,9 +2,9 @@
 
 namespace obj {
   
-  void Tau::SetIsDeepTauIDvsEl(int deepTauIDwpID, bool isDeepTauIDvsEl)
+  void Tau::SetIsDeepTauIDvsEl(int wpID, bool isDeepTauIDvsEl)
   {
-    switch(deepTauIDwpID)
+    switch(wpID)
     {
       case 0 : isVVVLooseDeepTauIDvsEl_ = isDeepTauIDvsEl; break;
       case 1 : isVVLooseDeepTauIDvsEl_ = isDeepTauIDvsEl; break;
@@ -17,9 +17,9 @@ namespace obj {
     }
   }
 
-  void Tau::SetIsDeepTauIDvsJet(int deepTauIDwpID, bool isDeepTauIDvsJet)
+  void Tau::SetIsDeepTauIDvsJet(int wpID, bool isDeepTauIDvsJet)
   {
-    switch(deepTauIDwpID)
+    switch(wpID)
     {
       case 0 : isVVVLooseDeepTauIDvsJet_ = isDeepTauIDvsJet; break;
       case 1 : isVVLooseDeepTauIDvsJet_ = isDeepTauIDvsJet; break;
@@ -33,9 +33,9 @@ namespace obj {
     }
   }
 
-  void Tau::SetIsDeepTauIDvsMu(int deepTauIDwpID, bool isDeepTauIDvsMu)
+  void Tau::SetIsDeepTauIDvsMu(int wpID, bool isDeepTauIDvsMu)
   {
-    switch(deepTauIDwpID)
+    switch(wpID)
     {
       case 2 : isVLooseDeepTauIDvsMu_ = isDeepTauIDvsMu; break;
       case 3 : isLooseDeepTauIDvsMu_ = isDeepTauIDvsMu; break;
@@ -45,9 +45,9 @@ namespace obj {
     }
   }
 
-  bool Tau::IsDeepTauIDvsEl(int deepTauIDwpID) 
+  bool Tau::IsDeepTauIDvsEl(int wpID) 
   {
-    switch(deepTauIDwpID)
+    switch(wpID)
     {
       case 0 : return isVVVLooseDeepTauIDvsEl_; break;
       case 1 : return isVVLooseDeepTauIDvsEl_; break;
@@ -60,9 +60,9 @@ namespace obj {
     }
   }
 
-  bool Tau::IsDeepTauIDvsJet(int deepTauIDwpID) 
+  bool Tau::IsDeepTauIDvsJet(int wpID) 
   {
-    switch(deepTauIDwpID)
+    switch(wpID)
     {
       case 0 : return isVVVLooseDeepTauIDvsJet_; break;
       case 1 : return isVVLooseDeepTauIDvsJet_; break;
@@ -76,9 +76,9 @@ namespace obj {
     }
   }
 
-  bool Tau::IsDeepTauIDvsMu(int deepTauIDwpID) 
+  bool Tau::IsDeepTauIDvsMu(int wpID) 
   {
-    switch(deepTauIDwpID)
+    switch(wpID)
     {
       case 2 : return isVLooseDeepTauIDvsMu_; break;
       case 3 : return isLooseDeepTauIDvsMu_; break; 
