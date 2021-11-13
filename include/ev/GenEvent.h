@@ -32,6 +32,7 @@ namespace in {
       bool LoadEvent(int iEvent) override;
       void LoadTaus(void) override;
       void LoadVisibleTaus(void);
+      void LoadJets(void) override {};
 
       TauVector GetVisibleTaus(void){
         return visibleTaus_;

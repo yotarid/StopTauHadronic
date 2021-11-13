@@ -6,6 +6,7 @@
 
 #include "../conf/Configuration.h"
 #include "../obj/Tau.h"
+#include "../obj/Jet.h"
 
 #include <memory>
 #include <iostream>
@@ -25,7 +26,7 @@ namespace in {
 
       virtual bool Initialise(TTree* tree) = 0;
       virtual void LoadTaus(void) = 0;
-      // virtual void LoadJets(void) = 0;
+      virtual void LoadJets(void) = 0;
       // virtual void LoadElectrons(void) = 0;
       // virtual void LoadMuons(void) = 0;
       bool IsInitialised(void);
@@ -57,7 +58,7 @@ namespace in {
       std::vector<double>* jetPxVector_ = nullptr;
       std::vector<double>* jetPyVector_ = nullptr;
       std::vector<double>* jetPzVector_ = nullptr;
-      // JetVector jets_;
+      JetVector jets_;
 
       int muN_;
       std::vector<double>* muEVector_ = nullptr;

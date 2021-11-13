@@ -34,7 +34,7 @@ namespace in {
       bool Initialise(TTree* tree) override;
       bool LoadEvent(int iEvent) override;
       void LoadTaus(void) override;
-      // void LoadJets(void) override {}
+      void LoadJets(void) override;
       // void LoadElectrons(void) override {}
       // void LoadMuons(void) override {}
 
@@ -114,14 +114,14 @@ namespace in {
       std::vector<double>* eldZVector_ = nullptr;
       
 
-      std::map<std::string, int> deepIDwpMap_ = {{"VVVLoose", 0}, 
-                                                {"VVLoose", 1}, 
-                                                {"VLoose", 2}, 
-                                                {"Loose", 3}, 
-                                                {"Medium", 4}, 
-                                                {"Tight", 5}, 
-                                                {"VTight", 6}, 
-                                                {"VVTight", 7}};
+      std::map<std::string, int> wpMap_ = {{"VVVLoose", 0}, 
+                                           {"VVLoose", 1}, 
+                                           {"VLoose", 2}, 
+                                           {"Loose", 3}, 
+                                           {"Medium", 4}, 
+                                           {"Tight", 5}, 
+                                           {"VTight", 6}, 
+                                           {"VVTight", 7}};
  
 
   };

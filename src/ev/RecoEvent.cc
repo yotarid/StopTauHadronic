@@ -120,32 +120,61 @@ namespace in {
       tau->SetDecayMode(tauDecayModeVector_->at(iTau));
 
       //set DeepTau ID vs El
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSeVector_->at(iTau));
-      tau->SetIsDeepTauIDvsEl(deepIDwpMap_["VTight"], tauVTightDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["Loose"], tauLooseDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["Medium"], tauMediumDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["Tight"], tauTightDeepTau2017v2p1VSeVector_->at(iTau));
+      tau->SetIsDeepTauIDvsEl(wpMap_["VTight"], tauVTightDeepTau2017v2p1VSeVector_->at(iTau));
 
       //set DeepTau ID vs Jet
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VTight"], tauVTightDeepTau2017v2p1VSjetVector_->at(iTau));
-      tau->SetIsDeepTauIDvsJet(deepIDwpMap_["VVTight"], tauVVTightDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["VVVLoose"], tauVVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["VVLoose"], tauVVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["Loose"], tauLooseDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["Medium"], tauMediumDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["Tight"], tauTightDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["VTight"], tauVTightDeepTau2017v2p1VSjetVector_->at(iTau));
+      tau->SetIsDeepTauIDvsJet(wpMap_["VVTight"], tauVVTightDeepTau2017v2p1VSjetVector_->at(iTau));
 
       //set DeepTau ID vs Mu
-      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSmuVector_->at(iTau));
-      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Loose"], tauLooseDeepTau2017v2p1VSmuVector_->at(iTau));
-      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Medium"], tauMediumDeepTau2017v2p1VSmuVector_->at(iTau));
-      tau->SetIsDeepTauIDvsMu(deepIDwpMap_["Tight"], tauTightDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(wpMap_["VLoose"], tauVLooseDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(wpMap_["Loose"], tauLooseDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(wpMap_["Medium"], tauMediumDeepTau2017v2p1VSmuVector_->at(iTau));
+      tau->SetIsDeepTauIDvsMu(wpMap_["Tight"], tauTightDeepTau2017v2p1VSmuVector_->at(iTau));
  
       //push back
       taus_.push_back(tau);
+    }
+  }
+
+  void RecoEvent::LoadJets(void)
+  {
+    jets_.clear();
+    for(int iJet = 0; iJet < jetN_; iJet++)
+    {
+      if(jetN_ < 1) break;
+      std::shared_ptr<obj::Jet> jet = std::make_shared<obj::Jet>();
+
+      jet->SetId(iJet);
+
+      jet->SetE(jetEVector_->at(iJet));
+      jet->SetpX(jetPxVector_->at(iJet));
+      jet->SetpY(jetPyVector_->at(iJet));
+      jet->SetpZ(jetPzVector_->at(iJet));
+
+      jet->SetPartonFlavour(jetPartonFlavourVector_->at(iJet));
+      jet->SetHadronFlavour(jetHadronFlavourVector_->at(iJet));
+
+      jet->SetIsISR(jetIsISRVector_->at(iJet));
+      jet->SetIsPfCombinedInclusiveSecondaryVertexV2B(wpMap_["Loose"], jetLoosePFCombinedInclusiveSecondaryVertexV2BJetTagsVector_->at(iJet));
+      jet->SetIsPfCombinedInclusiveSecondaryVertexV2B(wpMap_["Medium"], jetMediumPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_->at(iJet));
+      jet->SetIsPfCombinedInclusiveSecondaryVertexV2B(wpMap_["Tight"], jetTightPFCombinedInclusiveSecondaryVertexV2BJetTagsVector_->at(iJet));
+
+      jet->SetIsPfDeepFlavour(wpMap_["Loose"], jetLoosePFDeepFlavourJetTagsVector_->at(iJet));
+      jet->SetIsPfDeepFlavour(wpMap_["Medium"], jetMediumPFDeepFlavourJetTagsVector_->at(iJet));
+      jet->SetIsPfDeepFlavour(wpMap_["Tight"], jetTightPFDeepFlavourJetTagsVector_->at(iJet));
     }
   }
 
@@ -155,6 +184,7 @@ namespace in {
       return false;
     }else{
       LoadTaus();
+      LoadJets();
       eventN_ = iEvent;
       return true;  
     }
@@ -169,9 +199,9 @@ namespace in {
       if( (tau->Get4Momentum().perp() < cuts.tauPt)
           || (fabs(tau->Get4Momentum().eta() > cuts.tauEta))
           || (fabs(tau->GetdZ() > cuts.taudZ))
-          || (tau->IsDeepTauIDvsEl(deepIDwpMap_.at(cuts.deepTauID)) == false)
-          || (tau->IsDeepTauIDvsMu(deepIDwpMap_.at(cuts.deepTauID)) == false)
-          || (tau->IsDeepTauIDvsJet(deepIDwpMap_.at(cuts.deepTauID)) == false)
+          || (tau->IsDeepTauIDvsEl(wpMap_.at(cuts.deepTauID)) == false)
+          || (tau->IsDeepTauIDvsMu(wpMap_.at(cuts.deepTauID)) == false)
+          || (tau->IsDeepTauIDvsJet(wpMap_.at(cuts.deepTauID)) == false)
       ) continue;
       selectedTaus.push_back(tau);
     }
